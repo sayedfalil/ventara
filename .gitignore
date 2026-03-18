@@ -18,6 +18,9 @@ data/
 *.db-shm
 *.db-wal
 
+# TypeScript build info
+tsconfig.tsbuildinfo
+
 # Misc
 .DS_Store
 *.pem

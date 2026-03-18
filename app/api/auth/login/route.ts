@@ -16,7 +16,7 @@ export async function POST(request: Request) {
       sql: 'SELECT * FROM admin_users WHERE username = ?',
       args: [username],
     });
-    const user = result.rows[0] as
+    const user = result.rows[0] as unknown as
       | { id: number; username: string; password_hash: string }
       | undefined;
 
