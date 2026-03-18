@@ -134,7 +134,7 @@ export default function Navbar({ scrollY }: { scrollY: number }) {
         <div style={{ display: "flex", alignItems: "center", gap: "2rem" }}>
           <a
             href="#enquire"
-            className="btn-primary"
+            className="btn-primary enquire-btn"
             style={{
               padding: "10px 26px",
               fontSize: "0.65rem",
@@ -144,7 +144,6 @@ export default function Navbar({ scrollY }: { scrollY: number }) {
               color: "#fff",
               display: "none",
             }}
-            className="enquire-btn"
           >
             Enquire
           </a>
