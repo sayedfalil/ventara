@@ -1,45 +1,10 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 
 export default function Hero() {
   const ref = useRef(null);
-  const vantaRef = useRef(null);
-  const [vantaEffect, setVantaEffect] = useState<any>(null);
-
-  useEffect(() => {
-    const initVanta = () => {
-      if (!vantaEffect && typeof window !== "undefined" && (window as any).VANTA) {
-        setVantaEffect(
-          (window as any).VANTA.CLOUDS({
-            el: vantaRef.current,
-            mouseControls: true,
-            touchControls: true,
-            gyroControls: false,
-            minHeight: 200.00,
-            minWidth: 200.00,
-            backgroundColor: 0xffffff,
-            skyColor: 0x93b8c6, /* Matches Vantara subtle brand theme! */
-            cloudColor: 0xddeef3,
-            cloudShadowColor: 0x5a7d8f,
-            sunColor: 0xffffff,
-            sunGlareColor: 0xffffff,
-            sunPosition: { x: 0, y: 0, z: 0 },
-            scale: 1.00,
-            speed: 1.40 /* Adjust speed to act like moving video */
-          })
-        );
-      }
-    };
-    initVanta();
-    const intervalId = setInterval(initVanta, 500);
-
-    return () => {
-      clearInterval(intervalId);
-      if (vantaEffect) vantaEffect.destroy();
-    };
-  }, [vantaEffect]);
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -52,9 +17,19 @@ export default function Hero() {
   return (
     <section ref={ref} style={{ position: "relative", width: "100%", height: "100vh", overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center" }}>
       
-      {/* Vanta.js 3D Interactive Moving Clouds */}
-      <motion.div ref={vantaRef} style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", y, opacity, zIndex: 0, backgroundColor: "#E6F0F4" }} />
-      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.0) 40%, rgba(255,255,255,0.95) 100%)", zIndex: 1, pointerEvents: "none" }} />
+      {/* Video Background */}
+      <motion.div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", y, opacity, zIndex: 0, backgroundColor: "#E6F0F4", overflow: "hidden" }}>
+        <video 
+          autoPlay 
+          loop 
+          muted 
+          playsInline 
+          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }}
+        >
+          <source src="/coverr-hiking-through-the-mountains-1755-1080p.mp4" type="video/mp4" />
+        </video>
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.0) 40%, rgba(255,255,255,0.95) 100%)", zIndex: 1, pointerEvents: "none" }} />
+      </motion.div>
 
       <div className="container" style={{ position: "relative", zIndex: 10, display: "flex", flexDirection: "column", height: "100%", justifyContent: "flex-end", paddingBottom: "10vh" }}>
         
