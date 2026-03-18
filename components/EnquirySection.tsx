@@ -82,7 +82,7 @@ export default function EnquirySection() {
   };
 
   return (
-    <section id="enquire" style={{ background: "var(--teal-deep)", padding: "10rem 0", position: "relative", overflow: "hidden" }}>
+    <section id="enquire" style={{ background: "var(--teal-deep)", padding: "clamp(5rem, 15vw, 10rem) 0", position: "relative", overflow: "hidden" }}>
       {/* Background V watermark */}
       <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "flex-end", opacity: 0.04, pointerEvents: "none", overflow: "hidden" }}>
         <img src="/logo.png" alt="Watermark" style={{ width: "60vw", maxWidth: 700, objectFit: "contain" }} />

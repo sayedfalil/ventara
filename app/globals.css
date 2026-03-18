@@ -111,7 +111,7 @@ button {
 }
 
 .section {
-  padding: 10rem 0;
+  padding: clamp(5rem, 15vw, 10rem) 0;
 }
 
 /* Buttons */

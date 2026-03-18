@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function Footer() {
   return (
-    <footer id="contact" style={{ background: "var(--bg-primary)", padding: "10rem 4vw 4rem", position: "relative" }}>
+    <footer id="contact" style={{ background: "var(--bg-primary)", padding: "clamp(5rem, 15vw, 10rem) 4vw 4rem", position: "relative" }}>
       
       <div className="container-narrow" style={{ textAlign: "center", marginBottom: "8rem" }}>
         <p className="eyebrow" style={{ marginBottom: "2rem" }}>Your Private Invitation</p>
@@ -16,11 +16,11 @@ export default function Footer() {
         </a>
       </div>
 
-      <div className="container" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "5rem", paddingBottom: "4rem", borderBottom: "1px solid var(--border)" }}>
+      <div className="container" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "clamp(3rem, 6vw, 5rem)", paddingBottom: "4rem", borderBottom: "1px solid var(--border)" }}>
         
         <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-            <img src="/logo.png" alt="Vantara Logo" style={{ width: 280, height: 80, objectFit: "contain", objectPosition: "left" }} className="flying-logo" />
+            <img src="/logo.png" alt="Vantara Logo" style={{ width: "clamp(180px, 60vw, 280px)", height: "auto", objectFit: "contain", objectPosition: "left" }} className="flying-logo" />
           </div>
           <p style={{ fontSize: "1rem", color: "var(--text-secondary)", lineHeight: 1.8, maxWidth: "340px", fontWeight: 300 }}>
             Architects of India's most extraordinary private luxury journeys. Designed for the discerning traveler.

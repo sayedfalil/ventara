@@ -47,7 +47,7 @@ export default function Hero() {
             Beyond the <br /> <span style={{ fontStyle: "italic", fontWeight: 300, paddingLeft: "10vw", color: "var(--teal-dark)" }}>Extraordinary.</span>
           </h1>
 
-          <div style={{ display: "flex", gap: "5rem", alignItems: "flex-end", flexWrap: "wrap" }}>
+          <div style={{ display: "flex", gap: "clamp(2rem, 5vw, 5rem)", alignItems: "flex-end", flexWrap: "wrap" }}>
             <p style={{ fontSize: "1.1rem", fontWeight: 300, lineHeight: 1.6, color: "var(--text-secondary)", maxWidth: "450px" }}>
               Private, meticulously curated journeys through India's most breathtaking masterpieces. Discover an elegance reserved for the few.
             </p>

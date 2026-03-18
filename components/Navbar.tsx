@@ -50,9 +50,15 @@ export default function Navbar({ scrollY }: { scrollY: number }) {
           <Image
             src="/logo.png"
             alt="Vantara Global Logo"
-            width={isScrolled ? 180 : 250}
-            height={isScrolled ? 50 : 70}
-            style={{ width: isScrolled ? 180 : 250, height: isScrolled ? 50 : 70, transition: "width 0.4s, height 0.4s", objectFit: "contain", transformOrigin: "center left" }}
+            width={250}
+            height={70}
+            style={{ 
+              width: isScrolled ? "clamp(120px, 35vw, 180px)" : "clamp(150px, 45vw, 250px)", 
+              height: "auto", 
+              transition: "width 0.4s", 
+              objectFit: "contain", 
+              transformOrigin: "center left" 
+            }}
             className="flying-logo"
             priority
           />

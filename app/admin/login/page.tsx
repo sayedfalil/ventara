@@ -83,7 +83,7 @@ export default function AdminLogin() {
               width={260}
               height={80}
               unoptimized
-              style={{ objectFit: "contain" }}
+              style={{ objectFit: "contain", width: "100%", maxWidth: "260px", height: "auto" }}
               className="flying-logo"
             />
           </div>
