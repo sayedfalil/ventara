@@ -18,9 +18,9 @@ export default function Hero() {
     <section ref={ref} style={{ position: "relative", width: "100%", height: "100vh", overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center" }}>
       
       {/* Parallax Background */}
-      <motion.div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", y, opacity, zIndex: 0, backgroundColor: "#080A0F" }}>
+      <motion.div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", y, opacity, zIndex: 0, backgroundColor: "#FFFFFF" }}>
         <Image 
-          src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=85&w=2800&auto=format&fit=crop" /* Dark Sleek Architecture */
+          src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?q=85&w=2800&auto=format&fit=crop" /* Crisp Light Architecture */
           alt="Luxury India Journey"
           fill
           style={{ objectFit: "cover", objectPosition: "center 60%" }}
@@ -28,7 +28,7 @@ export default function Hero() {
           unoptimized={true}
           quality={80}
         />
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(8,10,15,0.85) 0%, rgba(8,10,15,0.2) 40%, rgba(8,10,15,1) 100%)" }} />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.2) 40%, rgba(255,255,255,0.95) 100%)" }} />
       </motion.div>
 
       <div className="container" style={{ position: "relative", zIndex: 10, display: "flex", flexDirection: "column", height: "100%", justifyContent: "flex-end", paddingBottom: "10vh" }}>
@@ -44,7 +44,7 @@ export default function Hero() {
           </p>
 
           <h1 className="heading-serif" style={{ fontSize: "clamp(3.5rem, 8vw, 8rem)", lineHeight: 0.95, color: "var(--text-primary)", marginBottom: "3rem" }}>
-            Beyond the <br /> <span style={{ fontStyle: "italic", fontWeight: 300, paddingLeft: "10vw", color: "var(--teal)" }}>Extraordinary.</span>
+            Beyond the <br /> <span style={{ fontStyle: "italic", fontWeight: 300, paddingLeft: "10vw", color: "var(--teal-dark)" }}>Extraordinary.</span>
           </h1>
 
           <div style={{ display: "flex", gap: "5rem", alignItems: "flex-end", flexWrap: "wrap" }}>

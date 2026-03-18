@@ -44,7 +44,7 @@ export default function AdminLogin() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        background: "linear-gradient(145deg, var(--bg-primary) 0%, var(--bg-tertiary) 50%, #0d1620 100%)",
+        background: "linear-gradient(145deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-tertiary) 100%)",
         padding: "2rem",
       }}
     >
