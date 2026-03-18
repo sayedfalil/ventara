@@ -47,14 +47,8 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
         }}
       >
         {/* Logo */}
-        <div style={{ padding: collapsed ? "1.5rem 1rem" : "1.5rem", borderBottom: "1px solid rgba(255,255,255,0.08)", display: "flex", alignItems: "center", gap: 10, minHeight: 72 }}>
-          <Image src="/logo.png" alt="Vantara" width={36} height={42} unoptimized style={{ flexShrink: 0, objectFit: "contain" }} />
-          {!collapsed && (
-            <div>
-              <div style={{ color: "#fff", fontFamily: "var(--font-serif)", fontSize: "0.95rem", letterSpacing: "0.18em", lineHeight: 1 }}>VANTARA</div>
-              <div style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.42rem", letterSpacing: "0.5em", marginTop: 2 }}>GLOBAL ADMIN</div>
-            </div>
-          )}
+        <div style={{ padding: collapsed ? "1.5rem 1rem" : "1.5rem", borderBottom: "1px solid rgba(255,255,255,0.08)", display: "flex", alignItems: "center", justifyContent: "center", minHeight: 72, background: "#fff" }}>
+          <Image src="/logo.png" alt="Vantara" width={collapsed ? 40 : 140} height={collapsed ? 20 : 36} unoptimized style={{ flexShrink: 0, objectFit: "contain" }} />
         </div>
 
         {/* Nav links */}

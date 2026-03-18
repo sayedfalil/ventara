@@ -21,7 +21,7 @@ export default function Navbar({ scrollY }: { scrollY: number }) {
     { href: "/blog", label: "Journal" },
   ];
 
-  const textColor = isScrolled ? "var(--text-primary)" : "#fff";
+  const textColor = "var(--text-primary)";
 
   return (
     <>
@@ -50,36 +50,11 @@ export default function Navbar({ scrollY }: { scrollY: number }) {
           <Image
             src="/logo.png"
             alt="Vantara Global Logo"
-            width={isScrolled ? 38 : 46}
-            height={isScrolled ? 33 : 40}
-            style={{ width: isScrolled ? 38 : 46, height: isScrolled ? 33 : 40, transition: "width 0.4s, height 0.4s", objectFit: "contain" }}
+            width={isScrolled ? 140 : 170}
+            height={isScrolled ? 38 : 46}
+            style={{ width: isScrolled ? 140 : 170, height: isScrolled ? 38 : 46, transition: "width 0.4s, height 0.4s", objectFit: "contain" }}
+            priority
           />
-
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <span
-              style={{
-                fontFamily: "var(--font-serif)",
-                fontSize: isScrolled ? "1.15rem" : "1.3rem",
-                letterSpacing: "0.18em",
-                color: textColor,
-                transition: "all 0.4s",
-                lineHeight: 1,
-              }}
-            >
-              VANTARA
-            </span>
-            <span
-              style={{
-                fontSize: "0.5rem",
-                letterSpacing: "0.55em",
-                color: isScrolled ? "var(--teal-dark)" : "rgba(255,255,255,0.7)",
-                marginTop: "2px",
-                transition: "color 0.4s",
-              }}
-            >
-              GLOBAL
-            </span>
-          </div>
         </a>
 
         {/* Desktop nav links */}
@@ -100,7 +75,7 @@ export default function Navbar({ scrollY }: { scrollY: number }) {
               key={link.href}
               href={link.href}
               style={{ transition: "color 0.3s", color: "inherit" }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = isScrolled ? "var(--teal)" : "var(--teal-accent)")}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "var(--teal)")}
               onMouseLeave={(e) => (e.currentTarget.style.color = textColor)}
             >
               {link.label}
@@ -116,9 +91,8 @@ export default function Navbar({ scrollY }: { scrollY: number }) {
             style={{
               padding: "10px 26px",
               fontSize: "0.65rem",
-              background: isScrolled ? "var(--teal-deep)" : "rgba(255,255,255,0.15)",
-              backdropFilter: isScrolled ? "none" : "blur(10px)",
-              border: isScrolled ? "none" : "1px solid rgba(255,255,255,0.35)",
+              background: isScrolled ? "var(--teal-deep)" : "var(--teal-dark)",
+              border: "none",
               color: "#fff",
               display: "none",
             }}

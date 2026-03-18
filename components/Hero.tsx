@@ -18,17 +18,17 @@ export default function Hero() {
     <section ref={ref} style={{ position: "relative", width: "100%", height: "100vh", overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center" }}>
       
       {/* Parallax Background */}
-      <motion.div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", y, opacity, zIndex: 0, backgroundColor: "#0d3d47" }}>
+      <motion.div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", y, opacity, zIndex: 0, backgroundColor: "#f8f9fa" }}>
         <Image 
-          src="https://images.unsplash.com/photo-1548013146-72479768bada?q=85&w=2800&auto=format&fit=crop" // Taj Mahal
+          src="https://images.unsplash.com/photo-1596422846543-74198cfa16ce?q=85&w=2800&auto=format&fit=crop" /* Light Taj Mahal / Architecture */
           alt="Luxury India Journey"
           fill
-          style={{ objectFit: "cover", objectPosition: "center 80%" }}
+          style={{ objectFit: "cover", objectPosition: "center 70%" }}
           priority
           unoptimized={true}
           quality={75}
         />
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.4) 100%)" }} />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.1) 40%, rgba(255,255,255,0.9) 100%)" }} />
       </motion.div>
 
       <div className="container" style={{ position: "relative", zIndex: 10, display: "flex", flexDirection: "column", height: "100%", justifyContent: "flex-end", paddingBottom: "10vh" }}>
@@ -39,20 +39,20 @@ export default function Hero() {
           transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           style={{ maxWidth: "1200px" }}
         >
-          <p className="eyebrow" style={{ color: "#fff", marginBottom: "2rem" }}>
+          <p className="eyebrow" style={{ color: "var(--teal-dark)", marginBottom: "2rem" }}>
             The Architecture of Luxury
           </p>
 
-          <h1 className="heading-serif" style={{ fontSize: "clamp(3.5rem, 8vw, 8rem)", lineHeight: 0.95, color: "#fff", marginBottom: "3rem" }}>
-            Beyond the <br /> <span style={{ fontStyle: "italic", fontWeight: 300, paddingLeft: "10vw" }}>Extraordinary.</span>
+          <h1 className="heading-serif" style={{ fontSize: "clamp(3.5rem, 8vw, 8rem)", lineHeight: 0.95, color: "var(--text-primary)", marginBottom: "3rem" }}>
+            Beyond the <br /> <span style={{ fontStyle: "italic", fontWeight: 300, paddingLeft: "10vw", color: "var(--teal-deep)" }}>Extraordinary.</span>
           </h1>
 
           <div style={{ display: "flex", gap: "5rem", alignItems: "flex-end", flexWrap: "wrap" }}>
-            <p style={{ fontSize: "1.1rem", fontWeight: 300, lineHeight: 1.6, color: "rgba(255,255,255,0.85)", maxWidth: "450px" }}>
+            <p style={{ fontSize: "1.1rem", fontWeight: 300, lineHeight: 1.6, color: "var(--text-secondary)", maxWidth: "450px" }}>
               Private, meticulously curated journeys through India's most breathtaking masterpieces. Discover an elegance reserved for the few.
             </p>
             
-            <a href="#destinations" className="btn-primary" style={{ background: "rgba(255,255,255,0.1)", backdropFilter: "blur(10px)", border: "1px solid rgba(255,255,255,0.3)", color: "#fff" }}>
+            <a href="#destinations" className="btn-primary">
               Begin Journey
             </a>
           </div>
@@ -66,8 +66,8 @@ export default function Hero() {
         transition={{ delay: 1.5, duration: 1 }}
         style={{ position: "absolute", bottom: "40px", right: "4vw", display: "flex", flexDirection: "column", alignItems: "center", gap: "10px" }}
       >
-        <div style={{ width: "1px", height: "60px", background: "linear-gradient(to bottom, transparent, rgba(255,255,255,0.8))" }} />
-        <span style={{ fontSize: "0.55rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "rgba(255,255,255,0.8)", writingMode: "vertical-rl" }}>SCROLL</span>
+        <div style={{ width: "1px", height: "60px", background: "linear-gradient(to bottom, transparent, var(--teal-dark))" }} />
+        <span style={{ fontSize: "0.55rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "var(--text-secondary)", writingMode: "vertical-rl" }}>SCROLL</span>
       </motion.div>
     </section>
   );

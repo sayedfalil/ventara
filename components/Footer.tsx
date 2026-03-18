@@ -20,11 +20,7 @@ export default function Footer() {
         
         <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-            <img src="/logo.png" alt="Vantara Logo" style={{ width: 44, height: 44, objectFit: "contain" }} />
-            <div style={{ display: "flex", flexDirection: "column" }}>
-              <span style={{ fontFamily: "var(--font-serif)", fontSize: "1.3rem", letterSpacing: "0.15em", color: "var(--text-primary)" }}>VANTARA</span>
-              <span style={{ fontSize: "0.55rem", letterSpacing: "0.45em", color: "var(--teal-dark)", marginTop: "-2px" }}>GLOBAL</span>
-            </div>
+            <img src="/logo.png" alt="Vantara Logo" style={{ width: 220, height: 60, objectFit: "contain", objectPosition: "left" }} />
           </div>
           <p style={{ fontSize: "1rem", color: "var(--text-secondary)", lineHeight: 1.8, maxWidth: "340px", fontWeight: 300 }}>
             Architects of India's most extraordinary private luxury journeys. Designed for the discerning traveler.

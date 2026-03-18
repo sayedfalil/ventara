@@ -75,22 +75,22 @@ export default function AdminLogin() {
           zIndex: 1,
         }}
       >
-        {/* Logo */}
         <div style={{ textAlign: "center", marginBottom: "3rem" }}>
           <div style={{ display: "flex", justifyContent: "center", marginBottom: "1rem" }}>
             <Image
               src="/logo.png"
               alt="Vantara Global"
-              width={120}
-              height={140}
+              width={200}
+              height={55}
               unoptimized
+              style={{ objectFit: "contain" }}
             />
           </div>
           <p
             className="eyebrow"
-            style={{ color: "var(--text-light)", marginTop: "0.5rem" }}
+            style={{ color: "var(--text-light)", marginTop: "1rem" }}
           >
-            Administrator Access
+            Admin Portal
           </p>
         </div>
 
