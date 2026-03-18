@@ -20,11 +20,7 @@ export default function Footer() {
         
         <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-            <svg viewBox="0 0 36 36" style={{ width: 44, height: 44 }}>
-              <path d="M3 3 L14 3 L18 12.5 L22 3 L33 3 L18 34Z" fill="var(--teal)"/>
-              <path d="M18 12.5 L22 3 L33 3 L18 34Z" fill="var(--teal-deep)"/>
-              <path d="M17.2 19 L18 16.8 L18.8 19 L21 19.8 L18.8 20.6 L18 22.8 L17.2 20.6 L15 19.8Z" fill="var(--teal-accent)"/>
-            </svg>
+            <img src="/logo.png" alt="Vantara Logo" style={{ width: 44, height: 44, objectFit: "contain" }} />
             <div style={{ display: "flex", flexDirection: "column" }}>
               <span style={{ fontFamily: "var(--font-serif)", fontSize: "1.3rem", letterSpacing: "0.15em", color: "var(--text-primary)" }}>VANTARA</span>
               <span style={{ fontSize: "0.55rem", letterSpacing: "0.45em", color: "var(--teal-dark)", marginTop: "-2px" }}>GLOBAL</span>

@@ -47,35 +47,13 @@ export default function Navbar({ scrollY }: { scrollY: number }) {
         {/* Logo */}
         <a href="/" style={{ display: "flex", alignItems: "center", gap: "12px", cursor: "pointer", zIndex: 101, textDecoration: "none" }}>
           {/* V mark — inline SVG so colour adapts to hero / scrolled state */}
-          <svg
-            viewBox="0 0 140 120"
-            style={{ width: isScrolled ? 38 : 46, height: isScrolled ? 33 : 40, transition: "width 0.4s, height 0.4s" }}
-          >
-            {/* Left narrow arm */}
-            <polygon
-              points="5,6 32,6 65,100 40,107"
-              fill={isScrolled ? "var(--teal-dark)" : "rgba(255,255,255,0.92)"}
-              style={{ transition: "fill 0.4s" }}
-            />
-            {/* Right arm — inner darker fold */}
-            <polygon
-              points="36,6 65,100 66,107 73,6"
-              fill={isScrolled ? "var(--teal-deep)" : "rgba(200,230,235,0.55)"}
-              style={{ transition: "fill 0.4s" }}
-            />
-            {/* Right arm — outer face */}
-            <polygon
-              points="76,6 135,6 103,110 66,107"
-              fill={isScrolled ? "var(--teal-dark)" : "rgba(255,255,255,0.92)"}
-              style={{ transition: "fill 0.4s" }}
-            />
-            {/* 4-pointed star */}
-            <path
-              d="M65,96 L68,104 L76,107 L68,110 L65,118 L62,110 L54,107 L62,104Z"
-              fill={isScrolled ? "var(--teal-deep)" : "rgba(255,255,255,0.6)"}
-              style={{ transition: "fill 0.4s" }}
-            />
-          </svg>
+          <Image
+            src="/logo.png"
+            alt="Vantara Global Logo"
+            width={isScrolled ? 38 : 46}
+            height={isScrolled ? 33 : 40}
+            style={{ width: isScrolled ? 38 : 46, height: isScrolled ? 33 : 40, transition: "width 0.4s, height 0.4s", objectFit: "contain" }}
+          />
 
           <div style={{ display: "flex", flexDirection: "column" }}>
             <span

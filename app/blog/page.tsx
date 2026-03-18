@@ -63,8 +63,9 @@ export default function BlogPage() {
         }}
       >
         {/* V watermark */}
-        <svg
-          viewBox="0 0 140 120"
+        <img
+          src="/logo.png"
+          alt="Watermark"
           style={{
             position: "absolute",
             right: "8%",
@@ -72,13 +73,9 @@ export default function BlogPage() {
             transform: "translateY(-50%)",
             width: "320px",
             opacity: 0.06,
+            objectFit: "contain",
           }}
-        >
-          <polygon points="5,6 32,6 65,100 40,107" fill="#fff" />
-          <polygon points="36,6 65,100 66,107 73,6" fill="#fff" />
-          <polygon points="76,6 135,6 103,110 66,107" fill="#fff" />
-          <path d="M65,96 L68,104 L76,107 L68,110 L65,118 L62,110 L54,107 L62,104Z" fill="#fff" />
-        </svg>
+        />
 
         <motion.div
           initial={{ opacity: 0, y: 24 }}

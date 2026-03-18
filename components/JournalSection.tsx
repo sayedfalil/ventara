@@ -201,11 +201,7 @@ export default function JournalSection() {
                             justifyContent: "center",
                           }}
                         >
-                          <svg viewBox="0 0 140 120" style={{ width: 60, opacity: 0.2 }}>
-                            <polygon points="5,6 32,6 65,100 40,107" fill="#fff" />
-                            <polygon points="36,6 65,100 66,107 73,6" fill="#fff" />
-                            <polygon points="76,6 135,6 103,110 66,107" fill="#fff" />
-                          </svg>
+                          <img src="/logo.png" alt="Placeholder" style={{ width: 60, opacity: 0.2, objectFit: "contain" }} />
                         </div>
                       )}
                       {blog.category_name && (

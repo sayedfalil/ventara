@@ -168,10 +168,7 @@ export default function Packages() {
                   pointerEvents: "none",
                 }}
               >
-                <svg viewBox="0 0 200 200" style={{ width: "85%", height: "85%" }}>
-                  <polygon points="10,10 58,10 100,145 58,155" fill="white" />
-                  <polygon points="62,10 190,10 155,155 100,145" fill="white" />
-                </svg>
+                <img src="/logo.png" alt="Watermark" style={{ width: "85%", height: "85%", objectFit: "contain" }} />
               </div>
 
               {/* Shimmer overlay */}

@@ -85,10 +85,7 @@ export default function EnquirySection() {
     <section id="enquire" style={{ background: "var(--teal-deep)", padding: "10rem 0", position: "relative", overflow: "hidden" }}>
       {/* Background V watermark */}
       <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "flex-end", opacity: 0.04, pointerEvents: "none", overflow: "hidden" }}>
-        <svg viewBox="0 0 400 400" style={{ width: "60vw", maxWidth: 700 }}>
-          <polygon points="20,20 115,20 200,300 120,318" fill="white" />
-          <polygon points="125,20 380,20 318,318 200,300" fill="white" />
-        </svg>
+        <img src="/logo.png" alt="Watermark" style={{ width: "60vw", maxWidth: 700, objectFit: "contain" }} />
       </div>
 
       <div className="container-narrow" style={{ position: "relative", zIndex: 1 }}>

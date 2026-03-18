@@ -60,10 +60,7 @@ export default function AdminLogin() {
           pointerEvents: "none",
         }}
       >
-        <svg viewBox="0 0 400 400" style={{ width: "90vw", maxWidth: 800 }}>
-          <polygon points="20,20 115,20 200,300 120,318" fill="white" />
-          <polygon points="125,20 380,20 318,318 200,300" fill="white" />
-        </svg>
+        <Image src="/logo.png" alt="Watermark" width={400} height={400} style={{ width: "90vw", maxWidth: 800, objectFit: "contain" }} />
       </div>
 
       <div
@@ -82,7 +79,7 @@ export default function AdminLogin() {
         <div style={{ textAlign: "center", marginBottom: "3rem" }}>
           <div style={{ display: "flex", justifyContent: "center", marginBottom: "1rem" }}>
             <Image
-              src="/vantara-logo.svg"
+              src="/logo.png"
               alt="Vantara Global"
               width={120}
               height={140}
