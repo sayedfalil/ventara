@@ -17,18 +17,16 @@ export default function Hero() {
   return (
     <section ref={ref} style={{ position: "relative", width: "100%", height: "100vh", overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center" }}>
       
-      {/* Parallax Background */}
-      <motion.div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", y, opacity, zIndex: 0, backgroundColor: "#FFFFFF" }}>
-        <Image 
-          src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?q=85&w=2800&auto=format&fit=crop" /* Crisp Light Architecture */
-          alt="Luxury India Journey"
-          fill
-          style={{ objectFit: "cover", objectPosition: "center 60%" }}
-          priority
-          unoptimized={true}
-          quality={80}
-        />
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.2) 40%, rgba(255,255,255,0.95) 100%)" }} />
+      {/* Animated Clouds Background */}
+      <motion.div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", y, opacity, zIndex: 0, backgroundColor: "#E0F2FE", overflow: "hidden" }}>
+        <div style={{
+          position: "absolute",
+          inset: "-5%", /* Bleed edge to prevent clipping during animation */
+          background: 'url("https://images.unsplash.com/photo-1509803874317-142bf6ff0db5?q=85&w=3000&auto=format&fit=crop")',
+          backgroundSize: "200% 100%",
+          animation: "hero-clouds-pan 120s linear infinite alternate",
+        }} />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.15) 30%, rgba(255,255,255,0.95) 100%)" }} />
       </motion.div>
 
       <div className="container" style={{ position: "relative", zIndex: 10, display: "flex", flexDirection: "column", height: "100%", justifyContent: "flex-end", paddingBottom: "10vh" }}>

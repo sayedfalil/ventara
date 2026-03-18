@@ -80,10 +80,11 @@ export default function AdminLogin() {
             <Image
               src="/logo.png"
               alt="Vantara Global"
-              width={200}
-              height={55}
+              width={260}
+              height={80}
               unoptimized
               style={{ objectFit: "contain" }}
+              className="flying-logo"
             />
           </div>
           <p

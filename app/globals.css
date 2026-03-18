@@ -1,26 +1,43 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap');
 
 :root {
-  /* Linguaterra Earth Tone Accents */
-  --teal: #4A6B5D;
-  --teal-dark: #365245;
-  --teal-deep: #1F332A;
-  --teal-accent: #D4A373;
+  /* Dynamic Travel Accents (Sky Blue & Navy) */
+  --teal: #3B82F6;
+  --teal-dark: #2563EB;
+  --teal-deep: #1E3A8A;
+  --teal-accent: #38BDF8;
   
-  /* Elegant Light Theme Colors */
+  /* Ultra Clear Light Theme Colors */
   --bg-primary: #FFFFFF;
-  --bg-secondary: #FDFBF7;
-  --bg-tertiary: #F4EFE6;
-  --text-primary: #1A1C18;
-  --text-secondary: #5E655B;
-  --text-light: #8E9689;
-  --border: #E8E6DF;
+  --bg-secondary: #F8FAFC;
+  --bg-tertiary: #F1F5F9;
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-light: #94A3B8;
+  --border: #E2E8F0;
 
   --font-serif: 'Playfair Display', Georgia, serif;
   --font-sans: 'DM Sans', system-ui, sans-serif;
   
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+@keyframes flying-logo {
+  0% { transform: perspective(800px) rotateY(-12deg) rotateX(4deg) translateY(0px) scale(1); filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); }
+  50% { transform: perspective(800px) rotateY(12deg) rotateX(-4deg) translateY(-8px) scale(1.02); filter: drop-shadow(0 15px 20px rgba(0,0,0,0.2)); }
+  100% { transform: perspective(800px) rotateY(-12deg) rotateX(4deg) translateY(0px) scale(1); filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); }
+}
+
+@keyframes hero-clouds-pan {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+.flying-logo {
+  animation: flying-logo 5s ease-in-out infinite;
+  transform-style: preserve-3d;
+  will-change: transform, filter;
 }
 
 * {
