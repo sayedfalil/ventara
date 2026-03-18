@@ -1,20 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap');
 
 :root {
-  /* Brand Colors from Logo */
-  --teal: #1a8a9b;
-  --teal-dark: #1c5f6b;
-  --teal-deep: #0d3d47;
-  --teal-accent: #4ecdc4;
+  /* Neon Crypto Accents */
+  --teal: #00F0FF;
+  --teal-dark: #00B8C4;
+  --teal-deep: #0d1620;
+  --teal-accent: #00FFC2;
   
-  /* Light Theme Colors */
-  --bg-primary: #ffffff;
-  --bg-secondary: #fbfaf8; /* Soft warm white */
-  --bg-tertiary: #f2efe9;
-  --text-primary: #1a1a1a;
-  --text-secondary: #5a5a5a;
-  --text-light: #8c8c8c;
-  --border: #eaeaea;
+  /* Dark Tech Theme Colors */
+  --bg-primary: #080A0F;
+  --bg-secondary: #0F1219;
+  --bg-tertiary: #161A24;
+  --text-primary: #FFFFFF;
+  --text-secondary: #A0A5B5;
+  --text-light: #5A6273;
+  --border: rgba(255, 255, 255, 0.08);
 
   --font-serif: 'Playfair Display', Georgia, serif;
   --font-sans: 'DM Sans', system-ui, sans-serif;
@@ -155,11 +155,11 @@ button {
 
 /* Component specifics */
 .nav-scrolled {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(8, 10, 15, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
 }
 
 .img-hover-scale {
