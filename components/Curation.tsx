@@ -16,9 +16,57 @@ export default function Curation() {
 
   return (
     <section id="curation" ref={ref} className="section" style={{ background: "var(--bg-primary)", padding: "12rem 0" }}>
-      <div className="container" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "6rem", alignItems: "center" }}>
-        
-        <div style={{ position: "relative", height: "100vh", width: "100%", display: "flex", justifyContent: "center", alignItems: "center" }}>
+      <style>{`
+        .curation-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 6rem;
+          align-items: center;
+        }
+        .curation-images {
+          position: relative;
+          height: 100vh;
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+        .curation-content {
+          padding-left: 4rem;
+        }
+        .curation-stats {
+          display: grid; 
+          grid-template-columns: 1fr 1fr; 
+          gap: 3rem; 
+          border-top: 1px solid var(--border); 
+          padding-top: 3rem;
+        }
+        @media (max-width: 900px) {
+          .curation-grid {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            text-align: center;
+          }
+          .curation-images {
+            display: none;
+          }
+          .curation-content {
+            padding-left: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+          }
+          .curation-line-container {
+            justify-content: center;
+          }
+          .curation-stats {
+            justify-content: center;
+            text-align: center;
+          }
+        }
+      `}</style>
+      <div className="container curation-grid">
+        <div className="curation-images">
           
           <motion.div style={{ position: "absolute", width: "65%", height: "70%", top: "5%", left: 0, y: imgY1, zIndex: 2 }} className="img-container">
             <Image 
@@ -49,9 +97,9 @@ export default function Curation() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-150px" }}
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          style={{ paddingLeft: "4rem" }}
+          className="curation-content"
         >
-          <div style={{ display: "flex", alignItems: "center", gap: "20px", marginBottom: "3rem" }}>
+          <div className="curation-line-container" style={{ display: "flex", alignItems: "center", gap: "20px", marginBottom: "3rem" }}>
             <div style={{ width: "60px", height: "1px", background: "var(--teal-dark)" }} />
             <span className="eyebrow">The Vantara Standard</span>
           </div>
@@ -68,7 +116,7 @@ export default function Curation() {
             Whether it's a private candlelit dinner overlooking a 400-year-old fort, or a chartered houseboat slicing through the emerald lagoons of Kerala—every moment is flawlessly orchestrated.
           </p>
 
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3rem", borderTop: "1px solid var(--border)", paddingTop: "3rem" }}>
+          <div className="curation-stats">
             <div>
               <div style={{ fontFamily: "var(--font-serif)", fontSize: "2.5rem", color: "var(--text-primary)", lineHeight: 1, marginBottom: "0.5rem" }}>
                 100<span style={{ color: "var(--teal-dark)", fontSize: "1.5rem", fontStyle: "italic" }}>%</span>
