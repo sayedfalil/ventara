@@ -31,7 +31,7 @@ export default function Philosophy() {
           style={{ display: "flex", flexDirection: "column", gap: "2rem" }}
         >
           <p style={{ fontSize: "1.1rem", fontWeight: 300, lineHeight: 1.9, color: "var(--muted)" }}>
-            Vantara Global was born from a singular belief — that India's most profound experiences are not found in brochures. They exist in the mist of a Himalayan sunrise, the silence of a Kerala backwater dawn, and the warmth of a royal welcome in the desert.
+            Ventara Global was born from a singular belief — that India's most profound experiences are not found in brochures. They exist in the mist of a Himalayan sunrise, the silence of a Kerala backwater dawn, and the warmth of a royal welcome in the desert.
           </p>
           <p style={{ fontSize: "1.1rem", fontWeight: 300, lineHeight: 1.9, color: "var(--muted)" }}>
             We are architects of the extraordinary, curating every detail of your luxury journey with obsessive precision and deep local knowledge. 

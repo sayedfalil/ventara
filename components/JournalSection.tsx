@@ -90,7 +90,7 @@ export default function JournalSection() {
                 lineHeight: 1.15,
               }}
             >
-              The Vantara <em style={{ fontStyle: "italic", color: "var(--teal)" }}>Journal</em>
+              The Ventara <em style={{ fontStyle: "italic", color: "var(--teal)" }}>Journal</em>
             </h2>
           </div>
           <Link

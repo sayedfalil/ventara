@@ -105,7 +105,7 @@ export default function BlogPage() {
               marginBottom: "1.2rem",
             }}
           >
-            The Vantara Journal
+            The Ventara Journal
           </h1>
           <p
             style={{

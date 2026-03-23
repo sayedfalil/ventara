@@ -51,7 +51,7 @@ export async function PUT(request: Request, { params }: { params: Promise<{ id: 
             WHERE id=?`,
       args: [
         body.title, slug, body.excerpt || '', body.body || '',
-        body.featured_image || '', body.category_id || null, body.author || 'Vantara Team',
+        body.featured_image || '', body.category_id || null, body.author || 'Ventara Team',
         body.status || 'draft', publishedAt,
         body.meta_title || '', body.meta_description || '', body.focus_keyword || '',
         body.og_title || '', body.og_description || '', body.og_image || '',

@@ -3,7 +3,7 @@ import { getDb } from '@/lib/db';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Use environment variable for base URL or fallback to production URL
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.vantaraglobal.com';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.ventaraglobal.com';
 
   const routes: MetadataRoute.Sitemap = [
     {

@@ -101,7 +101,7 @@ export default function Curation() {
         >
           <div className="curation-line-container" style={{ display: "flex", alignItems: "center", gap: "20px", marginBottom: "3rem" }}>
             <div style={{ width: "60px", height: "1px", background: "var(--teal-dark)" }} />
-            <span className="eyebrow">The Vantara Standard</span>
+            <span className="eyebrow">The Ventara Standard</span>
           </div>
 
           <h2 className="heading-serif" style={{ fontSize: "clamp(3rem, 5vw, 4.8rem)", lineHeight: 1.1, color: "var(--text-primary)", marginBottom: "3rem" }}>
@@ -109,7 +109,7 @@ export default function Curation() {
           </h2>
 
           <p style={{ fontSize: "1.2rem", fontWeight: 300, lineHeight: 1.8, color: "var(--text-secondary)", marginBottom: "2rem", maxWidth: "550px" }}>
-            We approach travel as an art form. By intertwining the opulent heritage of India with ultra-modern luxury, Vantara Global designs itineraries that transcend imagination.
+            We approach travel as an art form. By intertwining the opulent heritage of India with ultra-modern luxury, Ventara Global designs itineraries that transcend imagination.
           </p>
 
           <p style={{ fontSize: "1.05rem", fontWeight: 300, lineHeight: 1.8, color: "var(--text-light)", marginBottom: "4rem", maxWidth: "500px" }}>

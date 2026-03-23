@@ -49,7 +49,7 @@ export default function Navbar({ scrollY }: { scrollY: number }) {
           {/* V mark — inline SVG so colour adapts to hero / scrolled state */}
           <Image
             src="/logo.png"
-            alt="Vantara Global Logo"
+            alt="Ventara Global Logo"
             width={250}
             height={70}
             style={{ 

@@ -22,7 +22,7 @@ if (existsSync(envPath)) {
 
 const TURSO_URL = process.env.TURSO_DATABASE_URL;
 const TURSO_TOKEN = process.env.TURSO_AUTH_TOKEN;
-const LOCAL_DB = join(process.cwd(), 'data', 'vantara.db');
+const LOCAL_DB = join(process.cwd(), 'data', 'ventara.db');
 
 if (!TURSO_URL || !TURSO_TOKEN) {
   console.error('❌  TURSO_DATABASE_URL and TURSO_AUTH_TOKEN must be set in .env.local');
@@ -84,7 +84,7 @@ async function run() {
       body TEXT NOT NULL DEFAULT '',
       featured_image TEXT NOT NULL DEFAULT '',
       category_id INTEGER REFERENCES categories(id) ON DELETE SET NULL,
-      author TEXT NOT NULL DEFAULT 'Vantara Team',
+      author TEXT NOT NULL DEFAULT 'Ventara Team',
       status TEXT NOT NULL DEFAULT 'draft',
       published_at TEXT,
       meta_title TEXT NOT NULL DEFAULT '',

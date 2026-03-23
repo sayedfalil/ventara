@@ -2,7 +2,7 @@ import { cookies } from 'next/headers';
 import { jwtVerify, SignJWT } from 'jose';
 
 const JWT_SECRET = new TextEncoder().encode(
-  process.env.JWT_SECRET || 'vantara-global-admin-secret-2024'
+  process.env.JWT_SECRET || 'ventara-global-admin-secret-2024'
 );
 
 export async function verifyAuth() {

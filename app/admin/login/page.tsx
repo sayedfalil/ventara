@@ -79,7 +79,7 @@ export default function AdminLogin() {
           <div style={{ display: "flex", justifyContent: "center", marginBottom: "1rem" }}>
             <Image
               src="/logo.png"
-              alt="Vantara Global"
+              alt="Ventara Global"
               width={260}
               height={80}
               unoptimized

@@ -23,7 +23,7 @@ type FormState = {
 
 const EMPTY: FormState = {
   title: "", slug: "", excerpt: "", body: "", featured_image: "",
-  category_id: "", author: "Vantara Team", status: "draft", published_at: "",
+  category_id: "", author: "Ventara Team", status: "draft", published_at: "",
   tag_ids: [],
   meta_title: "", meta_description: "", focus_keyword: "",
   og_title: "", og_description: "", og_image: "", twitter_card: "summary_large_image",
@@ -77,7 +77,7 @@ export default function BlogForm({ blogId }: { blogId?: number }) {
             title: d.title || "", slug: d.slug || "", excerpt: d.excerpt || "",
             body: d.body || "", featured_image: d.featured_image || "",
             category_id: d.category_id ? String(d.category_id) : "",
-            author: d.author || "Vantara Team",
+            author: d.author || "Ventara Team",
             status: d.status || "draft",
             published_at: d.published_at ? d.published_at.slice(0, 10) : "",
             tag_ids: (d.tags || []).map((t: Tag) => t.id),
@@ -395,7 +395,7 @@ export default function BlogForm({ blogId }: { blogId?: number }) {
             <div style={{ gridColumn: "span 2", background: "var(--bg-secondary)", border: "1px solid var(--border)", borderRadius: "4px", padding: "1.5rem" }}>
               <p className="eyebrow" style={{ color: "var(--text-light)", marginBottom: "1rem" }}>Google Preview</p>
               <div style={{ fontFamily: "arial, sans-serif" }}>
-                <div style={{ fontSize: "0.78rem", color: "#202124" }}>vantaraglobal.com › blog › {form.slug}</div>
+                <div style={{ fontSize: "0.78rem", color: "#202124" }}>ventaraglobal.com › blog › {form.slug}</div>
                 <div style={{ fontSize: "1.1rem", color: "#1a0dab", marginTop: "2px" }}>{form.meta_title || form.title}</div>
                 <div style={{ fontSize: "0.85rem", color: "#4d5156", lineHeight: 1.55, marginTop: "2px" }}>{form.meta_description || form.excerpt}</div>
               </div>

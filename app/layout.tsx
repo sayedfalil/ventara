@@ -3,8 +3,8 @@ import Script from "next/script";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Vantara Global | Premium Travel to India & Kerala",
-  description: "Experience the ultra-luxury and hidden masterpieces of India and Kerala with Vantara Global.",
+  title: "Ventara Global | Premium Travel to India & Kerala",
+  description: "Experience the ultra-luxury and hidden masterpieces of India and Kerala with Ventara Global.",
 };
 
 export default function RootLayout({

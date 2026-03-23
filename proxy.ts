@@ -3,7 +3,7 @@ import type { NextRequest } from 'next/server';
 import { jwtVerify } from 'jose';
 
 const JWT_SECRET = new TextEncoder().encode(
-  process.env.JWT_SECRET || 'vantara-global-admin-secret-2024'
+  process.env.JWT_SECRET || 'ventara-global-admin-secret-2024'
 );
 
 export default async function proxy(request: NextRequest) {

@@ -11,7 +11,7 @@ export default function Footer() {
         <h2 className="heading-serif" style={{ fontSize: "clamp(3rem, 6vw, 6rem)", color: "var(--text-primary)", lineHeight: 1, marginBottom: "3rem" }}>
           Begin your <span style={{ fontStyle: "italic", color: "var(--teal-dark)" }}>Legend.</span>
         </h2>
-        <a href="mailto:concierge@vantaraglobal.com" className="btn-primary">
+        <a href="mailto:concierge@ventaraglobal.com" className="btn-primary">
           Contact Concierge
         </a>
       </div>
@@ -20,7 +20,7 @@ export default function Footer() {
         
         <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-            <img src="/logo.png" alt="Vantara Logo" style={{ width: "clamp(180px, 60vw, 280px)", height: "auto", objectFit: "contain", objectPosition: "left" }} className="flying-logo" />
+            <img src="/logo.png" alt="Ventara Logo" style={{ width: "clamp(180px, 60vw, 280px)", height: "auto", objectFit: "contain", objectPosition: "left" }} className="flying-logo" />
           </div>
           <p style={{ fontSize: "1rem", color: "var(--text-secondary)", lineHeight: 1.8, maxWidth: "340px", fontWeight: 300 }}>
             Architects of India's most extraordinary private luxury journeys. Designed for the discerning traveler.
@@ -31,7 +31,7 @@ export default function Footer() {
           <h4 className="eyebrow" style={{ color: "var(--text-primary)", marginBottom: "2.5rem" }}>Inquiries</h4>
           <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem", color: "var(--text-secondary)", fontSize: "1rem", fontWeight: 300 }}>
             <p style={{ display: "flex", gap: "16px", alignItems: "center" }}>
-              <span className="eyebrow" style={{ color: "var(--teal-dark)" }}>E</span> concierge@vantaraglobal.com
+              <span className="eyebrow" style={{ color: "var(--teal-dark)" }}>E</span> concierge@ventaraglobal.com
             </p>
             <p style={{ display: "flex", gap: "16px", alignItems: "center" }}>
               <span className="eyebrow" style={{ color: "var(--teal-dark)" }}>T</span> +91 98765 43210
@@ -51,7 +51,7 @@ export default function Footer() {
       </div>
 
       <div className="container" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: "3rem", flexWrap: "wrap", gap: "2rem", color: "var(--text-light)", fontSize: "0.9rem", fontWeight: 300 }}>
-        <p>&copy; {new Date().getFullYear()} Vantara Global. Exclusively Curated.</p>
+        <p>&copy; {new Date().getFullYear()} Ventara Global. Exclusively Curated.</p>
         <div style={{ display: "flex", gap: "3rem" }}>
           <a href="#" style={{ transition: "color 0.4s" }} onMouseEnter={(e) => e.currentTarget.style.color = "var(--text-primary)"} onMouseLeave={(e) => e.currentTarget.style.color = "var(--text-light)"}>Terms</a>
           <a href="#" style={{ transition: "color 0.4s" }} onMouseEnter={(e) => e.currentTarget.style.color = "var(--text-primary)"} onMouseLeave={(e) => e.currentTarget.style.color = "var(--text-light)"}>Privacy</a>
