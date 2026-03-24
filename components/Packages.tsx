@@ -237,13 +237,13 @@ export default function Packages() {
                   <div>
                     <span
                       className="eyebrow"
-                      style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.55rem" }}
+                      style={{ color: "rgba(255,255,255,0.75)", fontSize: "0.55rem" }}
                     >
                       Duration
                     </span>
                     <p
                       style={{
-                        color: "rgba(255,255,255,0.88)",
+                        color: "rgba(255,255,255,0.95)",
                         marginTop: "0.5rem",
                         fontWeight: 300,
                         fontSize: "0.95rem",
@@ -255,13 +255,13 @@ export default function Packages() {
                   <div>
                     <span
                       className="eyebrow"
-                      style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.55rem" }}
+                      style={{ color: "rgba(255,255,255,0.75)", fontSize: "0.55rem" }}
                     >
                       Starting From
                     </span>
                     <p
                       style={{
-                        color: "rgba(255,255,255,0.88)",
+                        color: "rgba(255,255,255,0.95)",
                         marginTop: "0.5rem",
                         fontFamily: "var(--font-serif)",
                         fontSize: "1.05rem",
@@ -276,7 +276,7 @@ export default function Packages() {
                     fontSize: "0.9rem",
                     fontWeight: 300,
                     lineHeight: 1.7,
-                    color: "rgba(255,255,255,0.6)",
+                    color: "rgba(255,255,255,0.85)",
                     marginBottom: "2.5rem",
                   }}
                 >

@@ -75,10 +75,11 @@ export default function Destinations() {
               className="img-hover-scale"
               unoptimized={true}
             />
-            {/* Subtle overlay only at the bottom for text readability */}
-            <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 40%)", pointerEvents: "none" }} />
+            {/* Subtle dark overlay behind text to enforce reading contrast */}
+            <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(0,0,0,0.45)", pointerEvents: "none" }} />
+            <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 60%)", pointerEvents: "none" }} />
             
-            <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "4vw", display: "flex", flexDirection: "column", color: "#fff" }}>
+            <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "4vw", display: "flex", flexDirection: "column", color: "#FFFFFF" }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", borderBottom: "1px solid rgba(255,255,255,0.3)", paddingBottom: "2rem", marginBottom: "2rem" }}>
                 <div>
                   <span className="eyebrow" style={{ color: "rgba(255,255,255,0.7)", marginBottom: "1rem", display: "block" }}>{d.tag}</span>

@@ -2,25 +2,33 @@
 
 :root {
   /* Ventara Brand Colors (Deep Medical/Travel Teal & Cyan) */
-  --teal: #1A8A9B; /* Vibrant brand text color */
+  --teal: #146A77; /* Darkened to pass WCAG AA on white bg */
   --teal-dark: #124E66; /* Deep ocean background from brand asset */
   --teal-deep: #0D3B4D; /* Very deep navy/teal for contrast */
-  --teal-accent: #2EBDCD; /* Bright cyan accent */
+  --teal-accent: #2EBDCD; /* Bright cyan accent for dark backgrounds */
   
   /* Brand Light Theme */
   --bg-primary: #FFFFFF;
   --bg-secondary: #F4F8FA; /* Subtle teal-tinted white */
   --bg-tertiary: #E6F0F4;
-  --text-primary: #124E66; /* Deep brand teal for primary text */
-  --text-secondary: #4A6A78;
-  --text-light: #7C95A0;
+  --text-primary: #1A1A2E; /* Dark Charcoal for strict UI contrast */
+  --text-secondary: #2D2D2D; /* Very accessible dark grey */
+  --text-light: #526068; /* Meets 4.5:1 min contrast on white */
   --border: #D0E1E8;
+
+  /* Additional Helpers for Dark Modes */
+  --white: #FFFFFF;
+  --muted: #F4F6F9; /* Light Grey for dark bg readability */
 
   --font-serif: 'Playfair Display', Georgia, serif;
   --font-sans: 'DM Sans', system-ui, sans-serif;
   
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.bg-teal-gradient {
+  background: linear-gradient(135deg, var(--teal-deep) 0%, var(--teal-dark) 100%);
 }
 
 @keyframes flying-logo {

@@ -125,7 +125,7 @@ export default function Navbar({ scrollY }: { scrollY: number }) {
               style={{
                 width: "100%",
                 height: "1.5px",
-                background: textColor,
+                background: isMenuOpen ? "#fff" : textColor,
                 transition: "all 0.35s",
                 transform: isMenuOpen ? "rotate(45deg) translateY(4.5px)" : "none",
               }}
@@ -134,7 +134,7 @@ export default function Navbar({ scrollY }: { scrollY: number }) {
               style={{
                 width: isMenuOpen ? "100%" : "68%",
                 height: "1.5px",
-                background: textColor,
+                background: isMenuOpen ? "#fff" : textColor,
                 transition: "all 0.35s",
                 transform: isMenuOpen ? "rotate(-45deg) translateY(-4px)" : "none",
               }}
