@@ -15,6 +15,9 @@ type Package = {
   highlights: string;
   is_featured: number;
   created_at: string;
+  itinerary?: string;
+  whats_included?: string;
+  things_to_carry?: string;
 };
 
 type FormData = {
@@ -26,6 +29,9 @@ type FormData = {
   tag: string;
   highlights: string;
   is_featured: boolean;
+  itinerary: string;
+  whats_included: string;
+  things_to_carry: string;
 };
 
 const EMPTY_FORM: FormData = {
@@ -37,6 +43,9 @@ const EMPTY_FORM: FormData = {
   tag: "Kerala",
   highlights: "",
   is_featured: false,
+  itinerary: "",
+  whats_included: "",
+  things_to_carry: "",
 };
 
 const TAGS = ["Kerala", "Rajasthan", "Himalayas", "Goa", "Mumbai", "Delhi", "Tamil Nadu", "Other"];
@@ -96,7 +105,15 @@ export default function AdminDashboard() {
 
   function openEdit(pkg: Package) {
     let highlights: string[] = [];
+    let whatsIncluded: string[] = [];
+    let thingsToCarry: string[] = [];
+    let itinerary: any[] = [];
+    
     try { highlights = JSON.parse(pkg.highlights); } catch {}
+    try { whatsIncluded = JSON.parse(pkg.whats_included || "[]"); } catch {}
+    try { thingsToCarry = JSON.parse(pkg.things_to_carry || "[]"); } catch {}
+    try { itinerary = JSON.parse(pkg.itinerary || "[]"); } catch {}
+    
     setForm({
       title: pkg.title,
       description: pkg.description,
@@ -106,6 +123,9 @@ export default function AdminDashboard() {
       tag: pkg.tag,
       highlights: highlights.join(", "),
       is_featured: pkg.is_featured === 1,
+      whats_included: whatsIncluded.join("\\n"),
+      things_to_carry: thingsToCarry.join("\\n"),
+      itinerary: JSON.stringify(itinerary, null, 2),
     });
     setEditingId(pkg.id);
     setFormError("");
@@ -121,10 +141,32 @@ export default function AdminDashboard() {
       .split(",")
       .map((s) => s.trim())
       .filter(Boolean);
+      
+    const whatsIncludedArr = form.whats_included
+      .split("\\n")
+      .map((s) => s.trim())
+      .filter(Boolean);
+      
+    const thingsToCarryArr = form.things_to_carry
+      .split("\\n")
+      .map((s) => s.trim())
+      .filter(Boolean);
+
+    let itineraryArr = [];
+    try {
+      itineraryArr = form.itinerary ? JSON.parse(form.itinerary) : [];
+    } catch {
+      setFormError("Invalid JSON format in Itinerary field");
+      setSaving(false);
+      return;
+    }
 
     const payload = {
       ...form,
       highlights: highlightsArr,
+      whats_included: whatsIncludedArr,
+      things_to_carry: thingsToCarryArr,
+      itinerary: itineraryArr,
     };
 
     try {
@@ -634,6 +676,53 @@ export default function AdminDashboard() {
                   />
                   <p style={{ fontSize: "0.75rem", color: "var(--text-light)", marginTop: "0.4rem" }}>
                     Separate each highlight with a comma
+                  </p>
+                </div>
+                
+                {/* What's Included */}
+                <div style={{ gridColumn: "span 2" }}>
+                  <label style={labelStyle}>What&#39;s Included (one per line)</label>
+                  <textarea
+                    value={form.whats_included}
+                    onChange={(e) => setForm({ ...form, whats_included: e.target.value })}
+                    rows={4}
+                    placeholder="2 Night stay in 3 star hotel...\nDaily Breakfast..."
+                    style={{ ...inputStyle, resize: "vertical" as const, lineHeight: 1.6 }}
+                    onFocus={(e) => (e.target.style.borderColor = "var(--teal)")}
+                    onBlur={(e) => (e.target.style.borderColor = "var(--border)")}
+                  />
+                </div>
+                
+                {/* Things To Carry */}
+                <div style={{ gridColumn: "span 2" }}>
+                  <label style={labelStyle}>Things to Carry (one per line)</label>
+                  <textarea
+                    value={form.things_to_carry}
+                    onChange={(e) => setForm({ ...form, things_to_carry: e.target.value })}
+                    rows={4}
+                    placeholder="Passport and Visa\nTravel Insurance..."
+                    style={{ ...inputStyle, resize: "vertical" as const, lineHeight: 1.6 }}
+                    onFocus={(e) => (e.target.style.borderColor = "var(--teal)")}
+                    onBlur={(e) => (e.target.style.borderColor = "var(--border)")}
+                  />
+                </div>
+                
+                {/* Itinerary JSON */}
+                <div style={{ gridColumn: "span 2" }}>
+                  <label style={labelStyle}>Itinerary (JSON format)</label>
+                  <textarea
+                    value={form.itinerary}
+                    onChange={(e) => setForm({ ...form, itinerary: e.target.value })}
+                    rows={6}
+                    placeholder={`[
+  { "day": "Day 1", "title": "Arrival in Delhi", "description": "Warm welcome..." }
+]`}
+                    style={{ ...inputStyle, resize: "vertical" as const, lineHeight: 1.6, fontFamily: "monospace" }}
+                    onFocus={(e) => (e.target.style.borderColor = "var(--teal)")}
+                    onBlur={(e) => (e.target.style.borderColor = "var(--border)")}
+                  />
+                  <p style={{ fontSize: "0.75rem", color: "var(--text-light)", marginTop: "0.4rem" }}>
+                    Enter an array of JSON objects with day, title, and description keys.
                   </p>
                 </div>
 

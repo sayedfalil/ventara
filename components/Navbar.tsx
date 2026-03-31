@@ -21,7 +21,7 @@ export default function Navbar({ scrollY }: { scrollY: number }) {
     { href: "/blog", label: "Journal" },
   ];
 
-  const textColor = "var(--text-primary)";
+  const textColor = isScrolled ? "var(--text-primary)" : "#FFFFFF";
 
   return (
     <>
@@ -55,9 +55,10 @@ export default function Navbar({ scrollY }: { scrollY: number }) {
             style={{ 
               width: isScrolled ? "clamp(120px, 35vw, 180px)" : "clamp(150px, 45vw, 250px)", 
               height: "auto", 
-              transition: "width 0.4s", 
+              transition: "width 0.4s, filter 0.4s", 
               objectFit: "contain", 
-              transformOrigin: "center left" 
+              transformOrigin: "center left",
+              filter: !isScrolled ? "brightness(0) invert(1)" : "none" 
             }}
             className="flying-logo"
             priority
@@ -98,8 +99,9 @@ export default function Navbar({ scrollY }: { scrollY: number }) {
             style={{
               padding: "10px 26px",
               fontSize: "0.65rem",
-              background: isScrolled ? "var(--teal-deep)" : "var(--teal-dark)",
-              border: "none",
+              background: isScrolled ? "var(--teal-deep)" : "rgba(255,255,255,0.15)",
+              border: isScrolled ? "none" : "1px solid rgba(255,255,255,0.3)",
+              backdropFilter: isScrolled ? "none" : "blur(10px)",
               color: "#fff",
               display: "none",
             }}

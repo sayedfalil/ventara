@@ -52,6 +52,9 @@ async function run() {
       tag TEXT NOT NULL,
       highlights TEXT NOT NULL DEFAULT '[]',
       is_featured INTEGER NOT NULL DEFAULT 0,
+      itinerary TEXT NOT NULL DEFAULT '[]',
+      whats_included TEXT NOT NULL DEFAULT '[]',
+      things_to_carry TEXT NOT NULL DEFAULT '[]',
       created_at TEXT NOT NULL DEFAULT (datetime('now'))
     );
 
@@ -162,9 +165,9 @@ async function run() {
 
   await copyTable('packages', (r) => turso.execute({
     sql: `INSERT OR IGNORE INTO packages
-            (id, title, description, duration, price, image_url, tag, highlights, is_featured, created_at)
-          VALUES (?,?,?,?,?,?,?,?,?,?)`,
-    args: [r.id, r.title, r.description, r.duration, r.price, r.image_url, r.tag, r.highlights, r.is_featured, r.created_at],
+            (id, title, description, duration, price, image_url, tag, highlights, is_featured, itinerary, whats_included, things_to_carry, created_at)
+          VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)`,
+    args: [r.id, r.title, r.description, r.duration, r.price, r.image_url, r.tag, r.highlights, r.is_featured, r.itinerary || '[]', r.whats_included || '[]', r.things_to_carry || '[]', r.created_at],
   }));
 
   await copyTable('blogs', (r) => turso.execute({

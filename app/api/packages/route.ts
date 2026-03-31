@@ -24,7 +24,10 @@ export async function POST(request: Request) {
 
   try {
     const body = await request.json();
-    const { title, description, duration, price, image_url, tag, highlights, is_featured } = body;
+    const { 
+      title, description, duration, price, image_url, tag, highlights, is_featured,
+      itinerary, whats_included, things_to_carry
+    } = body;
 
     if (!title || !description || !duration || !price || !image_url || !tag) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
@@ -32,12 +35,18 @@ export async function POST(request: Request) {
 
     const db = getDb();
     const result = await db.execute({
-      sql: `INSERT INTO packages (title, description, duration, price, image_url, tag, highlights, is_featured)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+      sql: `INSERT INTO packages (
+              title, description, duration, price, image_url, tag, highlights, is_featured,
+              itinerary, whats_included, things_to_carry
+            )
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       args: [
         title, description, duration, price, image_url, tag,
         JSON.stringify(Array.isArray(highlights) ? highlights : []),
         is_featured ? 1 : 0,
+        JSON.stringify(Array.isArray(itinerary) ? itinerary : []),
+        JSON.stringify(Array.isArray(whats_included) ? whats_included : []),
+        JSON.stringify(Array.isArray(things_to_carry) ? things_to_carry : []),
       ],
     });
 

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import Philosophy from "@/components/Philosophy";
 import Destinations from "@/components/Destinations";
 import Curation from "@/components/Curation";
 import Packages from "@/components/Packages";
@@ -23,6 +24,7 @@ export default function Home() {
     <main style={{ backgroundColor: "var(--bg-primary)" }}>
       <Navbar scrollY={scrollY} />
       <Hero />
+      <Philosophy />
       <Curation />
       <Destinations />
       <Packages />

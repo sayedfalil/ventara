@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function Philosophy() {
   return (
-    <section id="philosophy" className="section bg-teal-gradient" style={{ padding: "12rem 0", position: "relative" }}>
+    <section id="experiences" className="section bg-teal-gradient" style={{ padding: "12rem 0", position: "relative" }}>
       <div className="container" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8rem", alignItems: "center" }}>
         
         <motion.div 

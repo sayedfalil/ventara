@@ -23,7 +23,10 @@ export async function PUT(request: Request, { params }: { params: Promise<{ id: 
   try {
     const { id } = await params;
     const body = await request.json();
-    const { title, description, duration, price, image_url, tag, highlights, is_featured } = body;
+    const { 
+      title, description, duration, price, image_url, tag, highlights, is_featured,
+      itinerary, whats_included, things_to_carry
+    } = body;
 
     if (!title || !description || !duration || !price || !image_url || !tag) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
@@ -32,12 +35,16 @@ export async function PUT(request: Request, { params }: { params: Promise<{ id: 
     const db = getDb();
     const result = await db.execute({
       sql: `UPDATE packages
-            SET title=?, description=?, duration=?, price=?, image_url=?, tag=?, highlights=?, is_featured=?
+            SET title=?, description=?, duration=?, price=?, image_url=?, tag=?, highlights=?, is_featured=?,
+                itinerary=?, whats_included=?, things_to_carry=?
             WHERE id=?`,
       args: [
         title, description, duration, price, image_url, tag,
         JSON.stringify(Array.isArray(highlights) ? highlights : []),
         is_featured ? 1 : 0,
+        JSON.stringify(Array.isArray(itinerary) ? itinerary : []),
+        JSON.stringify(Array.isArray(whats_included) ? whats_included : []),
+        JSON.stringify(Array.isArray(things_to_carry) ? things_to_carry : []),
         Number(id),
       ],
     });

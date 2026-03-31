@@ -28,7 +28,7 @@ export default function Hero() {
         >
           <source src="/coverr-hiking-through-the-mountains-1755-1080p.mp4" type="video/mp4" />
         </video>
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.0) 40%, rgba(255,255,255,0.95) 100%)", zIndex: 1, pointerEvents: "none" }} />
+        <div style={{ position: "absolute", inset: 0, backgroundColor: "rgba(0,0,0,0.45)", zIndex: 1, pointerEvents: "none" }} />
       </motion.div>
 
       <div className="container" style={{ position: "relative", zIndex: 10, display: "flex", flexDirection: "column", height: "100%", justifyContent: "flex-end", paddingBottom: "10vh" }}>
@@ -39,16 +39,16 @@ export default function Hero() {
           transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           style={{ maxWidth: "1200px" }}
         >
-          <p className="eyebrow" style={{ color: "var(--teal-dark)", marginBottom: "2rem" }}>
+          <p className="eyebrow" style={{ color: "#FFFFFF", marginBottom: "2rem" }}>
             The Architecture of Luxury
           </p>
 
-          <h1 className="heading-serif" style={{ fontSize: "clamp(3.5rem, 8vw, 8rem)", lineHeight: 0.95, color: "var(--text-primary)", marginBottom: "3rem" }}>
-            Beyond the <br /> <span style={{ fontStyle: "italic", fontWeight: 300, paddingLeft: "10vw", color: "var(--teal-dark)" }}>Extraordinary.</span>
+          <h1 className="heading-serif" style={{ fontSize: "clamp(3.5rem, 8vw, 8rem)", lineHeight: 0.95, color: "#FFFFFF", marginBottom: "3rem" }}>
+            Beyond the <br /> <span style={{ fontStyle: "italic", fontWeight: 300, paddingLeft: "10vw", color: "var(--teal-accent)" }}>Extraordinary.</span>
           </h1>
 
           <div style={{ display: "flex", gap: "clamp(2rem, 5vw, 5rem)", alignItems: "flex-end", flexWrap: "wrap" }}>
-            <p style={{ fontSize: "1.1rem", fontWeight: 300, lineHeight: 1.6, color: "var(--text-secondary)", maxWidth: "450px" }}>
+            <p style={{ fontSize: "1.1rem", fontWeight: 300, lineHeight: 1.6, color: "rgba(255,255,255,0.85)", maxWidth: "450px" }}>
               Private, meticulously curated journeys through India's most breathtaking masterpieces. Discover an elegance reserved for the few.
             </p>
             
