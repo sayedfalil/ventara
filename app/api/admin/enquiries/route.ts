@@ -8,22 +8,29 @@ export async function GET(request: Request) {
 
   try {
     const { searchParams } = new URL(request.url);
-    const page = Math.max(1, Number(searchParams.get('page') || 1));
-    const limit = 20;
-    const offset = (page - 1) * limit;
-    const status = searchParams.get('status') || '';
-    const pkg = searchParams.get('package') || '';
-    const dateFrom = searchParams.get('from') || '';
-    const dateTo = searchParams.get('to') || '';
+    const page     = Math.max(1, Number(searchParams.get('page') || 1));
+    const limit    = 20;
+    const offset   = (page - 1) * limit;
+    const status   = searchParams.get('status')   || '';
+    const priority = searchParams.get('priority') || '';
+    const pkg      = searchParams.get('package')  || '';
+    const dateFrom = searchParams.get('from')     || '';
+    const dateTo   = searchParams.get('to')       || '';
+    const search   = searchParams.get('search')   || '';
 
     const db = getDb();
     const conditions: string[] = [];
     const args: (string | number)[] = [];
 
-    if (status) { conditions.push('status = ?'); args.push(status); }
-    if (pkg) { conditions.push('package_name LIKE ?'); args.push(`%${pkg}%`); }
-    if (dateFrom) { conditions.push('created_at >= ?'); args.push(dateFrom); }
-    if (dateTo) { conditions.push('created_at <= ?'); args.push(dateTo + ' 23:59:59'); }
+    if (status)   { conditions.push('status = ?');               args.push(status); }
+    if (priority) { conditions.push('priority = ?');             args.push(priority); }
+    if (pkg)      { conditions.push('package_name LIKE ?');      args.push(`%${pkg}%`); }
+    if (dateFrom) { conditions.push('created_at >= ?');          args.push(dateFrom); }
+    if (dateTo)   { conditions.push('created_at <= ?');          args.push(dateTo + ' 23:59:59'); }
+    if (search)   {
+      conditions.push('(full_name LIKE ? OR email LIKE ? OR phone LIKE ?)');
+      args.push(`%${search}%`, `%${search}%`, `%${search}%`);
+    }
 
     const where = conditions.length ? 'WHERE ' + conditions.join(' AND ') : '';
 

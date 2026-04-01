@@ -6,9 +6,12 @@ import Image from "next/image";
 import Link from "next/link";
 
 const navItems = [
-  { href: "/admin", label: "Packages", icon: "⬡", exact: true },
-  { href: "/admin/blogs", label: "Blog", icon: "✎", exact: false },
-  { href: "/admin/enquiries", label: "Enquiries", icon: "✉", exact: false },
+  { href: "/admin/dashboard", label: "Dashboard",    icon: "◈", exact: false },
+  { href: "/admin",           label: "Packages",     icon: "⬡", exact: true  },
+  { href: "/admin/enquiries", label: "Leads / CRM",  icon: "✉", exact: false },
+  { href: "/admin/proposals", label: "Proposals",    icon: "📄", exact: false },
+  { href: "/admin/blogs",     label: "Blog",         icon: "✎", exact: false },
+  { href: "/admin/testimonials", label: "Testimonials", icon: "★", exact: false },
 ];
 
 export default function AdminShell({ children }: { children: React.ReactNode }) {

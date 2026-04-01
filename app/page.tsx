@@ -9,6 +9,7 @@ import Curation from "@/components/Curation";
 import Packages from "@/components/Packages";
 import EnquirySection from "@/components/EnquirySection";
 import JournalSection from "@/components/JournalSection";
+import TestimonialsSection from "@/components/TestimonialsSection";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -29,6 +30,7 @@ export default function Home() {
       <Destinations />
       <Packages />
       <JournalSection />
+      <TestimonialsSection />
       <EnquirySection />
       <Footer />
     </main>

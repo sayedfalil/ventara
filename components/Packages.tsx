@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 type Package = {
   id: number;
@@ -337,7 +338,8 @@ export default function Packages() {
                   cursor: "pointer",
                 }}
               >
-                {/* Image */}
+                <Link href={`/packages/${pkg.id}`} style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column', height: '100%' }}>
+                  {/* Image */}
                 <div style={{ position: "relative", height: "280px", overflow: "hidden" }}>
                   <Image
                     src={pkg.image_url}
@@ -490,14 +492,13 @@ export default function Packages() {
                     </div>
                   )}
 
-                  <a
-                    href="#contact"
-                    className="btn-primary"
-                    style={{ textAlign: "center", justifyContent: "center" }}
+                  <div
+                    style={{ textAlign: "center", justifyContent: "center", marginTop: "auto" }}
                   >
-                    Enquire Now
-                  </a>
+                    <span className="btn-primary" style={{ display: "inline-flex" }}>View Details</span>
+                  </div>
                 </div>
+                </Link>
               </motion.div>
             );
           })}
@@ -505,13 +506,13 @@ export default function Packages() {
       )}
 
       <div style={{ display: "flex", justifyContent: "center", marginTop: "6rem" }}>
-        <a
-          href="#contact"
+        <Link
+          href="/packages"
           className="btn-outline"
           style={{ borderColor: "var(--teal-dark)", color: "var(--teal-dark)" }}
         >
-          Request Custom Journey
-        </a>
+          View All Packages
+        </Link>
       </div>
     </section>
   );
