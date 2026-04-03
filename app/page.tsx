@@ -23,6 +23,25 @@ export default function Home() {
 
   return (
     <main style={{ backgroundColor: "var(--bg-primary)" }}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "TravelAgency",
+            "name": "Ventara Global",
+            "image": "https://www.ventaraglobal.com/logo.png",
+            "@id": "https://www.ventaraglobal.com",
+            "url": "https://www.ventaraglobal.com",
+            "telephone": "+91 8921 2480 55",
+            "priceRange": "$$$$",
+            "address": {
+              "@type": "PostalAddress",
+              "addressCountry": "IN"
+            }
+          })
+        }}
+      />
       <Navbar scrollY={scrollY} />
       <Hero />
       <Philosophy />
