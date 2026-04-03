@@ -19,10 +19,22 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: blog.meta_title || `${blog.title} | Ventara Global`,
     description: blog.meta_description || blog.excerpt,
+    keywords: blog.focus_keyword,
+    robots: blog.robots || "index,follow",
     openGraph: {
       title: blog.og_title || blog.meta_title || blog.title,
       description: blog.og_description || blog.meta_description || blog.excerpt,
-      images: [blog.og_image || blog.featured_image]
+      url: blog.canonical_url || `https://www.ventaraglobal.com/blog/${blog.slug}`,
+      images: [blog.og_image || blog.featured_image],
+      type: "article",
+      publishedTime: String(blog.published_at),
+      authors: [String(blog.author)],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: String(blog.og_title || blog.meta_title || blog.title),
+      description: String(blog.og_description || blog.meta_description || blog.excerpt),
+      images: [String(blog.og_image || blog.featured_image)],
     },
     alternates: {
       canonical: blog.canonical_url || `https://www.ventaraglobal.com/blog/${blog.slug}`
@@ -42,7 +54,8 @@ export async function generateStaticParams() {
   return slugs.map((row) => ({ slug: row.slug as string }));
 }
 
-export const revalidate = 60;
+export const dynamicParams = true;
+export const revalidate = 3600;
 
 function formatDate(dateStr: string | null | undefined) {
   if (!dateStr) return "";
@@ -74,6 +87,20 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   return (
     <div style={{ minHeight: "100vh", backgroundColor: "var(--bg-primary)", fontFamily: "var(--font-sans)" }}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": blog.schema_type || "BlogPosting",
+          "headline": blog.title,
+          "description": blog.excerpt,
+          "image": blog.featured_image,
+          "author": { "@type": "Person", "name": blog.author },
+          "publisher": { "@type": "Organization", "name": "Ventara Global", "url": "https://www.ventaraglobal.com" },
+          "datePublished": blog.published_at,
+          "mainEntityOfPage": { "@type": "WebPage", "@id": `https://www.ventaraglobal.com/blog/${blog.slug}` }
+        }) }}
+      />
       <Navbar />
 
       {/* Hero image */}

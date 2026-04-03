@@ -16,16 +16,42 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 
   if (!pkg) return { title: "Package Not Found | Ventara Global" };
 
+  const canonical = `https://www.ventaraglobal.com/packages/${pkg.id}`;
+
   return {
     title: `${pkg.title} | Ventara Global`,
     description: pkg.description,
+    alternates: { canonical },
     openGraph: {
+      title: `${pkg.title} | Ventara Global`,
+      description: pkg.description,
+      url: canonical,
+      images: [pkg.image_url],
+      type: "website"
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: pkg.title,
+      description: pkg.description,
       images: [pkg.image_url]
     }
   };
 }
 
-export const revalidate = 60;
+export async function generateStaticParams() {
+  const db = getDb();
+  let ids: any[] = [];
+  try {
+    const res = await db.execute("SELECT id FROM packages");
+    ids = res.rows;
+  } catch (e) {
+    console.error("Failed to generate static params:", e);
+  }
+  return ids.map((row) => ({ id: String(row.id) }));
+}
+
+export const dynamicParams = true;
+export const revalidate = 3600;
 
 export default async function PackageDetails({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -50,6 +76,15 @@ export default async function PackageDetails({ params }: { params: Promise<{ id:
 
   return (
     <main style={{ backgroundColor: "var(--bg-primary)" }}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": pkg.title,
+        "description": pkg.description,
+        "image": pkg.image_url,
+        "offers": { "@type": "Offer", "price": (pkg.price || "0").replace(/[^0-9.]/g, ""), "priceCurrency": "INR" },
+        "brand": { "@type": "Brand", "name": "Ventara Global" }
+      }) }} />
       <Navbar />
 
       {/* Banner */}

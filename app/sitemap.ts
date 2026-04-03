@@ -2,38 +2,38 @@ import { MetadataRoute } from 'next';
 import { getDb } from '@/lib/db';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.ventaraglobal.com';
-
-  const routes: MetadataRoute.Sitemap = [
-    { url: `${baseUrl}`, lastModified: new Date(), changeFrequency: 'weekly', priority: 1, },
-    { url: `${baseUrl}/packages`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.9, },
-    { url: `${baseUrl}/blog`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8, },
-  ];
+  const db = getDb();
+  
+  let blogs: any[] = [];
+  let pkgs: any[] = [];
 
   try {
-    const db = getDb();
-    
-    // Blog routes
-    const blogRes = await db.execute("SELECT slug, published_at FROM blogs WHERE status = 'published' ORDER BY published_at DESC LIMIT 1000");
-    const blogRoutes: MetadataRoute.Sitemap = blogRes.rows.map((row) => ({
-      url: `${baseUrl}/blog/${row.slug}`,
-      lastModified: row.published_at ? new Date(row.published_at as string) : new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    }));
+    const blogRes = await db.execute("SELECT slug, published_at FROM blogs WHERE status = 'published'");
+    blogs = blogRes.rows;
+  } catch (e) {}
 
-    // Package routes
-    const packageRes = await db.execute("SELECT id FROM packages LIMIT 1000");
-    const packageRoutes: MetadataRoute.Sitemap = packageRes.rows.map((row) => ({
-      url: `${baseUrl}/packages/${row.id}`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    }));
+  try {
+    const pkgRes = await db.execute("SELECT id, created_at FROM packages");
+    pkgs = pkgRes.rows;
+  } catch (e) {}
 
-    return [...routes, ...blogRoutes, ...packageRoutes];
-  } catch (error) {
-    console.error('Error fetching dynamic routes for sitemap:', error);
-    return routes;
-  }
+  const staticPages: MetadataRoute.Sitemap = [
+    { url: "https://www.ventaraglobal.com", priority: 1.0 },
+    { url: "https://www.ventaraglobal.com/blog", priority: 0.8 },
+    { url: "https://www.ventaraglobal.com/packages", priority: 0.9 },
+  ];
+
+  const blogPages: MetadataRoute.Sitemap = blogs.map((post) => ({
+    url: `https://www.ventaraglobal.com/blog/${post.slug}`,
+    lastModified: post.published_at ? new Date(post.published_at as string) : new Date(),
+    priority: 0.7,
+  }));
+
+  const packagePages: MetadataRoute.Sitemap = pkgs.map((pkg) => ({
+    url: `https://www.ventaraglobal.com/packages/${pkg.id}`,
+    lastModified: pkg.created_at ? new Date(pkg.created_at as string) : new Date(),
+    priority: 0.9,
+  }));
+
+  return [...staticPages, ...blogPages, ...packagePages];
 }
