@@ -80,7 +80,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       tags = tagRes.rows;
     }
   } catch (e) {
-    console.error("Failed to fetch blog post:", e);
+    console.error("DB ERROR:", e);
+    throw e;
   }
 
   if (!blog) return notFound();
