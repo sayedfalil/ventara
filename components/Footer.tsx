@@ -11,7 +11,7 @@ export default function Footer() {
         <h2 className="heading-serif" style={{ fontSize: "clamp(3rem, 6vw, 6rem)", color: "var(--text-primary)", lineHeight: 1, marginBottom: "3rem" }}>
           Begin your <span style={{ fontStyle: "italic", color: "var(--teal-dark)" }}>Legend.</span>
         </h2>
-        <a href="mailto:concierge@ventaraglobal.com" className="btn-primary">
+        <a href="mailto:Info@ventaraglobal.com" className="btn-primary">
           Contact Concierge
         </a>
       </div>
@@ -31,10 +31,10 @@ export default function Footer() {
           <h4 className="eyebrow" style={{ color: "var(--text-primary)", marginBottom: "2.5rem" }}>Inquiries</h4>
           <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem", color: "var(--text-secondary)", fontSize: "1rem", fontWeight: 300 }}>
             <p style={{ display: "flex", gap: "16px", alignItems: "center" }}>
-              <span className="eyebrow" style={{ color: "var(--teal-dark)" }}>E</span> concierge@ventaraglobal.com
+              <span className="eyebrow" style={{ color: "var(--teal-dark)" }}>E</span> Info@ventaraglobal.com
             </p>
             <p style={{ display: "flex", gap: "16px", alignItems: "center" }}>
-              <span className="eyebrow" style={{ color: "var(--teal-dark)" }}>T</span> +91 98765 43210
+              <span className="eyebrow" style={{ color: "var(--teal-dark)" }}>T</span> +91 8921 2480 55
             </p>
           </div>
         </div>

@@ -3,8 +3,10 @@ import Script from "next/script";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.ventaraglobal.com"),
   title: "Ventara Global | Premium Travel to India & Kerala",
   description: "Experience the ultra-luxury and hidden masterpieces of India and Kerala with Ventara Global.",
+  robots: "index, follow",
 };
 
 export default function RootLayout({

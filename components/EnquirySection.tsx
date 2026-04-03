@@ -158,7 +158,7 @@ export default function EnquirySection() {
                     {COUNTRY_CODES.map(c => <option key={c} value={c}>{c}</option>)}
                   </select>
                   <input type="tel" value={form.phone} onChange={e => set("phone", e.target.value)}
-                    placeholder="98765 43210" style={inpStyle}
+                    placeholder="8921 2480 55" style={inpStyle}
                     onFocus={e => (e.target.style.borderColor = "rgba(78,205,196,0.6)")}
                     onBlur={e => (e.target.style.borderColor = "rgba(255,255,255,0.15)")} />
                 </div>
