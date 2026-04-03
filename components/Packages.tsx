@@ -285,7 +285,7 @@ export default function Packages() {
                   discerning traveler. Reserve your place today.
                 </p>
                 <a
-                  href="#contact"
+                  href="/#contact"
                   className="btn-outline"
                   style={{
                     borderColor: "rgba(255,255,255,0.35)",

@@ -52,7 +52,7 @@ export default function Hero() {
               Private, meticulously curated journeys through India's most breathtaking masterpieces. Discover an elegance reserved for the few.
             </p>
             
-            <a href="#destinations" className="btn-primary">
+            <a href="/#destinations" className="btn-primary">
               Begin Journey
             </a>
           </div>

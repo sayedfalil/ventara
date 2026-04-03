@@ -14,10 +14,10 @@ export default function Navbar({ scrollY }: { scrollY: number }) {
   }, [scrollY, isMenuOpen]);
 
   const navLinks = [
-    { href: "#destinations", label: "Destinations" },
-    { href: "#experiences", label: "Experiences" },
-    { href: "#curation", label: "Curation" },
-    { href: "#packages", label: "Packages" },
+    { href: "/#destinations", label: "Destinations" },
+    { href: "/#experiences", label: "Experiences" },
+    { href: "/#curation", label: "Curation" },
+    { href: "/#packages", label: "Packages" },
     { href: "/blog", label: "Journal" },
   ];
 
@@ -94,7 +94,7 @@ export default function Navbar({ scrollY }: { scrollY: number }) {
         {/* Right side */}
         <div style={{ display: "flex", alignItems: "center", gap: "2rem" }}>
           <a
-            href="#enquire"
+            href="/#enquire"
             className="btn-primary enquire-btn"
             style={{
               padding: "10px 26px",
@@ -184,7 +184,7 @@ export default function Navbar({ scrollY }: { scrollY: number }) {
           </motion.a>
         ))}
         <motion.a
-          href="#enquire"
+          href="/#enquire"
           onClick={() => setIsMenuOpen(false)}
           initial={{ opacity: 0 }}
           animate={{ opacity: isMenuOpen ? 1 : 0 }}

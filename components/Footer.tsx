@@ -42,8 +42,8 @@ export default function Footer() {
         <div>
           <h4 className="eyebrow" style={{ color: "var(--text-primary)", marginBottom: "2.5rem" }}>Company</h4>
           <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem", color: "var(--text-secondary)", fontSize: "1rem", fontWeight: 300 }}>
-            <a href="#curation" style={{ transition: "color 0.4s" }} onMouseEnter={(e) => e.currentTarget.style.color = "var(--teal-dark)"} onMouseLeave={(e) => e.currentTarget.style.color = "var(--text-secondary)"}>The Standard</a>
-            <a href="#destinations" style={{ transition: "color 0.4s" }} onMouseEnter={(e) => e.currentTarget.style.color = "var(--teal-dark)"} onMouseLeave={(e) => e.currentTarget.style.color = "var(--text-secondary)"}>Journeys</a>
+            <a href="/#curation" style={{ transition: "color 0.4s" }} onMouseEnter={(e) => e.currentTarget.style.color = "var(--teal-dark)"} onMouseLeave={(e) => e.currentTarget.style.color = "var(--text-secondary)"}>The Standard</a>
+            <a href="/#destinations" style={{ transition: "color 0.4s" }} onMouseEnter={(e) => e.currentTarget.style.color = "var(--teal-dark)"} onMouseLeave={(e) => e.currentTarget.style.color = "var(--text-secondary)"}>Journeys</a>
             <a href="#" style={{ transition: "color 0.4s" }} onMouseEnter={(e) => e.currentTarget.style.color = "var(--teal-dark)"} onMouseLeave={(e) => e.currentTarget.style.color = "var(--text-secondary)"}>Press & Media</a>
           </div>
         </div>

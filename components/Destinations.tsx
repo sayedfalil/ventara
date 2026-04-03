@@ -103,7 +103,7 @@ export default function Destinations() {
       </div>
       
       <div style={{ display: "flex", justifyContent: "center", marginTop: "6rem" }}>
-        <a href="#contact" className="btn-outline" style={{ borderColor: "var(--teal-dark)", color: "var(--teal-dark)" }}>
+        <a href="/#contact" className="btn-outline" style={{ borderColor: "var(--teal-dark)", color: "var(--teal-dark)" }}>
           View Full Collection
         </a>
       </div>
