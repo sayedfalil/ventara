@@ -1,55 +1,38 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { getDb } from "@/lib/db";
+import { Metadata } from "next";
 
-type Blog = {
-  id: number;
-  title: string;
-  slug: string;
-  excerpt: string;
-  featured_image: string;
-  author: string;
-  published_at: string;
-  category_name: string | null;
+export const metadata: Metadata = {
+  title: "Travel Journal – Luxury India Travel Insights | Ventara Global",
+  description: "Stories, guides and curated perspectives on luxury travel across India. By Ventara Global.",
 };
 
-export default function BlogPage() {
-  const [blogs, setBlogs] = useState<Blog[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [scrollY, setScrollY] = useState(0);
+export const revalidate = 60;
 
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+function formatDate(dateStr: string | null | undefined) {
+  if (!dateStr) return "";
+  return new Date(dateStr).toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+}
 
-  useEffect(() => {
-    fetch("/api/blogs?limit=20")
-      .then((r) => r.json())
-      .then((d) => {
-        setBlogs(Array.isArray(d.blogs) ? d.blogs : []);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
-  }, []);
-
-  function formatDate(dateStr: string) {
-    if (!dateStr) return "";
-    return new Date(dateStr).toLocaleDateString("en-GB", {
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-    });
+export default async function BlogPage() {
+  const db = getDb();
+  let blogs: any[] = [];
+  try {
+    const res = await db.execute("SELECT * FROM blogs WHERE status = 'published' ORDER BY published_at DESC LIMIT 20");
+    blogs = res.rows as any[];
+  } catch (e) {
+    console.error("Failed to fetch blogs:", e);
   }
 
   return (
     <div style={{ minHeight: "100vh", backgroundColor: "var(--bg-primary)", fontFamily: "var(--font-sans)" }}>
-      <Navbar scrollY={scrollY} />
+      <Navbar />
 
       {/* Hero banner */}
       <div
@@ -77,11 +60,7 @@ export default function BlogPage() {
           }}
         />
 
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
+        <div style={{ position: "relative", zIndex: 10 }}>
           <p
             style={{
               fontSize: "0.62rem",
@@ -119,16 +98,12 @@ export default function BlogPage() {
           >
             Stories, guides and curated perspectives from the world's most extraordinary destinations.
           </p>
-        </motion.div>
+        </div>
       </div>
 
       {/* Blog grid */}
       <main style={{ maxWidth: "1200px", margin: "0 auto", padding: "5rem 4vw" }}>
-        {loading ? (
-          <div style={{ textAlign: "center", padding: "6rem", color: "var(--text-light)" }}>
-            Loading articles…
-          </div>
-        ) : blogs.length === 0 ? (
+        {blogs.length === 0 ? (
           <div style={{ textAlign: "center", padding: "8rem 2rem" }}>
             <div
               style={{
@@ -154,22 +129,18 @@ export default function BlogPage() {
                 marginBottom: "1rem",
               }}
             >
-              No articles yet
+              Coming Soon
             </h2>
             <p style={{ color: "var(--text-secondary)", fontWeight: 300 }}>
-              Our travel stories are coming soon. Check back shortly.
+              Our travel stories and luxury guides are being meticulously crafted. Check back shortly.
             </p>
+            <div style={{ marginTop: "2rem" }}></div>
           </div>
         ) : (
           <>
             {/* Featured first post */}
             {blogs[0] && (
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7 }}
-                style={{ marginBottom: "4rem" }}
-              >
+              <div style={{ marginBottom: "4rem" }}>
                 <Link href={`/blog/${blogs[0].slug}`} style={{ textDecoration: "none", display: "block" }}>
                   <div
                     style={{
@@ -179,10 +150,7 @@ export default function BlogPage() {
                       background: "#fff",
                       border: "1px solid var(--border)",
                       overflow: "hidden",
-                      transition: "box-shadow 0.3s",
                     }}
-                    onMouseEnter={(e) => (e.currentTarget.style.boxShadow = "0 20px 60px rgba(0,0,0,0.1)")}
-                    onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "none")}
                     className="featured-card"
                   >
                     {/* Image */}
@@ -198,7 +166,7 @@ export default function BlogPage() {
                         <img
                           src={blogs[0].featured_image}
                           alt={blogs[0].title}
-                          style={{ width: "100%", height: "100%", objectFit: "cover", position: "absolute", inset: 0, transition: "transform 0.6s" }}
+                          style={{ width: "100%", height: "100%", objectFit: "cover", position: "absolute", inset: 0 }}
                           className="blog-img"
                         />
                       )}
@@ -283,7 +251,7 @@ export default function BlogPage() {
                         {blogs[0].published_at && (
                           <>
                             <span style={{ width: 3, height: 3, borderRadius: "50%", background: "var(--border)", display: "inline-block" }} />
-                            <span>{formatDate(blogs[0].published_at)}</span>
+                            <span>{formatDate(blogs[0].published_at as string)}</span>
                           </>
                         )}
                       </div>
@@ -304,7 +272,7 @@ export default function BlogPage() {
                     </div>
                   </div>
                 </Link>
-              </motion.div>
+              </div>
             )}
 
             {/* Remaining posts grid */}
@@ -316,28 +284,14 @@ export default function BlogPage() {
                   gap: "2rem",
                 }}
               >
-                {blogs.slice(1).map((blog, i) => (
-                  <motion.div
-                    key={blog.id}
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: i * 0.1 }}
-                  >
+                {blogs.slice(1).map((blog) => (
+                  <div key={blog.id}>
                     <Link href={`/blog/${blog.slug}`} style={{ textDecoration: "none", display: "block" }}>
                       <div
                         style={{
                           background: "#fff",
                           border: "1px solid var(--border)",
                           overflow: "hidden",
-                          transition: "box-shadow 0.3s, transform 0.3s",
-                        }}
-                        onMouseEnter={(e) => {
-                          (e.currentTarget as HTMLDivElement).style.boxShadow = "0 16px 48px rgba(0,0,0,0.09)";
-                          (e.currentTarget as HTMLDivElement).style.transform = "translateY(-4px)";
-                        }}
-                        onMouseLeave={(e) => {
-                          (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
-                          (e.currentTarget as HTMLDivElement).style.transform = "none";
                         }}
                       >
                         {/* Image */}
@@ -346,7 +300,7 @@ export default function BlogPage() {
                             <img
                               src={blog.featured_image}
                               alt={blog.title}
-                              style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.5s" }}
+                              style={{ width: "100%", height: "100%", objectFit: "cover" }}
                               className="blog-img"
                             />
                           )}
@@ -410,7 +364,7 @@ export default function BlogPage() {
                               color: "var(--text-light)",
                             }}
                           >
-                            <span>{blog.published_at ? formatDate(blog.published_at) : ""}</span>
+                            <span>{blog.published_at ? formatDate(blog.published_at as string) : ""}</span>
                             <span style={{ color: "var(--teal)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase" }}>
                               Read →
                             </span>
@@ -418,7 +372,7 @@ export default function BlogPage() {
                         </div>
                       </div>
                     </Link>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
             )}
@@ -433,6 +387,7 @@ export default function BlogPage() {
           .featured-card { grid-template-columns: 1fr !important; }
           .featured-card > div:first-child { min-height: 260px !important; }
         }
+        .blog-img { transition: transform 0.5s; }
         .blog-img:hover { transform: scale(1.04); }
       `}</style>
     </div>

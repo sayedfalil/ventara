@@ -4,14 +4,24 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 
-export default function Navbar({ scrollY }: { scrollY: number }) {
-  const isScrolled = scrollY > 50;
+export default function Navbar({ scrollY: externalScrollY }: { scrollY?: number } = {}) {
+  const [internalScrollY, setInternalScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => setInternalScrollY(window.scrollY);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const activeScrollY = externalScrollY !== undefined ? externalScrollY : internalScrollY;
+  const isScrolled = activeScrollY > 50;
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // Close menu on scroll
   useEffect(() => {
-    if (isMenuOpen && scrollY > 100) setIsMenuOpen(false);
-  }, [scrollY, isMenuOpen]);
+    if (isMenuOpen && activeScrollY > 100) setIsMenuOpen(false);
+  }, [activeScrollY, isMenuOpen]);
 
   const navLinks = [
     { href: "/#destinations", label: "Destinations" },

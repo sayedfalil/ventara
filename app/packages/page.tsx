@@ -1,48 +1,30 @@
-"use client";
-
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { motion } from "framer-motion";
 import Image from "next/image";
-import { useState, useEffect } from "react";
 import Link from "next/link";
+import { getDb } from "@/lib/db";
+import { Metadata } from "next";
 
-type Package = {
-  id: number;
-  title: string;
-  description: string;
-  duration: string;
-  price: string;
-  image_url: string;
-  tag: string;
-  highlights: string;
-  is_featured: number;
+export const metadata: Metadata = {
+  title: "Exclusive Luxury Tour Packages – India | Ventara Global",
+  description: "Explore handcrafted luxury tour packages to Kerala, Kashmir and Rajasthan. Fully bespoke. Built for discerning travellers worldwide.",
 };
 
-export default function PackagesPage() {
-  const [scrollY, setScrollY] = useState(0);
-  const [packages, setPackages] = useState<Package[]>([]);
-  const [loading, setLoading] = useState(true);
+export const revalidate = 60;
 
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    fetch("/api/packages")
-      .then((r) => r.json())
-      .then((data) => {
-        setPackages(Array.isArray(data) ? data : []);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
-  }, []);
+export default async function PackagesPage() {
+  const db = getDb();
+  let packages: any[] = [];
+  try {
+    const res = await db.execute("SELECT * FROM packages ORDER BY is_featured DESC, id DESC LIMIT 20");
+    packages = res.rows;
+  } catch (e) {
+    console.error("Failed to fetch packages:", e);
+  }
 
   return (
     <main style={{ backgroundColor: "var(--bg-primary)" }}>
-      <Navbar scrollY={scrollY} />
+      <Navbar />
       
       {/* Banner */}
       <section style={{ 
@@ -59,17 +41,17 @@ export default function PackagesPage() {
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, var(--teal-deep), transparent)" }} />
         
         <div className="container relative z-10 text-center">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+          <div>
             <h1 className="heading-serif" style={{ fontSize: "clamp(3rem, 6vw, 5rem)", marginBottom: "1rem" }}>Holiday Packages</h1>
             <p style={{ fontSize: "1.2rem", fontWeight: 300, opacity: 0.9 }}>Customized holiday packages for all</p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Services Context */}
       <section className="container" style={{ padding: "8rem 0" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4rem", alignItems: "center" }}>
-          <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "4rem", alignItems: "center" }}>
+          <div>
             <h2 className="heading-serif" style={{ fontSize: "2.5rem", marginBottom: "1.5rem", color: "var(--text-primary)" }}>
               Holiday Packages Service
             </h2>
@@ -79,9 +61,9 @@ export default function PackagesPage() {
             <p style={{ fontSize: "1.05rem", lineHeight: 1.8, color: "var(--text-secondary)" }}>
               We create travel experiences that match your interests and budget—ensuring a stress-free holiday filled with unforgettable moments.
             </p>
-          </motion.div>
+          </div>
           
-          <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} style={{ background: "var(--bg-secondary)", padding: "3rem", borderRadius: "4px" }}>
+          <div style={{ background: "var(--bg-secondary)", padding: "3rem", borderRadius: "4px" }}>
             <h3 className="heading-serif" style={{ fontSize: "1.8rem", marginBottom: "2rem", color: "var(--text-primary)" }}>Why Choose Our Service</h3>
             <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
               {[
@@ -96,7 +78,7 @@ export default function PackagesPage() {
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -116,11 +98,10 @@ export default function PackagesPage() {
               { title: "One-on-One Consultation", desc: "Chat with travel experts to plan your trip. Get custom advice that fits your needs and budget." },
               { title: "Connect with Travelers", desc: "Join our travel community to meet explorers. Share stories, tips, and build new friendships." }
             ].map((f, i) => (
-              <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
-                style={{ background: "#fff", padding: "2.5rem", borderRadius: "4px", boxShadow: "0 10px 30px rgba(0,0,0,0.03)", border: "1px solid var(--border)" }}>
+              <div key={i} style={{ background: "#fff", padding: "2.5rem", borderRadius: "4px", boxShadow: "0 10px 30px rgba(0,0,0,0.03)", border: "1px solid var(--border)" }}>
                 <h4 className="heading-serif" style={{ fontSize: "1.4rem", color: "var(--text-primary)", marginBottom: "1rem" }}>{f.title}</h4>
                 <p style={{ color: "var(--text-secondary)", fontSize: "0.95rem", lineHeight: 1.6 }}>{f.desc}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -135,16 +116,17 @@ export default function PackagesPage() {
           </p>
         </div>
 
-        {loading ? (
-          <div style={{ display: "flex", justifyContent: "center", padding: "4rem 0" }}>
-             <div style={{ width: 36, height: 36, border: "2px solid var(--teal)", borderTopColor: "transparent", borderRadius: "50%", animation: "pkg-spin 0.8s linear infinite" }} />
-             <style>{`@keyframes pkg-spin { to { transform: rotate(360deg); } }`}</style>
+        {packages.length === 0 ? (
+          <div style={{ textAlign: "center", padding: "8rem 2rem", background: "var(--bg-secondary)", borderRadius: "2px", border: "1px solid var(--border)" }}>
+            <div style={{ width: 64, height: 64, borderRadius: "50%", background: "rgba(28,95,107,0.08)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 2rem", fontSize: "1.5rem" }}>✦</div>
+            <h2 className="heading-serif" style={{ fontSize: "1.8rem", color: "var(--text-primary)", marginBottom: "1rem" }}>Coming Soon</h2>
+            <p style={{ color: "var(--text-secondary)", marginBottom: "2rem" }}>We are currently crafting extraordinary luxury packages. Please enquire for a bespoke itinerary.</p>
+            <a href="/#enquire" className="btn-primary" style={{ display: "inline-flex" }}>Enquire Now</a>
           </div>
         ) : (
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: "2rem" }}>
             {packages.map((pkg, i) => (
-              <motion.div key={pkg.id} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
-                style={{ background: "var(--bg-primary)", borderRadius: "2px", overflow: "hidden", border: "1px solid var(--border)", display: "flex", flexDirection: "column" }}>
+              <div key={pkg.id} style={{ background: "var(--bg-primary)", borderRadius: "2px", overflow: "hidden", border: "1px solid var(--border)", display: "flex", flexDirection: "column" }}>
                 <div style={{ position: "relative", height: "240px" }}>
                   <Image src={pkg.image_url} alt={pkg.title} fill style={{ objectFit: "cover" }} className="img-hover-scale" unoptimized />
                   <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.35) 100%)" }} />
@@ -168,19 +150,22 @@ export default function PackagesPage() {
                     letterSpacing: "0.15em",
                     textTransform: "uppercase",
                     transition: "all 0.3s",
+                    textDecoration: "none"
                   }}
-                  onMouseEnter={(e) => { e.currentTarget.style.background = "var(--teal)"; e.currentTarget.style.color = "#fff"; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "var(--teal-dark)"; }}>
+                  className="pkg-btn">
                     View More
                   </Link>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         )}
       </section>
 
       <Footer />
+      <style>{`
+        .pkg-btn:hover { background: var(--teal) !important; color: #fff !important; }
+      `}</style>
     </main>
   );
 }

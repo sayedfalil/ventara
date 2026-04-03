@@ -4,8 +4,8 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.ventaraglobal.com"),
-  title: "Ventara Global | Premium Travel to India & Kerala",
-  description: "Experience the ultra-luxury and hidden masterpieces of India and Kerala with Ventara Global.",
+  title: "Luxury India Tour Packages – Kerala & Kashmir | Ventara Global",
+  description: "Ventara Global crafts private luxury journeys across Kerala, Kashmir & Rajasthan. Bespoke itineraries, 24/7 concierge. Enquire today.",
   robots: "index, follow",
 };
 
