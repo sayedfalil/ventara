@@ -25,6 +25,18 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
+export async function generateStaticParams() {
+  const db = getDb();
+  let slugs: any[] = [];
+  try {
+    const res = await db.execute("SELECT slug FROM blogs WHERE status = 'published'");
+    slugs = res.rows;
+  } catch (e) {
+    console.error("Failed to generate static params:", e);
+  }
+  return slugs.map((row) => ({ slug: row.slug as string }));
+}
+
 export const revalidate = 60;
 
 function formatDate(dateStr: string | null | undefined) {
