@@ -117,11 +117,44 @@ export default async function PackagesPage() {
         </div>
 
         {packages.length === 0 ? (
-          <div style={{ textAlign: "center", padding: "8rem 2rem", background: "var(--bg-secondary)", borderRadius: "2px", border: "1px solid var(--border)" }}>
-            <div style={{ width: 64, height: 64, borderRadius: "50%", background: "rgba(28,95,107,0.08)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 2rem", fontSize: "1.5rem" }}>✦</div>
-            <h2 className="heading-serif" style={{ fontSize: "1.8rem", color: "var(--text-primary)", marginBottom: "1rem" }}>Coming Soon</h2>
-            <p style={{ color: "var(--text-secondary)", marginBottom: "2rem" }}>We are currently crafting extraordinary luxury packages. Please enquire for a bespoke itinerary.</p>
-            <a href="/#enquire" className="btn-primary" style={{ display: "inline-flex" }}>Enquire Now</a>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: "2rem" }}>
+            {/* Card 1 */}
+            <div style={{ background: "var(--bg-primary)", borderRadius: "2px", overflow: "hidden", border: "1px solid var(--border)", display: "flex", flexDirection: "column" }}>
+              <div style={{ position: "relative", height: "240px", background: "var(--teal-dark)" }}>
+                <Image src="https://images.unsplash.com/photo-1512343879784-a960bf40e4f2?w=800&q=80" alt="Kashmir Private Luxury Journey" fill style={{ objectFit: "cover", opacity: 0.8 }} unoptimized />
+                <div style={{ position: "absolute", top: "1.5rem", left: "1.5rem" }}>
+                  <span className="eyebrow" style={{ padding: "5px 14px", background: "rgba(255,255,255,0.92)", color: "var(--teal-deep)", borderRadius: "2px", fontSize: "0.55rem" }}>
+                    Coming Soon
+                  </span>
+                </div>
+              </div>
+              <div style={{ padding: "2.5rem", display: "flex", flexDirection: "column", flexGrow: 1, textAlign: "center", alignItems: "center" }}>
+                <h3 className="heading-serif" style={{ fontSize: "1.6rem", color: "var(--text-primary)", marginBottom: "0.5rem" }}>Kashmir Private Luxury Journey</h3>
+                <p style={{ color: "var(--text-light)", fontSize: "0.9rem", marginBottom: "2rem" }}>7 Nights · Dal Lake · Gulmarg · Pahalgam</p>
+                <a href="/#enquire" className="pkg-btn" style={{ marginTop: "auto", padding: "12px 32px", border: "1px solid var(--teal)", color: "var(--teal-dark)", fontSize: "0.8rem", letterSpacing: "0.15em", textTransform: "uppercase", textDecoration: "none", transition: "all 0.3s" }}>
+                  Enquire Now
+                </a>
+              </div>
+            </div>
+
+            {/* Card 2 */}
+            <div style={{ background: "var(--bg-primary)", borderRadius: "2px", overflow: "hidden", border: "1px solid var(--border)", display: "flex", flexDirection: "column" }}>
+              <div style={{ position: "relative", height: "240px", background: "var(--teal-dark)" }}>
+                <Image src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=800&q=80" alt="Kerala Backwaters & Hills" fill style={{ objectFit: "cover", opacity: 0.8 }} unoptimized />
+                <div style={{ position: "absolute", top: "1.5rem", left: "1.5rem" }}>
+                  <span className="eyebrow" style={{ padding: "5px 14px", background: "rgba(255,255,255,0.92)", color: "var(--teal-deep)", borderRadius: "2px", fontSize: "0.55rem" }}>
+                    Coming Soon
+                  </span>
+                </div>
+              </div>
+              <div style={{ padding: "2.5rem", display: "flex", flexDirection: "column", flexGrow: 1, textAlign: "center", alignItems: "center" }}>
+                <h3 className="heading-serif" style={{ fontSize: "1.6rem", color: "var(--text-primary)", marginBottom: "0.5rem" }}>Kerala Backwaters & Hills</h3>
+                <p style={{ color: "var(--text-light)", fontSize: "0.9rem", marginBottom: "2rem" }}>6 Nights · Alleppey · Munnar · Wayanad</p>
+                <a href="/#enquire" className="pkg-btn" style={{ marginTop: "auto", padding: "12px 32px", border: "1px solid var(--teal)", color: "var(--teal-dark)", fontSize: "0.8rem", letterSpacing: "0.15em", textTransform: "uppercase", textDecoration: "none", transition: "all 0.3s" }}>
+                  Enquire Now
+                </a>
+              </div>
+            </div>
           </div>
         ) : (
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: "2rem" }}>

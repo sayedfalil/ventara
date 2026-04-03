@@ -10,17 +10,22 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const db = getDb();
   let blog: any = null;
   try {
-    const res = await db.execute({ sql: "SELECT title, excerpt, featured_image FROM blogs WHERE slug = ?", args: [slug] });
+    const res = await db.execute({ sql: "SELECT * FROM blogs WHERE slug = ?", args: [slug] });
     if (res.rows.length) blog = res.rows[0];
   } catch (e) {}
 
   if (!blog) return { title: "Article Not Found | Ventara Global" };
 
   return {
-    title: `${blog.title} | Ventara Global`,
-    description: blog.excerpt,
+    title: blog.meta_title || `${blog.title} | Ventara Global`,
+    description: blog.meta_description || blog.excerpt,
     openGraph: {
-      images: [blog.featured_image]
+      title: blog.og_title || blog.meta_title || blog.title,
+      description: blog.og_description || blog.meta_description || blog.excerpt,
+      images: [blog.og_image || blog.featured_image]
+    },
+    alternates: {
+      canonical: blog.canonical_url || `https://www.ventaraglobal.com/blog/${blog.slug}`
     }
   };
 }
