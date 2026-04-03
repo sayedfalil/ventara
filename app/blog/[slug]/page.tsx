@@ -1,92 +1,66 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { notFound } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { getDb } from "@/lib/db";
+import type { Metadata } from "next";
 
-type Blog = {
-  id: number;
-  title: string;
-  slug: string;
-  excerpt: string;
-  body: string;
-  featured_image: string;
-  author: string;
-  published_at: string;
-  category_name: string | null;
-  meta_title: string;
-  meta_description: string;
-  tags: { id: number; name: string }[];
-};
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const db = getDb();
+  let blog: any = null;
+  try {
+    const res = await db.execute({ sql: "SELECT title, excerpt, featured_image FROM blogs WHERE slug = ?", args: [slug] });
+    if (res.rows.length) blog = res.rows[0];
+  } catch (e) {}
 
-export default function BlogPostPage() {
-  const params = useParams();
-  const slug = params?.slug as string;
-  const [blog, setBlog] = useState<Blog | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [scrollY, setScrollY] = useState(0);
+  if (!blog) return { title: "Article Not Found | Ventara Global" };
 
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  return {
+    title: `${blog.title} | Ventara Global`,
+    description: blog.excerpt,
+    openGraph: {
+      images: [blog.featured_image]
+    }
+  };
+}
 
-  useEffect(() => {
-    if (!slug) return;
-    fetch(`/api/blogs/${slug}`)
-      .then((r) => r.json())
-      .then((d) => {
-        if (d.id) setBlog(d);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
-  }, [slug]);
+export const revalidate = 60;
 
-  function formatDate(dateStr: string) {
-    if (!dateStr) return "";
-    return new Date(dateStr).toLocaleDateString("en-GB", {
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-    });
+function formatDate(dateStr: string | null | undefined) {
+  if (!dateStr) return "";
+  return new Date(dateStr).toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+}
+
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const db = getDb();
+  let blog: any = null;
+  let tags: any[] = [];
+  
+  try {
+    const res = await db.execute({ sql: "SELECT * FROM blogs WHERE slug = ?", args: [slug] });
+    if (res.rows.length) {
+      blog = res.rows[0];
+      const tagRes = await db.execute({ sql: "SELECT tags.id, tags.name FROM tags JOIN blog_tags ON tags.id = blog_tags.tag_id WHERE blog_tags.blog_id = ?", args: [blog.id] });
+      tags = tagRes.rows;
+    }
+  } catch (e) {
+    console.error("Failed to fetch blog post:", e);
   }
 
-  if (loading) {
-    return (
-      <div style={{ minHeight: "100vh", backgroundColor: "var(--bg-primary)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-        <Navbar scrollY={0} />
-        <p style={{ color: "var(--text-light)", fontFamily: "var(--font-sans)" }}>Loading…</p>
-      </div>
-    );
-  }
-
-  if (!blog) {
-    return (
-      <div style={{ minHeight: "100vh", backgroundColor: "var(--bg-primary)", fontFamily: "var(--font-sans)" }}>
-        <Navbar scrollY={scrollY} />
-        <div style={{ textAlign: "center", paddingTop: "160px", paddingBottom: "6rem" }}>
-          <h1 style={{ fontFamily: "var(--font-serif)", fontSize: "2rem", fontWeight: 400, color: "var(--text-primary)", marginBottom: "1rem" }}>
-            Article not found
-          </h1>
-          <Link href="/blog" style={{ color: "var(--teal)", fontSize: "0.85rem", letterSpacing: "0.1em" }}>
-            ← Back to Journal
-          </Link>
-        </div>
-        <Footer />
-      </div>
-    );
-  }
+  if (!blog) return notFound();
 
   return (
     <div style={{ minHeight: "100vh", backgroundColor: "var(--bg-primary)", fontFamily: "var(--font-sans)" }}>
-      <Navbar scrollY={scrollY} />
+      <Navbar />
 
       {/* Hero image */}
-      {blog.featured_image && (
+      {blog.featured_image ? (
         <div style={{ position: "relative", height: "clamp(320px, 55vh, 620px)", overflow: "hidden", background: "var(--teal-deep)" }}>
           <img
             src={blog.featured_image}
@@ -112,7 +86,7 @@ export default function BlogPostPage() {
               margin: "0 auto",
             }}
           >
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
+            <div>
               {blog.category_name && (
                 <span
                   style={{
@@ -146,13 +120,15 @@ export default function BlogPostPage() {
                 {blog.published_at && (
                   <>
                     <span>·</span>
-                    <span>{formatDate(blog.published_at)}</span>
+                    <span>{formatDate(blog.published_at as string)}</span>
                   </>
                 )}
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
+      ) : (
+        <div style={{ paddingTop: "120px", paddingBottom: "2rem" }}></div>
       )}
 
       {/* Content */}
@@ -173,8 +149,7 @@ export default function BlogPostPage() {
             marginBottom: "3rem",
             transition: "color 0.3s",
           }}
-          onMouseEnter={(e) => (e.currentTarget.style.color = "var(--teal)")}
-          onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-light)")}
+          className="blog-back-link"
         >
           ← Back to Journal
         </Link>
@@ -198,11 +173,11 @@ export default function BlogPostPage() {
         )}
 
         {/* Tags */}
-        {blog.tags && blog.tags.length > 0 && (
+        {tags && tags.length > 0 && (
           <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", marginBottom: "3rem" }}>
-            {blog.tags.map((tag, idx) => (
+            {tags.map((tag) => (
               <span
-                key={tag.id ?? idx}
+                key={tag.id}
                 style={{
                   padding: "4px 14px",
                   background: "rgba(28,95,107,0.08)",
@@ -261,8 +236,7 @@ export default function BlogPostPage() {
               fontWeight: 500,
               transition: "all 0.3s",
             }}
-            onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "var(--teal-dark)"; (e.currentTarget as HTMLAnchorElement).style.color = "#fff"; }}
-            onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.background = "transparent"; (e.currentTarget as HTMLAnchorElement).style.color = "var(--teal-dark)"; }}
+            className="more-articles-btn"
           >
             More Articles
           </Link>
@@ -290,7 +264,7 @@ export default function BlogPostPage() {
             lineHeight: 1.2,
           }}
         >
-          Ready to Experience Kashmir?
+          Ready to Experience It?
         </h2>
         <p style={{ color: "rgba(255,255,255,0.6)", fontWeight: 300, marginBottom: "2.5rem", maxWidth: "420px", margin: "0 auto 2.5rem" }}>
           Let our concierge team craft a bespoke luxury itinerary tailored exclusively for you.
@@ -309,8 +283,7 @@ export default function BlogPostPage() {
             textDecoration: "none",
             transition: "opacity 0.3s",
           }}
-          onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.opacity = "0.85")}
-          onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.opacity = "1")}
+          className="consultation-btn"
         >
           Request a Consultation
         </a>
@@ -319,6 +292,10 @@ export default function BlogPostPage() {
       <Footer />
 
       <style>{`
+        .blog-back-link:hover { color: var(--teal) !important; }
+        .more-articles-btn:hover { background: var(--teal-dark) !important; color: #fff !important; }
+        .consultation-btn:hover { opacity: 0.85; }
+
         .blog-body {
           font-size: 1rem;
           line-height: 1.85;
