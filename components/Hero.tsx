@@ -35,33 +35,25 @@ export default function Hero() {
         background: '#0A0A0A',
       }}
     >
-      {/* Background Image */}
+      {/* Background Layer */}
       <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
+        {/* Panning Clouds */}
         <div
           className="animated-bg"
           style={{
             width: '100%',
             height: '100%',
             backgroundImage: 'url(https://static.prod-images.emergentagent.com/jobs/fc21389c-d1a9-4608-99c1-9c64f1157d22/images/cc2a69e45db730c347d874505e025bc042bd0d054794228c4ae5d38e13c2c3ee.png)',
-            backgroundPosition: 'center',
+            backgroundPosition: '0% center', // Initial state
           }}
         />
-        {/* Night Overlay */}
+        {/* Color Cycle Overlay */}
         <div
-          className="night-overlay"
+          className="day-night-overlay"
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'radial-gradient(ellipse at center, transparent 0%, rgba(10, 10, 10, 0.8) 70%)',
-          }}
-        />
-        {/* Day Overlay (Sky Blue) */}
-        <div
-          className="day-overlay"
-          style={{
-            position: 'absolute',
-            inset: 0,
-            background: 'radial-gradient(ellipse at center, transparent 0%, rgba(135, 206, 235, 0.6) 80%)',
+            pointerEvents: 'none',
           }}
         />
       </div>
@@ -143,7 +135,6 @@ export default function Hero() {
           style={{
             fontFamily: 'var(--font-body)',
             fontSize: 'clamp(1rem, 1.5vw, 1.25rem)',
-            fontWeight: 300,
             maxWidth: '600px',
             margin: '0 auto 3rem',
             lineHeight: 1.8,
@@ -217,37 +208,37 @@ export default function Hero() {
           transform: translateY(0);
         }
 
-        /* Background panning & brightness */
+        /* 
+         * Background panning & brightness 
+         * Duration: 120s (very slow and comfortable)
+         * Iteration: 1 (forwards, no loop)
+         */
         .animated-bg {
           background-size: 150% auto !important;
-          animation: panClouds 5s linear infinite alternate, 
-                     dayNightBrightness 5s ease-in-out infinite alternate;
+          animation: panClouds 120s ease-out forwards, 
+                     fullDayBrightness 120s ease-in-out forwards;
         }
 
-        /* Overlay fades */
-        .night-overlay {
-          animation: fadeOut 5s ease-in-out infinite alternate;
-        }
-        .day-overlay {
-          animation: fadeIn 5s ease-in-out infinite alternate;
+        /* Color Overlay (Night -> Morning -> Day -> Evening -> Night) */
+        .day-night-overlay {
+          animation: fullDayOverlay 120s ease-in-out forwards;
         }
 
-        /* Text color transitions (Night -> Day) */
+        /* Text transitions synchronized to a single 120s day cycle */
         .animated-text {
-          animation: textDarken 5s ease-in-out infinite alternate;
+          animation: fullDayText 120s ease-in-out forwards;
         }
         .animated-text-cyan {
-          animation: textCyanDarken 5s ease-in-out infinite alternate;
+          animation: fullDayCyan 120s ease-in-out forwards;
         }
         .animated-text-muted {
-          animation: textMutedDarken 5s ease-in-out infinite alternate;
+          animation: fullDayMutedText 120s ease-in-out forwards;
         }
         .animated-button {
-          animation: buttonDarken 5s ease-in-out infinite alternate;
+          animation: fullDayButton 120s ease-in-out forwards;
         }
         .animated-logo {
-          animation: logoDarken 5s ease-in-out infinite alternate,
-                     float 8s ease-in-out infinite;
+          animation: fullDayLogo 120s ease-in-out forwards, float 8s ease-in-out infinite;
         }
 
         /* Hover interactions */
@@ -264,52 +255,76 @@ export default function Hero() {
           animation: scrollBounce 1.5s ease-in-out infinite;
         }
 
-        /* ====== KEYFRAMES ====== */
+        /* 
+         * ====== KEYFRAMES (Full 120s Day Cycle) ====== 
+         */
+
+        /* Panning the clouds continuously to the end */
         @keyframes panClouds {
-          0% { background-position: 0% 50%; }
-          100% { background-position: 100% 50%; }
+          0% { background-position: 0% center; }
+          100% { background-position: 100% center; }
         }
         
-        @keyframes dayNightBrightness {
-          0% { filter: brightness(0.5); }
-          100% { filter: brightness(1.2) saturate(1.1); }
+        /* Brightness filtering on the base background */
+        @keyframes fullDayBrightness {
+          0% { filter: brightness(0.5) sepia(0); } /* Deep Night */
+          20% { filter: brightness(0.9) sepia(0.2) saturate(1.4); } /* Sunrise */
+          50% { filter: brightness(1.2) sepia(0) saturate(1.1); } /* Midday */
+          80% { filter: brightness(0.8) sepia(0.3) saturate(1.5) hue-rotate(-10deg); } /* Sunset */
+          100% { filter: brightness(0.5) sepia(0); } /* Deep Night */
         }
 
-        @keyframes fadeOut {
-          0% { opacity: 1; }
-          100% { opacity: 0; }
+        /* Overlay color washes through the full day spectrum */
+        @keyframes fullDayOverlay {
+          0% { background-color: rgba(10, 10, 10, 0.85); } /* Night */
+          20% { background-color: rgba(255, 110, 80, 0.45); } /* Morning Reddish-Orange */
+          50% { background-color: rgba(135, 206, 235, 0.4); } /* Sky Blue Daylight */
+          80% { background-color: rgba(200, 70, 40, 0.45); } /* Evening Crimson/Orange */
+          100% { background-color: rgba(10, 10, 10, 0.85); } /* Night */
         }
 
-        @keyframes fadeIn {
-          0% { opacity: 0; }
-          100% { opacity: 1; }
+        /* Synchronized text color matching the background readability */
+        @keyframes fullDayText {
+          0% { color: #F5F0E8; text-shadow: 0 0 10px rgba(255,255,255,0.1); }
+          20% { color: #1A1A1A; text-shadow: 0 0 15px rgba(255,255,255,0.7); }
+          50% { color: #050505; text-shadow: 0 0 40px rgba(255,255,255,0.9); }
+          80% { color: #1A1A1A; text-shadow: 0 0 15px rgba(255,255,255,0.7); }
+          100% { color: #F5F0E8; text-shadow: 0 0 10px rgba(255,255,255,0.1); }
         }
 
-        @keyframes textDarken {
-          0% { color: #F5F0E8; }
-          100% { color: #0A0A0A; text-shadow: 0 0 40px rgba(255,255,255,0.8); }
+        @keyframes fullDayCyan {
+          0% { color: rgba(94, 234, 255, 0.9); }
+          20% { color: #0A5A68; }
+          50% { color: #0D7C8F; }
+          80% { color: #0A5A68; }
+          100% { color: rgba(94, 234, 255, 0.9); }
         }
 
-        @keyframes textCyanDarken {
-          0% { color: rgba(94, 234, 255, 0.7); }
-          100% { color: #0D7C8F; }
+        @keyframes fullDayMutedText {
+          0% { color: rgba(245, 240, 232, 0.7); font-weight: 300; }
+          20% { color: rgba(20, 20, 20, 0.9); font-weight: 500; }
+          50% { color: rgba(10, 10, 10, 0.9); font-weight: 600; }
+          80% { color: rgba(20, 20, 20, 0.9); font-weight: 500; }
+          100% { color: rgba(245, 240, 232, 0.7); font-weight: 300; }
         }
 
-        @keyframes textMutedDarken {
-          0% { color: rgba(245, 240, 232, 0.7); }
-          100% { color: rgba(10, 10, 10, 0.8); font-weight: 500; }
+        @keyframes fullDayButton {
+          0% { color: #F5F0E8; border-color: rgba(94, 234, 255, 0.5); font-weight: 300; }
+          20% { color: #1A1A1A; border-color: #0D7C8F; font-weight: 500; }
+          50% { color: #0A0A0A; border-color: #0D7C8F; font-weight: 600; }
+          80% { color: #1A1A1A; border-color: #0D7C8F; font-weight: 500; }
+          100% { color: #F5F0E8; border-color: rgba(94, 234, 255, 0.5); font-weight: 300; }
         }
 
-        @keyframes buttonDarken {
-          0% { color: #F5F0E8; border-color: rgba(13, 124, 143, 0.5); }
-          100% { color: #0A0A0A; border-color: #0D7C8F; font-weight: 600; }
-        }
-
-        @keyframes logoDarken {
+        @keyframes fullDayLogo {
           0% { opacity: 0.15; filter: none; }
-          100% { opacity: 0.35; filter: brightness(0.1) contrast(1.5); }
+          20% { opacity: 0.3; filter: brightness(0.2); }
+          50% { opacity: 0.4; filter: brightness(0.1) contrast(1.5); }
+          80% { opacity: 0.3; filter: brightness(0.2); }
+          100% { opacity: 0.15; filter: none; }
         }
 
+        /* Logo physical float */
         @keyframes float {
           0%, 100% { transform: translateY(0) rotate(0deg); }
           50% { transform: translateY(-10px) rotate(2deg); }
