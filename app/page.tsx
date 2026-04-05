@@ -17,7 +17,7 @@ export default function Home() {
   useEffect(() => {
     lenisRef.current = new Lenis({
       duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
@@ -30,7 +30,7 @@ export default function Home() {
     requestAnimationFrame(raf);
 
     // Expose lenis instance globally for GSAP ScrollTrigger
-    (window as Window & { lenis?: Lenis }).lenis = lenisRef.current;
+    (window as any).lenis = lenisRef.current;
 
     return () => {
       lenisRef.current?.destroy();
