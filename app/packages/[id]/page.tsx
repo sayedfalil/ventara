@@ -74,6 +74,10 @@ export default async function PackageDetails({ params }: { params: Promise<{ id:
   try { whatsIncludedArr = JSON.parse(pkg.whats_included || "[]"); } catch {}
   try { thingsToCarryArr = JSON.parse(pkg.things_to_carry || "[]"); } catch {}
 
+  const safeImageUrl = pkg.image_url
+    ? (pkg.image_url.startsWith("http") || pkg.image_url.startsWith("/") ? pkg.image_url : `/${pkg.image_url}`)
+    : "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=2000&auto=format&fit=crop";
+
   return (
     <main style={{ backgroundColor: "var(--bg-primary)" }}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
@@ -81,35 +85,50 @@ export default async function PackageDetails({ params }: { params: Promise<{ id:
         "@type": "Product",
         "name": pkg.title,
         "description": pkg.description,
-        "image": pkg.image_url,
+        "image": safeImageUrl,
         "offers": { "@type": "Offer", "price": (pkg.price || "0").replace(/[^0-9.]/g, ""), "priceCurrency": "INR" },
         "brand": { "@type": "Brand", "name": "Ventara Global" }
       }) }} />
-      <Navbar />
+      <div style={{ position: "absolute", zIndex: 50, width: "100%" }}>
+        <Navbar />
+      </div>
 
       {/* Banner */}
       <section style={{ 
         position: "relative", 
-        height: "60vh",
-        minHeight: "500px",
-        backgroundColor: "var(--teal-dark)",
-        color: "#fff",
+        height: "65vh",
+        minHeight: "550px",
+        backgroundColor: "var(--teal-deep)",
         overflow: "hidden"
       }}>
+        {/* Force next/image to behave flawlessly even with raw uploads */}
         <div style={{ position: "absolute", inset: 0 }}>
-          <Image src={pkg.image_url} alt={pkg.title} fill style={{ objectFit: "cover" }} unoptimized priority />
+          <Image 
+            src={safeImageUrl} 
+            alt={pkg.title} 
+            fill 
+            style={{ objectFit: "cover", opacity: 0.85 }} 
+            unoptimized 
+            priority 
+          />
         </div>
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, var(--bg-primary), transparent 80%, rgba(0,0,0,0.5))" }} />
         
-        <div className="container relative z-10" style={{ display: "flex", height: "100%", alignItems: "flex-end", paddingBottom: "4rem" }}>
-          <div>
-            <span className="eyebrow" style={{ color: "var(--teal)", background: "rgba(255,255,255,0.9)", padding: "4px 12px", borderRadius: "2px" }}>
-              {pkg.tag}
+        {/* Luxury dark overlay lock - guarantees white text visibility and merges gracefully */}
+        <div style={{ 
+          position: "absolute", 
+          inset: 0, 
+          background: "linear-gradient(to top, rgba(14, 38, 44, 0.95) 0%, rgba(14, 38, 44, 0.4) 60%, rgba(0,0,0,0.2) 100%)" 
+        }} />
+        
+        <div className="container relative z-10" style={{ display: "flex", height: "100%", alignItems: "flex-end", paddingBottom: "5rem" }}>
+          <div style={{ maxWidth: "800px" }}>
+            <span className="eyebrow" style={{ color: "var(--teal-dark)", background: "rgba(255,255,255,0.95)", padding: "6px 14px", borderRadius: "2px", fontWeight: 600, letterSpacing: "0.15em" }}>
+              {pkg.tag || "LUXURY PACKAGE"}
             </span>
-            <h1 className="heading-serif" style={{ fontSize: "clamp(3rem, 5vw, 4.5rem)", marginTop: "1rem", marginBottom: "1rem", color: "var(--text-primary)" }}>
+            <h1 className="heading-serif" style={{ fontSize: "clamp(2.5rem, 5vw, 4.5rem)", marginTop: "1.5rem", marginBottom: "1.2rem", color: "#ffffff", textShadow: "0 2px 10px rgba(0,0,0,0.3)", lineHeight: 1.15 }}>
               {pkg.title}
             </h1>
-            <p style={{ fontSize: "1.2rem", fontWeight: 300, color: "var(--text-secondary)", maxWidth: "800px", lineHeight: 1.6 }}>
+            <p style={{ fontSize: "1.1rem", fontWeight: 300, color: "rgba(255,255,255,0.9)", lineHeight: 1.6, textShadow: "0 1px 4px rgba(0,0,0,0.4)" }}>
               {pkg.description}
             </p>
           </div>
