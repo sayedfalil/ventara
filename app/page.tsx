@@ -38,7 +38,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main style={{ backgroundColor: "#0A0A0A", minHeight: "100vh" }}>
+    <main style={{ backgroundColor: "#FFFFFF", minHeight: "100vh" }}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

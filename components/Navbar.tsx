@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { ShoppingBag } from 'lucide-react';
 import Image from 'next/image';
 
 export default function Navbar() {
@@ -15,11 +16,10 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { href: '/', label: 'Home', number: '01' },
-    { href: '/packages', label: 'Packages', number: '02' },
-    { href: '/blog', label: 'Journal', number: '03' },
-    { href: '/#experiences', label: 'Experiences', number: '04' },
-    { href: '/#contact', label: 'Contact', number: '05' },
+    { href: '/', label: 'Home' },
+    { href: '/packages', label: 'Packages' },
+    { href: '/#experiences', label: 'Locations' },
+    { href: '/blog', label: 'Journal' },
   ];
 
   return (
@@ -29,41 +29,145 @@ export default function Navbar() {
         animate={{ y: 0 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         style={{
-          position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
-          padding: scrolled ? '1rem 5vw' : '2rem 5vw', display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-          background: scrolled ? 'rgba(10, 10, 10, 0.9)' : 'transparent', backdropFilter: scrolled ? 'blur(20px)' : 'none',
-          borderBottom: scrolled ? '1px solid rgba(255, 255, 255, 0.05)' : 'none', transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+          position: 'fixed',
+          top: scrolled ? 0 : '1.5rem',
+          left: scrolled ? 0 : '1.5rem',
+          right: scrolled ? 0 : '1.5rem',
+          zIndex: 100,
+          padding: scrolled ? '1rem 5vw' : '0 2rem',
+          height: '80px',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          background: scrolled ? '#FFFFFF' : 'transparent',
+          boxShadow: scrolled ? '0 10px 30px rgba(0,0,0,0.05)' : 'none',
+          borderRadius: scrolled ? '0' : '2rem',
+          transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
         }}
       >
-        <a href="/" style={{ display: 'flex', alignItems: 'center', zIndex: 101 }}>
-          <Image src="https://customer-assets.emergentagent.com/job_fc21389c-d1a9-4608-99c1-9c64f1157d22/artifacts/6ftpkbez_logo%20%281%29.png" alt="Ventara Global" width={180} height={50} style={{ width: scrolled ? '140px' : '180px', height: 'auto', transition: 'width 0.4s ease' }} priority unoptimized />
+        {/* LOGO */}
+        <a href="/" style={{ display: 'flex', alignItems: 'center', zIndex: 101, textDecoration: 'none' }}>
+          {scrolled ? (
+            <span style={{ fontFamily: 'var(--font-heading)', fontSize: '1.75rem', fontWeight: 800, color: '#111', letterSpacing: '-0.02em' }}>VENTARA</span>
+          ) : (
+            <span style={{ fontFamily: 'var(--font-heading)', fontSize: '1.75rem', fontWeight: 800, color: '#FFF', letterSpacing: '-0.02em', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 22h20L12 2z" fill="#FFF"/></svg>
+              VENTARA
+            </span>
+          )}
         </a>
 
-        <nav className="desktop-nav" style={{ display: 'flex', gap: '3rem', alignItems: 'center' }}>
+        {/* CENTER GLASS PILL NAV */}
+        <nav className="desktop-nav" style={{ 
+          display: 'flex', 
+          alignItems: 'center',
+          background: scrolled ? 'rgba(0,0,0,0.03)' : 'rgba(255, 255, 255, 0.15)',
+          backdropFilter: 'blur(10px)',
+          border: scrolled ? '1px solid rgba(0,0,0,0.05)' : '1px solid rgba(255, 255, 255, 0.2)',
+          borderRadius: '100px',
+          padding: '0.5rem'
+        }}>
           {navLinks.map((link) => (
-            <a key={link.href} href={link.href} style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', letterSpacing: '0.15em', textTransform: 'uppercase', color: 'var(--cream)', opacity: 0.7, transition: 'opacity 0.3s ease' }} onMouseEnter={(e) => (e.currentTarget.style.opacity = '1')} onMouseLeave={(e) => (e.currentTarget.style.opacity = '0.7')}>
-              <span style={{ color: 'var(--secondary)', marginRight: '0.5rem' }}>{link.number}</span>
+            <a 
+              key={link.href} 
+              href={link.href} 
+              style={{ 
+                fontFamily: 'var(--font-sans)', 
+                fontSize: '0.875rem', 
+                fontWeight: 500,
+                padding: '0.5rem 1.25rem',
+                borderRadius: '100px',
+                color: scrolled ? '#333' : '#FFF', 
+                textDecoration: 'none',
+                transition: 'all 0.3s ease',
+              }} 
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = scrolled ? 'rgba(0,0,0,0.05)' : 'rgba(255, 255, 255, 0.2)';
+              }} 
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'transparent';
+              }}
+            >
               {link.label}
             </a>
           ))}
         </nav>
 
-        <button onClick={() => setMenuOpen(!menuOpen)} style={{ display: 'none', flexDirection: 'column', gap: '6px', padding: '8px', zIndex: 101 }} className="mobile-menu-btn" aria-label="Toggle menu">
-          <span style={{ width: '28px', height: '1px', background: menuOpen ? 'var(--secondary)' : 'var(--cream)', transition: 'all 0.3s ease', transform: menuOpen ? 'rotate(45deg) translateY(4px)' : 'none' }} />
-          <span style={{ width: menuOpen ? '28px' : '18px', height: '1px', background: menuOpen ? 'var(--secondary)' : 'var(--cream)', transition: 'all 0.3s ease', transform: menuOpen ? 'rotate(-45deg) translateY(-4px)' : 'none', marginLeft: 'auto' }} />
+        {/* RIGHT ACTION PILLS */}
+        <div className="desktop-nav" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+          <a 
+            href="/#contact" 
+            style={{ 
+              fontFamily: 'var(--font-sans)', 
+              fontSize: '0.875rem', 
+              fontWeight: 500,
+              padding: '0.75rem 1.5rem',
+              borderRadius: '100px',
+              border: scrolled ? '1px solid #E5E5E5' : '1px solid rgba(255,255,255,0.4)',
+              color: scrolled ? '#111' : '#FFF', 
+              textDecoration: 'none',
+              transition: 'all 0.3s ease'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = scrolled ? '#111' : '#FFF';
+              e.currentTarget.style.color = scrolled ? '#FFF' : '#111';
+            }} 
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'transparent';
+              e.currentTarget.style.color = scrolled ? '#111' : '#FFF';
+            }}
+          >
+            Already Booked?
+          </a>
+          <button 
+            aria-label="Cart"
+            style={{ 
+              width: '45px', 
+              height: '45px', 
+              display: 'flex', 
+              alignItems: 'center', 
+              justifyContent: 'center',
+              borderRadius: '50%',
+              border: scrolled ? '1px solid #E5E5E5' : '1px solid rgba(255,255,255,0.4)',
+              background: 'transparent',
+              color: scrolled ? '#111' : '#FFF',
+              cursor: 'pointer',
+              transition: 'all 0.3s ease'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = scrolled ? '#111' : '#FFF';
+              e.currentTarget.style.color = scrolled ? '#FFF' : '#111';
+            }} 
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'transparent';
+              e.currentTarget.style.color = scrolled ? '#111' : '#FFF';
+            }}
+          >
+            <ShoppingBag size={18} />
+          </button>
+        </div>
+
+        {/* MOBILE MENU TOGGLE */}
+        <button onClick={() => setMenuOpen(!menuOpen)} style={{ display: 'none', flexDirection: 'column', gap: '6px', padding: '8px', zIndex: 101, background: 'none', border: 'none', cursor: 'pointer' }} className="mobile-menu-btn" aria-label="Toggle menu">
+          <span style={{ width: '28px', height: '2px', background: scrolled || menuOpen ? '#111' : '#FFF', transition: 'all 0.3s ease', transform: menuOpen ? 'rotate(45deg) translateY(5px)' : 'none' }} />
+          <span style={{ width: menuOpen ? '28px' : '18px', height: '2px', background: scrolled || menuOpen ? '#111' : '#FFF', transition: 'all 0.3s ease', transform: menuOpen ? 'rotate(-45deg) translateY(-5px)' : 'none', marginLeft: 'auto' }} />
         </button>
       </motion.nav>
 
-      <motion.div initial={false} animate={{ opacity: menuOpen ? 1 : 0, pointerEvents: menuOpen ? 'all' : 'none' }} transition={{ duration: 0.4 }} style={{ position: 'fixed', inset: 0, background: 'var(--background)', zIndex: 99, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '2.5rem' }}>
+      {/* MOBILE MENU OVERLAY */}
+      <motion.div initial={false} animate={{ opacity: menuOpen ? 1 : 0, pointerEvents: menuOpen ? 'all' : 'none' }} transition={{ duration: 0.4 }} style={{ position: 'fixed', inset: 0, background: '#FFFFFF', zIndex: 99, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '2.5rem' }}>
         {navLinks.map((link, i) => (
-          <motion.a key={link.href} href={link.href} onClick={() => setMenuOpen(false)} initial={{ opacity: 0, y: 20 }} animate={{ opacity: menuOpen ? 1 : 0, y: menuOpen ? 0 : 20 }} transition={{ delay: i * 0.05 + 0.1 }} style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: 300, letterSpacing: '-0.02em', color: 'var(--cream)' }}>
-            <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.875rem', color: 'var(--secondary)', marginRight: '1rem' }}>{link.number}</span>{link.label}
+          <motion.a key={link.href} href={link.href} onClick={() => setMenuOpen(false)} initial={{ opacity: 0, y: 20 }} animate={{ opacity: menuOpen ? 1 : 0, y: menuOpen ? 0 : 20 }} transition={{ delay: i * 0.05 + 0.1 }} style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: 600, color: '#111', textDecoration: 'none' }}>
+            {link.label}
           </motion.a>
         ))}
       </motion.div>
 
       <style jsx global>{`
-        @media (max-width: 900px) { .desktop-nav { display: none !important; } .mobile-menu-btn { display: flex !important; } }
+        @media (max-width: 900px) { 
+          .desktop-nav { display: none !important; } 
+          .mobile-menu-btn { display: flex !important; } 
+        }
       `}</style>
     </>
   );

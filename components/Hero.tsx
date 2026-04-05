@@ -1,19 +1,11 @@
 "use client";
 
 import { useRef, useEffect, useState } from 'react';
-import { useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
+import { Calendar, Wallet, Users, Search } from 'lucide-react';
 
 export default function Hero() {
-  const sectionRef = useRef<HTMLElement>(null);
   const [isClient, setIsClient] = useState(false);
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start start', 'end start'],
-  });
-
-  const bgOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const bgScale = useTransform(scrollYProgress, [0, 0.5], [1, 1.5]);
 
   useEffect(() => {
     setIsClient(true);
@@ -21,318 +13,185 @@ export default function Hero() {
 
   return (
     <section
-      ref={sectionRef}
       id="hero"
       data-testid="hero-section"
       style={{
         position: 'relative',
         width: '100%',
-        height: '100vh',
-        overflow: 'hidden',
+        minHeight: '100vh',
+        backgroundColor: '#FFFFFF',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        background: '#0A0A0A',
+        padding: '1rem',
       }}
     >
-      {/* Background Layer */}
-      <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
-        {/* Panning Clouds */}
-        <div
-          className="animated-bg"
-          style={{
-            width: '100%',
-            height: '100%',
-            backgroundImage: 'url(https://static.prod-images.emergentagent.com/jobs/fc21389c-d1a9-4608-99c1-9c64f1157d22/images/cc2a69e45db730c347d874505e025bc042bd0d054794228c4ae5d38e13c2c3ee.png)',
-            backgroundPosition: '0% center', // Initial state
-          }}
-        />
-        {/* Color Cycle Overlay */}
-        <div
-          className="day-night-overlay"
-          style={{
-            position: 'absolute',
-            inset: 0,
-            pointerEvents: 'none',
-          }}
-        />
-      </div>
-
-      {/* 3D Wing-V Logo SVG */}
-      <div
-        style={{
-          position: 'absolute',
-          width: '100%',
-          height: '100%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          zIndex: 1,
-          pointerEvents: 'none',
-        }}
-      >
-        <svg
-          viewBox="0 0 200 200"
-          className="wing-logo animated-logo"
-          style={{
-            width: '30vw',
-            maxWidth: '300px',
-          }}
-        >
-          <path d="M100 180 L40 20 L60 20 L100 140 Z" fill="#0D7C8F" opacity="0.9" />
-          <path d="M100 180 L160 20 L140 20 L100 140 Z" fill="#0D7C8F" opacity="0.9" />
-          <circle cx="100" cy="150" r="8" fill="#5EEAFF" className="sparkle">
-            <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite" />
-            <animate attributeName="r" values="8;12;8" dur="2s" repeatCount="indefinite" />
-          </circle>
-        </svg>
-      </div>
-
-      {/* Content */}
-      <div
-        style={{
+      {/* Centered Rounded Image Canvas */}
+      <div 
+        style={{ 
           position: 'relative',
-          zIndex: 10,
-          textAlign: 'center',
-          padding: '0 5vw',
-          maxWidth: '1400px',
-        }}
-      >
-        <p
-          className={`hero-content animated-text-cyan ${isClient ? 'visible' : ''}`}
-          style={{
-            fontFamily: 'var(--font-mono)',
-            fontSize: '0.875rem',
-            letterSpacing: '0.2em',
-            marginBottom: '2rem',
-            transitionDelay: '0.3s',
-          }}
-        >
-          01/06
-        </p>
-
-        <h1
-          className={`hero-content animated-text ${isClient ? 'visible' : ''}`}
-          style={{
-            fontFamily: 'var(--font-heading)',
-            fontSize: 'clamp(3rem, 12vw, 10rem)',
-            fontWeight: 300,
-            letterSpacing: '-0.02em',
-            textTransform: 'uppercase',
-            lineHeight: 0.9,
-            marginBottom: '2rem',
-            transitionDelay: '0.5s',
-          }}
-        >
-          ELEVATE<br />
-          <span className="animated-text-cyan" style={{ fontStyle: 'italic' }}>
-            YOUR JOURNEY
-          </span>
-        </h1>
-
-        <p
-          className={`hero-content animated-text-muted ${isClient ? 'visible' : ''}`}
-          style={{
-            fontFamily: 'var(--font-body)',
-            fontSize: 'clamp(1rem, 1.5vw, 1.25rem)',
-            maxWidth: '600px',
-            margin: '0 auto 3rem',
-            lineHeight: 1.8,
-            transitionDelay: '0.7s',
-          }}
-        >
-          Curated luxury experiences across India's most breathtaking destinations.
-          Not packaged — designed exclusively for you.
-        </p>
-
-        <a
-          href="/packages"
-          className={`hero-content hero-cta animated-button ${isClient ? 'visible' : ''}`}
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '1rem 2rem',
-            border: '1px solid',
-            background: 'transparent',
-            fontFamily: 'var(--font-mono)',
-            fontSize: '0.75rem',
-            letterSpacing: '0.2em',
-            textTransform: 'uppercase',
-            textDecoration: 'none',
-            transitionDelay: '0.9s',
-          }}
-        >
-          Explore Packages
-        </a>
-      </div>
-
-      <div
-        className={`hero-content ${isClient ? 'visible' : ''}`}
-        style={{
-          position: 'absolute',
-          bottom: '3rem',
-          left: '50%',
-          transform: 'translateX(-50%)',
+          width: '100%',
+          height: 'calc(100vh - 2rem)',
+          borderRadius: '2.5rem',
+          overflow: 'hidden',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          gap: '1rem',
-          zIndex: 10,
-          transitionDelay: '1.2s',
+          justifyContent: 'center',
+          boxShadow: '0 20px 40px rgba(0,0,0,0.1)'
         }}
       >
-        <div className="scroll-line" />
-        <span
+        {/* Bright Turquoise Beach Background */}
+        <div
           style={{
-            fontFamily: 'var(--font-mono)',
-            fontSize: '0.6rem',
-            letterSpacing: '0.3em',
-            textTransform: 'uppercase',
-            color: '#888888',
+            position: 'absolute',
+            inset: 0,
+            backgroundImage: 'url(https://images.unsplash.com/photo-1544550581-5f7ceaf7f992?q=80&w=2600&auto=format&fit=crop)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            zIndex: 0,
+          }}
+        />
+        {/* Color Correction Overlay (Slight darkening for text readability) */}
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,100,150,0.2))', zIndex: 1 }} />
+
+        {/* Content */}
+        <div
+          style={{
+            position: 'relative',
+            zIndex: 10,
+            textAlign: 'center',
+            padding: '0 5vw',
+            maxWidth: '1200px',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center'
           }}
         >
-          Scroll
-        </span>
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            style={{
+              fontFamily: 'var(--font-serif)',
+              fontSize: 'clamp(4rem, 10vw, 8.5rem)',
+              fontWeight: 500,
+              letterSpacing: '-0.02em',
+              color: '#FFFFFF',
+              lineHeight: 1,
+              marginBottom: '1rem',
+              textShadow: '0 10px 30px rgba(0,0,0,0.15)'
+            }}
+          >
+            Explore The World
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            style={{
+              fontFamily: 'var(--font-sans)',
+              fontSize: 'clamp(1rem, 1.5vw, 1.25rem)',
+              fontWeight: 400,
+              color: 'rgba(255, 255, 255, 0.95)',
+              marginBottom: '3rem',
+              textShadow: '0 2px 10px rgba(0,0,0,0.1)'
+            }}
+          >
+            What we offer is an unforgettable journey and experience.
+          </motion.p>
+
+          {/* Search Bar Pill */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+            className="search-pill"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              background: '#FFFFFF',
+              borderRadius: '100px',
+              padding: '0.6rem',
+              boxShadow: '0 20px 40px rgba(0,0,0,0.15)',
+              width: '100%',
+              maxWidth: '850px',
+              flexWrap: 'wrap',
+              gap: '0.5rem'
+            }}
+          >
+            <div className="search-section" style={{ flex: 1, display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.5rem 1.5rem', borderRight: '1px solid #EEEEEE' }}>
+              <Calendar size={20} color="#888" />
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
+                <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.95rem', color: '#444', fontWeight: 500 }}>Date</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#888" strokeWidth="2"><path d="M6 9l6 6 6-6"/></svg>
+              </div>
+            </div>
+
+            <div className="search-section" style={{ flex: 1, display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.5rem 1.5rem', borderRight: '1px solid #EEEEEE' }}>
+              <Wallet size={20} color="#888" />
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
+                <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.95rem', color: '#444', fontWeight: 500 }}>Budget</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#888" strokeWidth="2"><path d="M6 9l6 6 6-6"/></svg>
+              </div>
+            </div>
+
+            <div className="search-section" style={{ flex: 1, display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.5rem 1.5rem' }}>
+              <Users size={20} color="#888" />
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
+                <span style={{ fontFamily: 'var(--font-sans)', fontSize: '0.95rem', color: '#444', fontWeight: 500 }}>Guest</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#888" strokeWidth="2"><path d="M6 9l6 6 6-6"/></svg>
+              </div>
+            </div>
+
+            <a
+              href="/packages"
+              className="search-btn"
+              style={{
+                background: '#00B4D8',
+                color: '#FFF',
+                fontFamily: 'var(--font-sans)',
+                fontWeight: 600,
+                fontSize: '1rem',
+                textDecoration: 'none',
+                padding: '1rem 2.5rem',
+                borderRadius: '100px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                transition: 'background 0.3s ease'
+              }}
+            >
+              Search
+            </a>
+          </motion.div>
+        </div>
       </div>
 
       <style jsx>{`
-        .hero-content {
-          opacity: 0;
-          transform: translateY(30px);
-          transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
-                      transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        .search-btn:hover {
+          background: #0096C7 !important;
         }
-        .hero-content.visible {
-          opacity: 1;
-          transform: translateY(0);
-        }
-
-        /* 
-         * Background panning & brightness 
-         * Duration: 120s (very slow and comfortable)
-         * Iteration: 1 (forwards, no loop)
-         */
-        .animated-bg {
-          background-size: 150% auto !important;
-          animation: panClouds 120s ease-out forwards, 
-                     fullDayBrightness 120s ease-in-out forwards;
-        }
-
-        /* Color Overlay (Night -> Morning -> Day -> Evening -> Night) */
-        .day-night-overlay {
-          animation: fullDayOverlay 120s ease-in-out forwards;
-        }
-
-        /* Text transitions synchronized to a single 120s day cycle */
-        .animated-text {
-          animation: fullDayText 120s ease-in-out forwards;
-        }
-        .animated-text-cyan {
-          animation: fullDayCyan 120s ease-in-out forwards;
-        }
-        .animated-text-muted {
-          animation: fullDayMutedText 120s ease-in-out forwards;
-        }
-        .animated-button {
-          animation: fullDayButton 120s ease-in-out forwards;
-        }
-        .animated-logo {
-          animation: fullDayLogo 120s ease-in-out forwards, float 8s ease-in-out infinite;
-        }
-
-        /* Hover interactions */
-        .hero-cta:hover {
-          background: #0D7C8F !important;
-          border-color: #0D7C8F !important;
-          color: #F5F0E8 !important;
-        }
-
-        .scroll-line {
-          width: 1px;
-          height: 60px;
-          background: linear-gradient(to bottom, transparent, #5EEAFF);
-          animation: scrollBounce 1.5s ease-in-out infinite;
-        }
-
-        /* 
-         * ====== KEYFRAMES (Full 120s Day Cycle) ====== 
-         */
-
-        /* Panning the clouds continuously to the end */
-        @keyframes panClouds {
-          0% { background-position: 0% center; }
-          100% { background-position: 100% center; }
-        }
-        
-        /* Brightness filtering on the base background */
-        @keyframes fullDayBrightness {
-          0% { filter: brightness(0.5) sepia(0); } /* Deep Night */
-          20% { filter: brightness(0.9) sepia(0.2) saturate(1.4); } /* Sunrise */
-          50% { filter: brightness(1.2) sepia(0) saturate(1.1); } /* Midday */
-          80% { filter: brightness(0.8) sepia(0.3) saturate(1.5) hue-rotate(-10deg); } /* Sunset */
-          100% { filter: brightness(0.5) sepia(0); } /* Deep Night */
-        }
-
-        /* Overlay color washes through the full day spectrum */
-        @keyframes fullDayOverlay {
-          0% { background-color: rgba(10, 10, 10, 0.85); } /* Night */
-          20% { background-color: rgba(255, 110, 80, 0.45); } /* Morning Reddish-Orange */
-          50% { background-color: rgba(135, 206, 235, 0.4); } /* Sky Blue Daylight */
-          80% { background-color: rgba(200, 70, 40, 0.45); } /* Evening Crimson/Orange */
-          100% { background-color: rgba(10, 10, 10, 0.85); } /* Night */
-        }
-
-        /* Synchronized text color matching the background readability */
-        @keyframes fullDayText {
-          0% { color: #F5F0E8; text-shadow: 0 0 10px rgba(255,255,255,0.1); }
-          20% { color: #1A1A1A; text-shadow: 0 0 15px rgba(255,255,255,0.7); }
-          50% { color: #050505; text-shadow: 0 0 40px rgba(255,255,255,0.9); }
-          80% { color: #1A1A1A; text-shadow: 0 0 15px rgba(255,255,255,0.7); }
-          100% { color: #F5F0E8; text-shadow: 0 0 10px rgba(255,255,255,0.1); }
-        }
-
-        @keyframes fullDayCyan {
-          0% { color: rgba(94, 234, 255, 0.9); }
-          20% { color: #0A5A68; }
-          50% { color: #0D7C8F; }
-          80% { color: #0A5A68; }
-          100% { color: rgba(94, 234, 255, 0.9); }
-        }
-
-        @keyframes fullDayMutedText {
-          0% { color: rgba(245, 240, 232, 0.7); font-weight: 300; }
-          20% { color: rgba(20, 20, 20, 0.9); font-weight: 500; }
-          50% { color: rgba(10, 10, 10, 0.9); font-weight: 600; }
-          80% { color: rgba(20, 20, 20, 0.9); font-weight: 500; }
-          100% { color: rgba(245, 240, 232, 0.7); font-weight: 300; }
-        }
-
-        @keyframes fullDayButton {
-          0% { color: #F5F0E8; border-color: rgba(94, 234, 255, 0.5); font-weight: 300; }
-          20% { color: #1A1A1A; border-color: #0D7C8F; font-weight: 500; }
-          50% { color: #0A0A0A; border-color: #0D7C8F; font-weight: 600; }
-          80% { color: #1A1A1A; border-color: #0D7C8F; font-weight: 500; }
-          100% { color: #F5F0E8; border-color: rgba(94, 234, 255, 0.5); font-weight: 300; }
-        }
-
-        @keyframes fullDayLogo {
-          0% { opacity: 0.15; filter: none; }
-          20% { opacity: 0.3; filter: brightness(0.2); }
-          50% { opacity: 0.4; filter: brightness(0.1) contrast(1.5); }
-          80% { opacity: 0.3; filter: brightness(0.2); }
-          100% { opacity: 0.15; filter: none; }
-        }
-
-        /* Logo physical float */
-        @keyframes float {
-          0%, 100% { transform: translateY(0) rotate(0deg); }
-          50% { transform: translateY(-10px) rotate(2deg); }
-        }
-
-        @keyframes scrollBounce {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(10px); }
+        @media (max-width: 900px) {
+          .search-pill {
+            flex-direction: column;
+            border-radius: 2rem !important;
+            padding: 1.5rem !important;
+          }
+          .search-section {
+            width: 100%;
+            border-right: none !important;
+            border-bottom: 1px solid #EEEEEE;
+            padding: 1rem 0 !important;
+          }
+          .search-section:last-of-type {
+            border-bottom: none;
+          }
+          .search-btn {
+            width: 100%;
+            margin-top: 1rem;
+          }
         }
       `}</style>
     </section>
