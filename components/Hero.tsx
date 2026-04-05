@@ -37,24 +37,20 @@ export default function Hero() {
           justifyContent: 'center',
         }}
       >
-        {/* Moving Ocean Waves Video Background */}
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
+        {/* Moving Ocean Waves Animated Background */}
+        <div
           style={{
             position: 'absolute',
             inset: 0,
             width: '100%',
             height: '100%',
-            objectFit: 'cover',
+            backgroundImage: 'url(https://images.unsplash.com/photo-1505118380757-91f5f5632de0?q=80&w=2600&auto=format&fit=crop)',
+            backgroundPosition: 'center',
+            backgroundSize: '120% auto',
             zIndex: 0,
-            pointerEvents: 'none'
+            animation: 'slowWavePan 30s ease-in-out infinite alternate',
           }}
-        >
-          <source src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-ocean-waves-crashing-on-the-beach-4008-large.mp4" type="video/mp4" />
-        </video>
+        />
         
         {/* Color Correction Overlay (Slight blue cyan tint to match the bright theme) */}
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(0, 150, 180, 0.1), rgba(0, 50, 100, 0.3))', zIndex: 1 }} />
@@ -140,6 +136,10 @@ export default function Hero() {
           background: #0096C7 !important;
           transform: translateY(-2px);
           box-shadow: 0 15px 30px rgba(0, 150, 199, 0.5) !important;
+        }
+        @keyframes slowWavePan {
+          0% { background-position: 0% 50%; }
+          100% { background-position: 100% 50%; }
         }
       `}</style>
     </section>
