@@ -12,7 +12,7 @@ export default function Footer() {
       <div style={{ maxWidth: '1600px', margin: '0 auto' }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: '3rem', marginBottom: '4rem' }}>
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} style={{ gridColumn: 'span 4' }} className="footer-brand">
-            <Image src="https://customer-assets.emergentagent.com/job_fc21389c-d1a9-4608-99c1-9c64f1157d22/artifacts/6ftpkbez_logo%20%281%29.png" alt="Ventara Global" width={160} height={45} style={{ marginBottom: '1.5rem' }} unoptimized />
+            <Image src="https://customer-assets.emergentagent.com/job_fc21389c-d1a9-4608-99c1-9c64f1157d22/artifacts/6ftpkbez_logo%20%281%29.png" alt="Ventara Global" width={220} height={60} style={{ width: '220px', height: 'auto', maxHeight: '60px', objectFit: 'contain', marginBottom: '1.5rem' }} unoptimized />
             <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.9375rem', fontWeight: 300, lineHeight: 1.8, color: 'rgba(245, 240, 232, 0.6)', maxWidth: '300px' }}>Architects of extraordinary journeys across India. Crafting bespoke travel experiences since 2020.</p>
           </motion.div>
 

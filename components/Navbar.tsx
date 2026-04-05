@@ -49,12 +49,12 @@ export default function Navbar() {
           <Image 
             src="https://customer-assets.emergentagent.com/job_fc21389c-d1a9-4608-99c1-9c64f1157d22/artifacts/6ftpkbez_logo%20%281%29.png" 
             alt="Ventara Global" 
-            width={180} 
-            height={40} 
+            width={240} 
+            height={70} 
             style={{ 
-              width: scrolled ? '140px' : '160px', 
+              width: scrolled ? '180px' : '220px', 
               height: 'auto',
-              maxHeight: '40px',
+              maxHeight: '70px',
               objectFit: 'contain',
               transition: 'all 0.4s ease' 
             }} 
