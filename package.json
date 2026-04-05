@@ -23,6 +23,7 @@
     "jose": "^6.2.1",
     "jspdf": "^4.2.1",
     "jspdf-autotable": "^5.0.7",
+    "lenis": "^1.1.18",
     "lucide-react": "^0.471.0",
     "next": "latest",
     "react": "latest",
