@@ -85,7 +85,7 @@ export default function KeralaVsKashmirBlog() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFAQ) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumb) }} />
       
-      <Navbar scrollY={100} />
+      <Navbar />
 
       {/* Hero Section */}
       <section style={{ height: '60vh', backgroundColor: 'var(--teal-dark)', position: 'relative', display: 'flex', alignItems: 'flex-end', paddingBottom: '4rem' }}>

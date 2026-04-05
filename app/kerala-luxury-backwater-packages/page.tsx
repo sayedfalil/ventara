@@ -91,7 +91,7 @@ export default function KeralaLuxuryBackwater() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFAQ) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumb) }} />
       
-      <Navbar scrollY={100} />
+      <Navbar />
 
       {/* Hero Section */}
       <section style={{ height: '50vh', backgroundColor: 'var(--teal-deep)', position: 'relative', display: 'flex', alignItems: 'flex-end', paddingBottom: '3rem' }}>
