@@ -47,14 +47,20 @@ export default function Navbar() {
       >
         {/* LOGO */}
         <a href="/" style={{ display: 'flex', alignItems: 'center', zIndex: 101, textDecoration: 'none' }}>
-          {scrolled ? (
-            <span style={{ fontFamily: 'var(--font-heading)', fontSize: '1.75rem', fontWeight: 800, color: '#111', letterSpacing: '-0.02em' }}>VENTARA</span>
-          ) : (
-            <span style={{ fontFamily: 'var(--font-heading)', fontSize: '1.75rem', fontWeight: 800, color: '#FFF', letterSpacing: '-0.02em', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 22h20L12 2z" fill="#FFF"/></svg>
-              VENTARA
-            </span>
-          )}
+          <Image 
+            src="https://customer-assets.emergentagent.com/job_fc21389c-d1a9-4608-99c1-9c64f1157d22/artifacts/6ftpkbez_logo%20%281%29.png" 
+            alt="Ventara Global" 
+            width={180} 
+            height={50} 
+            style={{ 
+              width: scrolled ? '150px' : '180px', 
+              height: 'auto', 
+              filter: scrolled ? 'brightness(0.1)' : 'none',
+              transition: 'all 0.4s ease' 
+            }} 
+            priority 
+            unoptimized 
+          />
         </a>
 
         {/* CENTER GLASS PILL NAV */}
