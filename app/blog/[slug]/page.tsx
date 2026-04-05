@@ -106,7 +106,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
       {/* Hero image */}
       {blog.featured_image ? (
-        <div style={{ position: "relative", height: "clamp(320px, 55vh, 620px)", overflow: "hidden", background: "var(--teal-deep)" }}>
+        <div className="blog-hero">
           <img
             src={blog.featured_image}
             alt={blog.title}
@@ -116,21 +116,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             style={{
               position: "absolute",
               inset: 0,
-              background: "linear-gradient(to bottom, rgba(10,40,48,0.3) 0%, rgba(10,40,48,0.7) 100%)",
+              background: "linear-gradient(to bottom, rgba(10,40,48,0.3) 0%, rgba(10,40,48,0.8) 100%)",
             }}
           />
           {/* Title overlay */}
-          <div
-            style={{
-              position: "absolute",
-              bottom: 0,
-              left: 0,
-              right: 0,
-              padding: "3rem 4vw",
-              maxWidth: "860px",
-              margin: "0 auto",
-            }}
-          >
+          <div className="blog-hero-content">
             <div>
               {blog.category_name && (
                 <span
@@ -386,6 +376,28 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           overflow-x: auto;
           margin: 1.5rem 0;
           border-radius: 2px;
+        }
+
+        .blog-hero {
+          position: relative;
+          height: clamp(320px, 55vh, 620px);
+          overflow: hidden;
+          background: var(--teal-deep);
+        }
+        .blog-hero-content {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          padding: 3rem 4vw;
+          max-width: 860px;
+          margin: 0 auto;
+        }
+
+        @media (max-width: 992px) {
+          .blog-hero { height: auto; min-height: 85vh; display: flex; align-items: flex-end; }
+          .blog-hero-content { position: relative; padding-top: 140px; text-align: center; }
+          .blog-back-link { margin-bottom: 2rem !important; }
         }
       `}</style>
     </div>

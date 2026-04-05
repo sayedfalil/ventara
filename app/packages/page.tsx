@@ -117,7 +117,7 @@ export default async function PackagesPage() {
         </div>
 
         {packages.length === 0 ? (
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: "2rem" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "2rem" }}>
             {/* Card 1 */}
             <div style={{ background: "var(--bg-primary)", borderRadius: "2px", overflow: "hidden", border: "1px solid var(--border)", display: "flex", flexDirection: "column" }}>
               <div style={{ position: "relative", height: "240px", background: "var(--teal-dark)" }}>
@@ -157,7 +157,7 @@ export default async function PackagesPage() {
             </div>
           </div>
         ) : (
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))", gap: "2rem" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "2rem" }}>
             {packages.map((pkg, i) => (
               <div key={pkg.id} style={{ background: "var(--bg-primary)", borderRadius: "2px", overflow: "hidden", border: "1px solid var(--border)", display: "flex", flexDirection: "column" }}>
                 <div style={{ position: "relative", height: "240px" }}>

@@ -94,13 +94,7 @@ export default async function PackageDetails({ params }: { params: Promise<{ id:
       </div>
 
       {/* Banner */}
-      <section style={{ 
-        position: "relative", 
-        height: "65vh",
-        minHeight: "550px",
-        backgroundColor: "var(--teal-deep)",
-        overflow: "hidden"
-      }}>
+      <section className="pkg-hero">
         {/* Force next/image to behave flawlessly even with raw uploads */}
         <div style={{ position: "absolute", inset: 0 }}>
           <Image 
@@ -120,7 +114,7 @@ export default async function PackageDetails({ params }: { params: Promise<{ id:
           background: "linear-gradient(to top, rgba(14, 38, 44, 0.95) 0%, rgba(14, 38, 44, 0.4) 60%, rgba(0,0,0,0.2) 100%)" 
         }} />
         
-        <div className="container relative z-10" style={{ display: "flex", height: "100%", alignItems: "flex-end", paddingBottom: "5rem" }}>
+        <div className="container relative z-10 pkg-hero-content">
           <div style={{ maxWidth: "800px" }}>
             <span className="eyebrow" style={{ color: "var(--teal-dark)", background: "rgba(255,255,255,0.95)", padding: "6px 14px", borderRadius: "2px", fontWeight: 600, letterSpacing: "0.15em" }}>
               {pkg.tag || "LUXURY PACKAGE"}
@@ -136,7 +130,7 @@ export default async function PackageDetails({ params }: { params: Promise<{ id:
       </section>
 
       {/* Main Content */}
-      <section className="container" style={{ padding: "6rem 0", display: "grid", gridTemplateColumns: "1fr 340px", gap: "4rem" }}>
+      <section className="container pkg-grid">
         
         {/* Left Content */}
         <div>
@@ -213,7 +207,7 @@ export default async function PackageDetails({ params }: { params: Promise<{ id:
 
         {/* Right Sidebar */}
         <div>
-          <div style={{ position: "sticky", top: "8rem" }}>
+          <div className="pkg-sidebar">
             <div style={{ background: "var(--bg-secondary)", padding: "2.5rem", borderRadius: "4px", border: "1px solid var(--border)", marginBottom: "2rem" }}>
               <p className="eyebrow" style={{ color: "var(--text-light)", marginBottom: "0.5rem" }}>Package Price</p>
               <div style={{ fontSize: "1.8rem", color: "var(--teal-dark)", fontFamily: "var(--font-serif)", marginBottom: "1.5rem" }}>{pkg.price}</div>
@@ -250,6 +244,39 @@ export default async function PackageDetails({ params }: { params: Promise<{ id:
       </section>
 
       <Footer />
+
+      <style>{`
+        .pkg-hero {
+          position: relative;
+          height: 70vh;
+          min-height: 550px;
+          background-color: var(--teal-deep);
+          overflow: hidden;
+        }
+        .pkg-hero-content {
+          display: flex;
+          height: 100%;
+          align-items: flex-end;
+          padding-bottom: 5rem;
+          padding-top: 120px;
+        }
+        .pkg-grid {
+          padding: 6rem 0;
+          display: grid;
+          grid-template-columns: 1fr 340px;
+          gap: 4rem;
+        }
+        .pkg-sidebar {
+          position: sticky;
+          top: 8rem;
+        }
+        @media (max-width: 992px) {
+          .pkg-hero { height: auto; min-height: 85vh; }
+          .pkg-hero-content { align-items: center; padding-bottom: 4rem; padding-top: 160px; text-align: center; }
+          .pkg-grid { grid-template-columns: 1fr; gap: 3rem; padding: 4rem 0; }
+          .pkg-sidebar { position: static; }
+        }
+      `}</style>
     </main>
   );
 }
