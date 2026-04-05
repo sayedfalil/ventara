@@ -17,27 +17,24 @@ export default function Hero() {
       style={{
         position: 'relative',
         width: '100%',
-        minHeight: '100vh',
+        height: '100vh',
         backgroundColor: '#FFFFFF',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '1rem',
       }}
     >
-      {/* Centered Rounded Video Canvas */}
+      {/* Edge-to-Edge Video Canvas */}
       <div 
         style={{ 
           position: 'relative',
           width: '100%',
-          height: 'calc(100vh - 2rem)',
-          borderRadius: '2.5rem',
+          height: '100vh',
           overflow: 'hidden',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          boxShadow: '0 20px 40px rgba(0,0,0,0.1)'
         }}
       >
         {/* Moving Ocean Waves Video Background */}

@@ -30,18 +30,17 @@ export default function Navbar() {
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         style={{
           position: 'fixed',
-          top: scrolled ? 0 : '1.5rem',
-          left: scrolled ? 0 : '1.5rem',
-          right: scrolled ? 0 : '1.5rem',
+          top: 0,
+          left: 0,
+          right: 0,
           zIndex: 100,
-          padding: scrolled ? '1rem 5vw' : '0 2rem',
+          padding: scrolled ? '1rem 5vw' : '2rem 5vw',
           height: '80px',
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
           background: scrolled ? '#FFFFFF' : 'transparent',
           boxShadow: scrolled ? '0 10px 30px rgba(0,0,0,0.05)' : 'none',
-          borderRadius: scrolled ? '0' : '2rem',
           transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
         }}
       >
