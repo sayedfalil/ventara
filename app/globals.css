@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
 
 :root {
   /* Ventara Brand Colors (Deep Medical/Travel Teal & Cyan) */
@@ -23,6 +24,16 @@
   --font-serif: 'Playfair Display', Georgia, serif;
   --font-sans: 'DM Sans', system-ui, sans-serif;
   
+  /* V2 Theme */
+  --background: #0A0A0A;
+  --primary: #0D7C8F;
+  --secondary: #5EEAFF;
+  --cream: #F5F0E8;
+  --surface: #121212;
+  --surface-glass: rgba(0, 0, 0, 0.4);
+  --font-heading: 'Cormorant Garamond', Georgia, serif;
+  --font-mono: 'Space Mono', monospace;
+
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
 }

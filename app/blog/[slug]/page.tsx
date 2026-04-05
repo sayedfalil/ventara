@@ -395,8 +395,14 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         }
 
         @media (max-width: 992px) {
-          .blog-hero { height: auto; min-height: 85vh; display: flex; align-items: flex-end; }
-          .blog-hero-content { position: relative; padding-top: 140px; text-align: center; }
+          .blog-hero { height: auto; min-height: 90vh; display: flex; flex-direction: column; justify-content: flex-end; }
+          .blog-hero-content { 
+             position: relative; 
+             padding-top: 260px; 
+             padding-bottom: 4rem; 
+             text-align: center; 
+             align-items: center;
+          }
           .blog-back-link { margin-bottom: 2rem !important; }
         }
       `}</style>

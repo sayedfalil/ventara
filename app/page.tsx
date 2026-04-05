@@ -1,28 +1,44 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
+import Lenis from "lenis";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import Philosophy from "@/components/Philosophy";
-import Destinations from "@/components/Destinations";
-import Curation from "@/components/Curation";
-import Packages from "@/components/Packages";
-import EnquirySection from "@/components/EnquirySection";
-import JournalSection from "@/components/JournalSection";
-import TestimonialsSection from "@/components/TestimonialsSection";
+import Journeys from "@/components/Journeys";
+import Approach from "@/components/Approach";
+import Experiences from "@/components/Experiences";
+import Stories from "@/components/Stories";
+import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
 export default function Home() {
-  const [scrollY, setScrollY] = useState(0);
+  const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    lenisRef.current = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: "vertical",
+      gestureOrientation: "vertical",
+      smoothWheel: true,
+    });
+
+    function raf(time: number) {
+      lenisRef.current?.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    // Expose lenis instance globally for GSAP ScrollTrigger
+    (window as Window & { lenis?: Lenis }).lenis = lenisRef.current;
+
+    return () => {
+      lenisRef.current?.destroy();
+    };
   }, []);
 
   return (
-    <main style={{ backgroundColor: "var(--bg-primary)" }}>
+    <main style={{ backgroundColor: "#0A0A0A", minHeight: "100vh" }}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -42,15 +58,13 @@ export default function Home() {
           })
         }}
       />
-      <Navbar scrollY={scrollY} />
+      <Navbar />
       <Hero />
-      <Philosophy />
-      <Curation />
-      <Destinations />
-      <Packages />
-      <JournalSection />
-      <TestimonialsSection />
-      <EnquirySection />
+      <Journeys />
+      <Approach />
+      <Experiences />
+      <Stories />
+      <Contact />
       <Footer />
     </main>
   );

@@ -255,10 +255,12 @@ export default async function PackageDetails({ params }: { params: Promise<{ id:
         }
         .pkg-hero-content {
           display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+          align-items: flex-start;
           height: 100%;
-          align-items: flex-end;
           padding-bottom: 5rem;
-          padding-top: 120px;
+          padding-top: 140px;
         }
         .pkg-grid {
           padding: 6rem 0;
@@ -271,8 +273,13 @@ export default async function PackageDetails({ params }: { params: Promise<{ id:
           top: 8rem;
         }
         @media (max-width: 992px) {
-          .pkg-hero { height: auto; min-height: 85vh; }
-          .pkg-hero-content { align-items: center; padding-bottom: 4rem; padding-top: 160px; text-align: center; }
+          .pkg-hero { height: auto; min-height: 95vh; }
+          .pkg-hero-content { 
+            align-items: center; 
+            text-align: center; 
+            padding-top: 260px; /* Safely clear huge extended Navbar logo */
+            padding-bottom: 4rem; 
+          }
           .pkg-grid { grid-template-columns: 1fr; gap: 3rem; padding: 4rem 0; }
           .pkg-sidebar { position: static; }
         }
