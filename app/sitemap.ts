@@ -21,6 +21,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: "https://www.ventaraglobal.com", priority: 1.0 },
     { url: "https://www.ventaraglobal.com/blog", priority: 0.8 },
     { url: "https://www.ventaraglobal.com/packages", priority: 0.9 },
+    { url: "https://www.ventaraglobal.com/kashmir-luxury-tour-packages-from-kerala", priority: 0.8 },
+    { url: "https://www.ventaraglobal.com/kashmir-tour-packages-for-nri", priority: 0.8 },
+    { url: "https://www.ventaraglobal.com/kerala-luxury-backwater-packages", priority: 0.8 },
   ];
 
   const blogPages: MetadataRoute.Sitemap = blogs.map((post) => ({
