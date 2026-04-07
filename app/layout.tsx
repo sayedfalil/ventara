@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import "./globals.css";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.ventaraglobal.com"),
@@ -95,6 +96,11 @@ export default function RootLayout({
       </head>
       <body>
         {children}
+        <WhatsAppButton 
+          variant="floating" 
+          message="Hi Ventara Global, I'm interested in exploring your luxury travel experiences. Could you help me plan my journey?" 
+          locationTracker="global_floating" 
+        />
       </body>
     </html>
   );

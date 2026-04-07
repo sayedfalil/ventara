@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { getDb } from "@/lib/db";
 import type { Metadata } from "next";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
@@ -322,6 +323,16 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         >
           Request a Consultation
         </a>
+        <div style={{ marginTop: "1.5rem" }}>
+          <WhatsAppButton 
+            variant="cta"
+            label="Loved this? Plan your trip — chat on WhatsApp"
+            message={`Hi Ventara Global, I just read your blog on ${blog.title} and would love to plan a similar experience. Can you help?`}
+            locationTracker="blog_footer"
+            style={{ borderColor: "var(--teal-accent)", color: "var(--teal-accent)", background: "transparent" }}
+            className="blog-wa-btn"
+          />
+        </div>
       </div>
 
       <Footer />
@@ -330,6 +341,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         .blog-back-link:hover { color: var(--teal) !important; }
         .more-articles-btn:hover { background: var(--teal-dark) !important; color: #fff !important; }
         .consultation-btn:hover { opacity: 0.85; }
+        .blog-wa-btn:hover { background: var(--teal-accent) !important; color: var(--teal-deep) !important; }
 
         .blog-body {
           font-size: 1rem;

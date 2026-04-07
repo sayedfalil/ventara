@@ -4,6 +4,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getDb } from "@/lib/db";
 import type { Metadata } from "next";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const { id } = await params;
@@ -225,6 +226,12 @@ export default async function PackageDetails({ params }: { params: Promise<{ id:
               <a href="/#enquire" className="btn-primary" style={{ width: "100%", justifyContent: "center", display: "flex" }}>
                 Book This Package
               </a>
+              <WhatsAppButton 
+                variant="cta"
+                message={`Hi Ventara Global, I'd like to book/learn more about the ${pkg.title} package. My preferred dates are [user can edit]. Please share availability and pricing.`}
+                locationTracker="package_detail_sidebar"
+                style={{ width: "100%", justifyContent: "center", display: "flex", marginTop: "1rem", borderWidth: "1px", background: "rgba(28,95,107,0)", borderColor: "var(--teal)" }}
+              />
             </div>
 
             <div style={{ background: "var(--teal-dark)", color: "#fff", padding: "2.5rem", borderRadius: "4px" }}>

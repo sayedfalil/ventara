@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { AtSign, Link2, Mail } from 'lucide-react';
+import WhatsAppButton from './WhatsAppButton';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -44,6 +45,19 @@ export default function Footer() {
                   <Icon size={18} />
                 </a>
               ))}
+              <WhatsAppButton 
+                variant="icon" 
+                size={40} 
+                message="Hi Ventara Global, I have a quick question." 
+                locationTracker="footer" 
+                style={{ 
+                  border: '1px solid rgba(255, 255, 255, 0.1)', 
+                  color: 'rgba(245, 240, 232, 0.6)', 
+                  transition: 'all 0.3s ease',
+                  borderRadius: '0' 
+                }} 
+                className="footer-wa"
+              />
             </div>
           </motion.div>
         </div>
@@ -54,6 +68,10 @@ export default function Footer() {
         </div>
       </div>
       <style jsx global>{`
+        .footer-wa:hover {
+          border-color: var(--secondary) !important;
+          color: var(--secondary) !important;
+        }
         @media (max-width: 900px) { .footer-brand { grid-column: span 12 !important; } .footer-nav { grid-column: span 6 !important; } .footer-contact { grid-column: span 6 !important; } .footer-social { grid-column: span 12 !important; } }
       `}</style>
     </footer>

@@ -2,8 +2,9 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useState, useEffect } from "react";
+import WhatsAppButton from "./WhatsAppButton";
 
 type Package = {
   id: number;
@@ -284,17 +285,25 @@ export default function Packages() {
                   An extraordinary journey is being curated especially for the
                   discerning traveler. Reserve your place today.
                 </p>
-                <a
-                  href="/#contact"
-                  className="btn-outline"
-                  style={{
-                    borderColor: "rgba(255,255,255,0.35)",
-                    color: "#fff",
-                    display: "inline-flex",
-                  }}
-                >
-                  Express Interest
-                </a>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginTop: '1rem' }}>
+                  <a
+                    href="/#contact"
+                    className="btn-outline"
+                    style={{
+                      borderColor: "rgba(255,255,255,0.35)",
+                      color: "#fff",
+                      display: "inline-flex",
+                    }}
+                  >
+                    Express Interest
+                  </a>
+                  <WhatsAppButton 
+                    variant="icon" 
+                    message={`Hi Ventara Global, I'm interested in your ${ph.title} package. Could you share more details and pricing?`} 
+                    locationTracker="packages_ph_card"
+                    style={{ borderColor: "rgba(255,255,255,0.35)", color: "#fff" }}
+                  />
+                </div>
               </div>
             </motion.div>
           ))}
@@ -335,13 +344,11 @@ export default function Packages() {
                   border: "1px solid var(--border)",
                   display: "flex",
                   flexDirection: "column",
-                  cursor: "pointer",
                 }}
               >
-                <Link href={`/packages/${pkg.id}`} style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column', height: '100%' }}>
-                  {/* Image */}
                 <div style={{ position: "relative", height: "280px", overflow: "hidden" }}>
-                  <Image
+                  <Link href={`/packages/${pkg.id}`}>
+                    <Image
                     src={pkg.image_url}
                     alt={pkg.title}
                     fill
@@ -349,10 +356,12 @@ export default function Packages() {
                     className="img-hover-scale"
                     unoptimized
                   />
+                  </Link>
                   <div
                     style={{
                       position: "absolute",
                       inset: 0,
+                      pointerEvents: "none",
                       background:
                         "linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.35) 100%)",
                     }}
@@ -398,17 +407,19 @@ export default function Packages() {
                     flexGrow: 1,
                   }}
                 >
-                  <h3
-                    className="heading-serif"
-                    style={{
-                      fontSize: "clamp(1.5rem, 2vw, 2rem)",
-                      color: "var(--text-primary)",
-                      marginBottom: "1.2rem",
-                      lineHeight: 1.2,
-                    }}
-                  >
-                    {pkg.title}
-                  </h3>
+                  <Link href={`/packages/${pkg.id}`} style={{ textDecoration: 'none' }}>
+                    <h3
+                      className="heading-serif"
+                      style={{
+                        fontSize: "clamp(1.5rem, 2vw, 2rem)",
+                        color: "var(--text-primary)",
+                        marginBottom: "1.2rem",
+                        lineHeight: 1.2,
+                      }}
+                    >
+                      {pkg.title}
+                    </h3>
+                  </Link>
 
                   <div
                     style={{
@@ -493,12 +504,19 @@ export default function Packages() {
                   )}
 
                   <div
-                    style={{ textAlign: "center", justifyContent: "center", marginTop: "auto" }}
+                    style={{ display: "flex", alignItems: "center", gap: "1rem", marginTop: "auto" }}
                   >
-                    <span className="btn-primary" style={{ display: "inline-flex" }}>View Details</span>
+                    <Link href={`/packages/${pkg.id}`} className="btn-primary" style={{ display: "inline-flex", textDecoration: "none", flexGrow: 1, justifyContent: "center" }}>
+                      View Details
+                    </Link>
+                    <WhatsAppButton 
+                      variant="icon" 
+                      message={`Hi Ventara Global, I'm interested in your ${pkg.title} package. Could you share more details and pricing?`} 
+                      locationTracker="packages_card"
+                      style={{ border: "1px solid var(--teal)", color: "var(--teal-dark)" }}
+                    />
                   </div>
                 </div>
-                </Link>
               </motion.div>
             );
           })}

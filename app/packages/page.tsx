@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { getDb } from "@/lib/db";
 import { Metadata } from "next";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 export const metadata: Metadata = {
   title: "Exclusive Luxury Tour Packages – India | Ventara Global",
@@ -174,20 +175,28 @@ export default async function PackagesPage() {
                   <h3 className="heading-serif" style={{ fontSize: "1.6rem", color: "var(--text-primary)", marginBottom: "0.5rem" }}>{pkg.title}</h3>
                   <p style={{ color: "var(--text-light)", fontSize: "0.9rem", marginBottom: "2rem" }}>{pkg.duration}</p>
                   
-                  <Link href={`/packages/${pkg.id}`} style={{
-                    marginTop: "auto",
-                    padding: "12px 32px",
-                    border: "1px solid var(--teal)",
-                    color: "var(--teal-dark)",
-                    fontSize: "0.8rem",
-                    letterSpacing: "0.15em",
-                    textTransform: "uppercase",
-                    transition: "all 0.3s",
-                    textDecoration: "none"
-                  }}
-                  className="pkg-btn">
-                    View More
-                  </Link>
+                  <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginTop: "auto", width: "100%", justifyContent: "center" }}>
+                    <Link href={`/packages/${pkg.id}`} style={{
+                      padding: "12px 32px",
+                      border: "1px solid var(--teal)",
+                      color: "var(--teal-dark)",
+                      fontSize: "0.8rem",
+                      letterSpacing: "0.15em",
+                      textTransform: "uppercase",
+                      transition: "all 0.3s",
+                      textDecoration: "none"
+                    }}
+                    className="pkg-btn">
+                      View More
+                    </Link>
+                    <WhatsAppButton 
+                      variant="icon" 
+                      message={`Hi Ventara Global, I'm interested in your ${pkg.title} package. Could you share more details and pricing?`} 
+                      locationTracker="packages_page_card"
+                      style={{ border: "1px solid var(--teal)", color: "var(--teal-dark)" }}
+                      className="pkg-wa-btn"
+                    />
+                  </div>
                 </div>
               </div>
             ))}

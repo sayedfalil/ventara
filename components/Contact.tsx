@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef } from 'react';
+import WhatsAppButton from './WhatsAppButton';
 
 const destinations = ['Kashmir', 'Kerala', 'Rajasthan', 'Goa', 'Himalayas', 'Andaman', 'Other'];
 
@@ -54,6 +55,16 @@ export default function Contact() {
                 <input type="text" value={formData.dates} onChange={(e) => setFormData({ ...formData, dates: e.target.value })} placeholder="e.g., March 2025 or Flexible" className="form-input" />
               </div>
               <button type="submit" className="submit-btn">Begin Your Journey</button>
+              <div style={{ textAlign: 'center', marginTop: '1rem' }}>
+                <WhatsAppButton 
+                  variant="inline" 
+                  message="Hi Ventara Global, I'd like to discuss planning a custom luxury journey. Could we connect?" 
+                  locationTracker="contact_form" 
+                  style={{ color: 'rgba(245, 240, 232, 0.6)', fontSize: '0.875rem' }} 
+                  className="contact-wa-link" 
+                  label="Or chat with us instantly on WhatsApp" 
+                />
+              </div>
             </form>
           )}
         </div>
@@ -63,6 +74,7 @@ export default function Contact() {
         .form-input:focus { border-color: #5EEAFF; } .form-input::placeholder { color: rgba(255, 255, 255, 0.3); }
         .submit-btn { display: inline-flex; align-items: center; justify-content: center; width: 100%; padding: 1.25rem 2rem; margin-top: 1rem; border: 1px solid rgba(13, 124, 143, 0.5); background: transparent; color: #F5F0E8; font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; transition: all 0.3s ease; }
         .submit-btn:hover { background: #0D7C8F; border-color: #0D7C8F; color: #0A0A0A; }
+        .contact-wa-link:hover { color: var(--teal) !important; opacity: 1 !important; }
         @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.1); opacity: 0.8; } }
         @media (max-width: 900px) { .contact-text, .contact-form { grid-column: span 12 !important; } }
       `}</style>

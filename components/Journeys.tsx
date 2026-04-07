@@ -2,6 +2,7 @@
 
 import { useRef, useState } from 'react';
 import Image from 'next/image';
+import WhatsAppButton from './WhatsAppButton';
 
 const destinations = [
   { id: 1, name: 'Goa', type: 'Coastal Paradise', year: '2024', image: 'https://images.unsplash.com/photo-1736347505109-f02e0e5a0200?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NjZ8MHwxfHNlYXJjaHwyfHxHb2ElMjBiZWFjaCUyMGx1eHVyeSUyMHJlc29ydCUyMHN1bnNldHxlbnwwfHx8fDE3NzUzNzYwMDN8MA&ixlib=rb-4.1.0&q=85', description: 'Sun-kissed beaches and Portuguese heritage' },
@@ -35,11 +36,20 @@ export default function Journeys() {
               <div style={{ position: 'absolute', top: '1.5rem', left: '1.5rem', fontFamily: 'var(--font-mono)', fontSize: '0.75rem', letterSpacing: '0.2em', color: 'rgba(255, 255, 255, 0.6)', zIndex: 10 }}>0{index + 1}</div>
               <Image src={dest.image} alt={dest.name} fill style={{ objectFit: 'cover', transition: 'transform 1.2s cubic-bezier(0.16, 1, 0.3, 1)' }} unoptimized />
               <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0.3) 50%, transparent 100%)' }} />
-              <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '2rem' }}>
-                <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#0D7C8F', marginBottom: '0.75rem' }}>Type: {dest.type}</p>
-                <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', fontWeight: 300, color: '#F5F0E8', marginBottom: '0.75rem', letterSpacing: '-0.02em' }}>{dest.name}</h3>
-                <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.9375rem', fontWeight: 300, color: 'rgba(245, 240, 232, 0.6)', lineHeight: 1.6, marginBottom: '1rem' }}>{dest.description}</p>
-                <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', letterSpacing: '0.15em', color: '#888888' }}>{dest.year}</p>
+              <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+                <div>
+                  <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#0D7C8F', marginBottom: '0.75rem' }}>Type: {dest.type}</p>
+                  <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', fontWeight: 300, color: '#F5F0E8', marginBottom: '0.75rem', letterSpacing: '-0.02em' }}>{dest.name}</h3>
+                  <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.9375rem', fontWeight: 300, color: 'rgba(245, 240, 232, 0.6)', lineHeight: 1.6, marginBottom: '1rem' }}>{dest.description}</p>
+                  <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', letterSpacing: '0.15em', color: '#888888', margin: 0 }}>{dest.year}</p>
+                </div>
+                <WhatsAppButton 
+                  variant="icon"
+                  message={`Hi Ventara Global, I'm interested in your ${dest.name} package. Could you share more details and pricing?`}
+                  locationTracker="journeys_card"
+                  style={{ color: '#5EEAFF', borderColor: 'rgba(94, 234, 255, 0.3)', marginBottom: '0.5rem' }}
+                  className="journeys-wa-btn"
+                />
               </div>
               <div className="card-border" style={{ position: 'absolute', inset: 0, border: '1px solid transparent', transition: 'border-color 0.4s ease', pointerEvents: 'none' }} />
             </article>
@@ -49,6 +59,7 @@ export default function Journeys() {
       <style jsx global>{`
         .journey-card:hover img { transform: scale(1.05); }
         .journey-card:hover .card-border { border-color: rgba(94, 234, 255, 0.3); }
+        .journeys-wa-btn:hover { background: rgba(94, 234, 255, 0.1) !important; border-color: #5EEAFF !important; }
       `}</style>
     </section>
   );

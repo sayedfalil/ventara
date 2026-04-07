@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ShoppingBag } from 'lucide-react';
 import Image from 'next/image';
+import WhatsAppButton from './WhatsAppButton';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -101,6 +102,18 @@ export default function Navbar() {
 
         {/* RIGHT ACTION PILLS */}
         <div className="desktop-nav" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+          <WhatsAppButton
+            variant="icon"
+            message="Hi Ventara Global, I have a quick question."
+            locationTracker="header"
+            style={{
+              border: scrolled ? '1px solid #E5E5E5' : '1px solid rgba(255,255,255,0.4)',
+              background: 'transparent',
+              color: scrolled ? '#111' : '#FFF',
+              borderRadius: '50%',
+              transition: 'all 0.3s ease'
+            }}
+          />
           <a 
             href="/#contact" 
             style={{ 
@@ -170,6 +183,10 @@ export default function Navbar() {
       </motion.div>
 
       <style jsx global>{`
+        .wa-icon-btn:hover {
+          background: ${scrolled ? '#111' : '#FFF'} !important;
+          color: ${scrolled ? '#FFF' : '#111'} !important;
+        }
         @media (max-width: 900px) { 
           .desktop-nav { display: none !important; } 
           .mobile-menu-btn { display: flex !important; } 
