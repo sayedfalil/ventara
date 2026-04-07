@@ -41,7 +41,7 @@ export default async function PackagesPage() {
         </div>
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, var(--teal-deep), transparent)" }} />
         
-        <div className="container relative z-10 text-center">
+        <div className="container" style={{ position: "relative", zIndex: 10, textAlign: "center" }}>
           <div>
             <h1 className="heading-serif" style={{ fontSize: "clamp(3rem, 6vw, 5rem)", marginBottom: "1rem" }}>Holiday Packages</h1>
             <p style={{ fontSize: "1.2rem", fontWeight: 300, opacity: 0.9 }}>Customized holiday packages for all</p>
@@ -50,7 +50,7 @@ export default async function PackagesPage() {
       </section>
 
       {/* Services Context */}
-      <section className="container" style={{ padding: "8rem 0" }}>
+      <section className="container" style={{ paddingTop: "8rem", paddingBottom: "8rem" }}>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "4rem", alignItems: "center" }}>
           <div>
             <h2 className="heading-serif" style={{ fontSize: "2.5rem", marginBottom: "1.5rem", color: "var(--text-primary)" }}>
@@ -84,7 +84,7 @@ export default async function PackagesPage() {
       </section>
 
       {/* Features */}
-      <section style={{ background: "var(--bg-secondary)", padding: "8rem 0" }}>
+      <section style={{ background: "var(--bg-secondary)", paddingTop: "8rem", paddingBottom: "8rem" }}>
         <div className="container">
           <div style={{ textAlign: "center", marginBottom: "5rem" }}>
             <h2 className="heading-serif" style={{ fontSize: "2.5rem", color: "var(--text-primary)", marginBottom: "1rem" }}>Planning your perfect getaway has never been easier!</h2>
@@ -109,7 +109,7 @@ export default async function PackagesPage() {
       </section>
 
       {/* Package Grid */}
-      <section className="container" style={{ padding: "8rem 0" }}>
+      <section className="container" style={{ paddingTop: "8rem", paddingBottom: "8rem" }}>
         <div style={{ textAlign: "center", marginBottom: "5rem" }}>
           <h2 className="heading-serif" style={{ fontSize: "3rem", color: "var(--text-primary)", marginBottom: "1rem" }}>Discover Our Packages</h2>
           <p style={{ color: "var(--text-secondary)", maxWidth: "600px", margin: "0 auto" }}>

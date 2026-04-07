@@ -19,9 +19,6 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  alternates: {
-    canonical: "https://www.ventaraglobal.com",
-  },
   openGraph: {
     title: "Ventara Global | Bespoke Luxury India Tour Packages",
     description: "Ventara Global crafts private luxury journeys across Kerala, Kashmir & Rajasthan. Bespoke itineraries, 24/7 concierge. Enquire today.",
