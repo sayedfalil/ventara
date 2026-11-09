@@ -1,6 +1,10 @@
 import { MetadataRoute } from 'next';
 import { getDb } from '@/lib/db';
 
+// Rebuild the sitemap hourly so blog posts and packages published from the
+// admin panel appear without needing a redeploy.
+export const revalidate = 3600;
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const db = getDb();
   
