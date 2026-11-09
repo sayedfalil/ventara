@@ -97,7 +97,7 @@ export default function KeralaLuxuryBackwater() {
       {/* Hero Section */}
       <section style={{ height: '50vh', backgroundColor: 'var(--teal-deep)', position: 'relative', display: 'flex', alignItems: 'flex-end', paddingBottom: '3rem' }}>
         <div className="container relative z-10">
-          <h1 className="heading-serif" style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', color: 'var(--text-primary)', marginBottom: '1rem', maxWidth: '900px' }}>
+          <h1 className="heading-serif" style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', color: 'var(--white)', marginBottom: '1rem', maxWidth: '900px' }}>
             Kerala Luxury Tour Packages – God's Own Country
           </h1>
         </div>

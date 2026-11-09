@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { getDb } from "@/lib/db";
 import type { Metadata } from "next";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import { displayPrice, hasValidPrice } from "@/lib/price";
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const { id } = await params;
@@ -87,7 +88,10 @@ export default async function PackageDetails({ params }: { params: Promise<{ id:
         "name": pkg.title,
         "description": pkg.description,
         "image": safeImageUrl,
-        "offers": { "@type": "Offer", "price": (pkg.price || "0").replace(/[^0-9.]/g, ""), "priceCurrency": "INR" },
+        // Only publish an offer when there is a real price; a price of 0 would mislead Google.
+        ...(hasValidPrice(pkg.price)
+          ? { "offers": { "@type": "Offer", "price": String(pkg.price).replace(/[^0-9.]/g, ""), "priceCurrency": "INR" } }
+          : {}),
         "brand": { "@type": "Brand", "name": "Ventara Global" }
       }) }} />
       <div style={{ position: "absolute", zIndex: 50, width: "100%" }}>
@@ -211,7 +215,7 @@ export default async function PackageDetails({ params }: { params: Promise<{ id:
           <div className="pkg-sidebar">
             <div style={{ background: "var(--bg-secondary)", padding: "2.5rem", borderRadius: "4px", border: "1px solid var(--border)", marginBottom: "2rem" }}>
               <p className="eyebrow" style={{ color: "var(--text-light)", marginBottom: "0.5rem" }}>Package Price</p>
-              <div style={{ fontSize: "1.8rem", color: "var(--teal-dark)", fontFamily: "var(--font-serif)", marginBottom: "1.5rem" }}>{pkg.price}</div>
+              <div style={{ fontSize: "1.8rem", color: "var(--teal-dark)", fontFamily: "var(--font-serif)", marginBottom: "1.5rem" }}>{displayPrice(pkg.price)}</div>
               
               <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "2rem" }}>
                 <div style={{ padding: "10px", background: "rgba(28,95,107,0.08)", borderRadius: "50%", color: "var(--teal)" }}>

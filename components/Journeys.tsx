@@ -40,8 +40,7 @@ export default function Journeys() {
                 <div>
                   <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#0D7C8F', marginBottom: '0.75rem' }}>Type: {dest.type}</p>
                   <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', fontWeight: 300, color: '#F5F0E8', marginBottom: '0.75rem', letterSpacing: '-0.02em' }}>{dest.name}</h3>
-                  <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.9375rem', fontWeight: 300, color: 'rgba(245, 240, 232, 0.6)', lineHeight: 1.6, marginBottom: '1rem' }}>{dest.description}</p>
-                  <p style={{ fontFamily: 'var(--font-mono)', fontSize: '0.7rem', letterSpacing: '0.15em', color: '#888888', margin: 0 }}>{dest.year}</p>
+                  <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.9375rem', fontWeight: 300, color: 'rgba(245, 240, 232, 0.6)', lineHeight: 1.6, margin: 0 }}>{dest.description}</p>
                 </div>
                 <WhatsAppButton 
                   variant="icon"

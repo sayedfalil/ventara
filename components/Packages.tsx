@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import WhatsAppButton from "./WhatsAppButton";
+import { displayPrice } from "@/lib/price";
 
 type Package = {
   id: number;
@@ -462,7 +463,7 @@ export default function Packages() {
                           fontSize: "1.05rem",
                         }}
                       >
-                        {pkg.price}
+                        {displayPrice(pkg.price)}
                       </p>
                     </div>
                   </div>
