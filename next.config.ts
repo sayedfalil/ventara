@@ -15,6 +15,19 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+
+  // Send the bare domain to www with a permanent (308) redirect so Google
+  // only indexes one hostname. The canonical host is www.ventaraglobal.com.
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'ventaraglobal.com' }],
+        destination: 'https://www.ventaraglobal.com/:path*',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

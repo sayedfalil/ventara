@@ -3,8 +3,9 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
-  title: 'Best Time to Visit Kashmir from Kerala – Month by Month Guide | Ventara Global',
-  description: 'Discover the best time to visit Kashmir from Kerala. A comprehensive month-by-month luxury travel guide detailing weather, experiences, and exclusive insights from Ventara Global.',
+  title: 'Best Time to Visit Kashmir from Kerala | Ventara Global',
+  description: 'Best time to visit Kashmir from Kerala: a month-by-month luxury guide to weather, experiences and insider tips from Ventara Global.',
+  alternates: { canonical: '/blog/best-time-to-visit-kashmir-from-kerala' },
 };
 
 export default function BestTimeKashmirKeralaBlog() {

@@ -9,6 +9,7 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 export const metadata: Metadata = {
   title: "Exclusive Luxury Tour Packages – India | Ventara Global",
   description: "Explore handcrafted luxury tour packages to Kerala, Kashmir and Rajasthan. Fully bespoke. Built for discerning travellers worldwide.",
+  alternates: { canonical: "/packages" },
 };
 
 export const revalidate = 60;

@@ -4,7 +4,8 @@ import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'Kerala Luxury Backwater Packages | Ventara Global',
-  description: 'Embark on an exclusive journey with our Kerala luxury backwater packages. Experience private houseboats, boutique wellness resorts, and unparalleled luxury with Ventara Global.',
+  description: 'Kerala luxury backwater packages with private houseboats, wellness resorts and 5-star stays, designed by Ventara Global.',
+  alternates: { canonical: '/kerala-luxury-backwater-packages' },
 };
 
 export default function KeralaLuxuryBackwater() {

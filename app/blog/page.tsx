@@ -6,7 +6,8 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Travel Journal – Luxury India Travel Insights | Ventara Global",
-  description: "Stories, guides and curated perspectives on luxury travel across India. By Ventara Global.",
+  description: "Luxury India travel guides, destination stories and trip-planning insights for Kashmir, Kerala and Rajasthan, by Ventara Global.",
+  alternates: { canonical: "/blog" },
 };
 
 export const revalidate = 60;

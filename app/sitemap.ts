@@ -26,6 +26,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: "https://www.ventaraglobal.com/kerala-luxury-backwater-packages", priority: 0.8 },
   ];
 
+  // Blog posts that are hand-written pages (not stored in the database).
+  const staticBlogSlugs = [
+    "best-time-to-visit-kashmir-from-kerala",
+    "kerala-vs-kashmir-which-to-visit-first",
+  ];
+  const dbSlugs = new Set(blogs.map((post) => String(post.slug)));
+
+  const staticBlogPages: MetadataRoute.Sitemap = staticBlogSlugs
+    .filter((slug) => !dbSlugs.has(slug))
+    .map((slug) => ({
+      url: `https://www.ventaraglobal.com/blog/${slug}`,
+      priority: 0.7,
+    }));
+
   const blogPages: MetadataRoute.Sitemap = blogs.map((post) => ({
     url: `https://www.ventaraglobal.com/blog/${post.slug}`,
     lastModified: post.published_at ? new Date(post.published_at as string) : new Date(),
@@ -38,5 +52,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.9,
   }));
 
-  return [...staticPages, ...blogPages, ...packagePages];
+  return [...staticPages, ...staticBlogPages, ...blogPages, ...packagePages];
 }

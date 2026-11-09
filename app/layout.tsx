@@ -6,7 +6,9 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.ventaraglobal.com"),
   title: "Ventara Global | Bespoke Luxury India Tour Packages",
-  description: "Ventara Global engineers ultra-luxury, bespoke private journeys across Kashmir, Kerala, Rajasthan & more. Unmatched 24/7 concierge, 5-star stays & curated local experiences.",
+  description: "Ventara Global designs bespoke luxury journeys across Kashmir, Kerala & Rajasthan: private stays, chauffeured travel and 24/7 concierge.",
+  // Homepage canonical. Every other page sets its own canonical, so this default is only used by "/".
+  alternates: { canonical: "/" },
   keywords: ["luxury travel India", "bespoke tour packages", "Kashmir luxury tour", "Kerala honeymoon packages", "Rajasthan heritage tour", "premium India travel agency", "Ventara Global"],
   robots: {
     index: true,
@@ -64,7 +66,9 @@ export default function RootLayout({
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": ["Organization", "LocalBusiness", "TravelAgency"],
+            "@id": "https://www.ventaraglobal.com/#organization",
             "name": "Ventara Global",
+            "alternateName": ["Vantara Global", "Ventara Global Luxury Tours"],
             "url": "https://www.ventaraglobal.com",
             "logo": "https://www.ventaraglobal.com/logo.png",
             "image": "https://www.ventaraglobal.com/logo.png",

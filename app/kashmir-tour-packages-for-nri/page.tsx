@@ -4,7 +4,8 @@ import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'Kashmir Tour Packages for NRI USA | Ventara Global',
-  description: 'Ventara Global offers bespoke Kashmir tour packages for NRI USA travelers. Relive your homeland’s heritage through ultra-luxury itineraries, seamless secure logistics, and world-class 24/7 concierge support.',
+  description: 'Bespoke Kashmir tour packages for NRIs in the USA: ultra-luxury itineraries, secure logistics and 24/7 concierge by Ventara Global.',
+  alternates: { canonical: '/kashmir-tour-packages-for-nri' },
 };
 
 export default function KashmirForNRI() {

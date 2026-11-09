@@ -4,7 +4,8 @@ import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'Kashmir Luxury Tour Packages from Kerala | Ventara Global',
-  description: 'Experience unparalleled exclusivity with our Kashmir luxury tour packages from Kerala. Stay in private houseboats, soar over the Himalayas, and indulge in tailored itineraries. Let Ventara Global craft your legacy.',
+  description: 'Luxury Kashmir tour packages from Kerala: private houseboats, Himalayan stays and tailored itineraries, crafted by Ventara Global.',
+  alternates: { canonical: '/kashmir-luxury-tour-packages-from-kerala' },
 };
 
 export default function KashmirFromKerala() {

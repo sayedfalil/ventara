@@ -4,7 +4,8 @@ import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'Kerala vs Kashmir: Which to Visit First? | Ventara Global',
-  description: 'An expert luxury travel comparison of Kerala vs Kashmir. Discover which destination aligns with your desires, featuring insights from Ventara Global’s elite travel architects.',
+  description: 'Kerala vs Kashmir: an expert luxury travel comparison to help you choose where to go first, from Ventara Global’s travel architects.',
+  alternates: { canonical: '/blog/kerala-vs-kashmir-which-to-visit-first' },
 };
 
 export default function KeralaVsKashmirBlog() {
