@@ -5,7 +5,7 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.ventaraglobal.com"),
-  title: "Vantara Global | Bespoke Luxury India Tour Packages & Experiences",
+  title: "Ventara Global | Bespoke Luxury India Tour Packages",
   description: "Ventara Global engineers ultra-luxury, bespoke private journeys across Kashmir, Kerala, Rajasthan & more. Unmatched 24/7 concierge, 5-star stays & curated local experiences.",
   keywords: ["luxury travel India", "bespoke tour packages", "Kashmir luxury tour", "Kerala honeymoon packages", "Rajasthan heritage tour", "premium India travel agency", "Ventara Global"],
   robots: {
