@@ -112,7 +112,7 @@ export default function KashmirFromKerala() {
           </p>
           <p>
             Whether you desire a private helicopter arrival over the Pir Panjal range, an intimate dinner aboard a heritage houseboat, or secluded retreats in Gulmarg, Ventara Global orchestrates it all. By choosing our Kashmir luxury tour packages from Kerala, you are not merely booking a holiday; you are commissioning a masterpiece. 
-            For inspiration on scheduling, read our in-depth guide on the <a href="/blog/best-time-to-visit-kashmir-from-kerala" style={{ color: 'var(--teal)' }}>Best Time to Visit Kashmir from Kerala</a>.
+            For inspiration on scheduling, read our in-depth guide on the <a href="/blog/best-time-to-visit-kashmir-from-kerala" style={{ color: 'var(--teal)' }}>Best Time to Visit Kashmir from Kerala</a>. Travelling as a couple? Explore our <a href="/kashmir-honeymoon-packages" style={{ color: 'var(--teal)' }}>Kashmir honeymoon packages</a>.
           </p>
         </div>
 
